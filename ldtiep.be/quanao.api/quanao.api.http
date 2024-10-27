@@ -1,0 +1,6 @@
+@quanao.api_HostAddress = http://localhost:5097
+
+GET {{quanao.api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
