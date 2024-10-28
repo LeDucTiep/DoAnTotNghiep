@@ -21,15 +21,12 @@
 
 .home-footer {
     padding: 0 200px;
-
-    height: 600px;
+    padding-bottom: 20px;
 }
 
 .d-flex {
     display: flex;
 }
-
-.yody-container {}
 
 .header__menu {
     align-items: center;
@@ -40,6 +37,9 @@
         font-size: 20px;
     }
 
+    * {
+        user-select: none;
+    }
 }
 
 .menu-popover {
@@ -61,12 +61,26 @@
     display: flex;
     align-items: center;
     gap: 10px;
+    border: 1px solid #CFD7E3;
+
+    &:hover {
+        border: 1px solid #AFC3F3;
+        background-color: #E6EAF0;
+    }
 
     input {
         border: none !important;
-        border-radius: 1.25rem !important;
+        border-top-right-radius: 1.25rem !important;
+        border-bottom-right-radius: 1.25rem !important;
         background-color: #f2f5f8;
+        height: 100%;
         outline: none;
+        font-size: 16px;
+
+        &:hover {
+            background-color: #E6EAF0;
+
+        }
     }
 }
 
@@ -210,34 +224,35 @@
             gap: 14px;
         }
     }
+}
 
-    .view-more-product {
+.view-more-product {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+
+    .button-view-more {
+        margin-top: 20px;
+        cursor: pointer;
+        height: 48px;
+        width: 380px;
+        background-color: #fff;
+        border-radius: .75rem;
+        border: 1.5px solid #1c2430;
+        color: #424242;
+        user-select: none;
+
+        font-weight: 600;
+        font-size: 1rem;
+        line-height: 1.5rem;
+
         display: flex;
         align-items: center;
         justify-content: center;
 
-        .button-view-more {
-            margin-top: 20px;
-            cursor: pointer;
-            height: 48px;
-            width: 380px;
-            background-color: #fff;
-            border-radius: .75rem;
-            border: 1.5px solid #1c2430;
-            color: #424242;
-            user-select: none;
-
-            font-weight: 600;
-            font-size: 1rem;
-            line-height: 1.5rem;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            &:hover {
-                background-color: #f9fafb;
-            }
+        &:hover {
+            background-color: #f9fafb;
         }
     }
 }
@@ -247,6 +262,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        margin-bottom: 30px;
 
         .left {
             font-size: 32px;
@@ -321,4 +337,224 @@
     }
 
 
+}
+
+.san-pham-tot {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    cursor: pointer;
+}
+
+.h-full {
+    height: 100%;
+}
+
+.gioi-thieu {
+    .gioi-thieu-header {
+        margin-top: 30px;
+        background-color: #000;
+        height: 96px;
+        font-size: 46px;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+    }
+
+    .infor-tags {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+        padding: 0 200px;
+
+        .tags {
+            width: 50%;
+
+            .title {
+                margin-top: 20px;
+                margin-bottom: 20px;
+                color: #1c2430;
+                font-weight: bold;
+                overflow: hidden;
+                display: -webkit-box;
+                line-height: 1.375rem;
+                -webkit-box-orient: vertical;
+                font-size: 1.5rem;
+                line-height: 2rem;
+            }
+
+            .detail {
+                font-size: 14px;
+                color: #1c2430;
+                font-weight: 400;
+                -webkit-line-clamp: 4;
+                line-height: 1.375rem;
+                overflow: hidden;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+            }
+        }
+
+        img {
+            object-fit: cover;
+        }
+    }
+}
+
+
+
+.home-footer {
+    background-color: #000;
+    color: white;
+    display: flex;
+    gap: 20px;
+    margin-top: 40px;
+    padding-top: 15px;
+
+    .title {
+        font-size: 16px;
+        line-height: 1.5rem;
+        font-weight: 600 !important;
+        padding-bottom: 10px;
+        margin-top: 25px;
+    }
+
+    .sub-title {
+        line-height: 1.5rem;
+    }
+
+    .url {
+        color: #bfcad9;
+        margin-top: 4px;
+        margin-bottom: 4px;
+        font-size: 14px;
+        line-height: 1.5rem;
+        cursor: pointer;
+
+        &:hover {
+            color: white;
+        }
+    }
+
+    .dich-vu {
+        width: 30%;
+
+        .url {
+            padding-top: 2px;
+        }
+    }
+
+    .about-yody {
+        width: 30%;
+
+        .url {
+            padding-top: 6px;
+        }
+    }
+
+    .yody-lang-nghe-ban {
+        width: 60%;
+
+        .icon {
+            height: 56px;
+            width: 56px;
+            color: #bfcad9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            svg {
+                height: 28px;
+                width: 28px;
+            }
+        }
+
+        .value {
+            &:hover {
+                color: white;
+            }
+        }
+
+        .detail {
+            color: #bfcad9;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            justify-content: center;
+        }
+
+        .phone-number {
+            display: flex;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        .hotline {
+            display: flex;
+            margin-top: 1px;
+            cursor: pointer;
+        }
+
+        .email {
+            display: flex;
+            margin-top: 1px;
+            cursor: pointer;
+        }
+
+        .infor-icons {
+            * {
+                text-decoration: none;
+                color: #bfcad9;
+            }
+
+            align-items: center;
+            margin-top: 20px;
+            padding-left: 12px;
+        }
+    }
+
+}
+
+.company-infor {
+    border-top: 1px solid white;
+    background-color: #000;
+    display: flex;
+    padding: 0 200px;
+
+    .infor {
+        width: 40%;
+
+        .title {
+            font-size: 16px;
+            margin-top: 20px;
+            color: white;
+            padding-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .detail {
+            font-size: 14px;
+            color: white;
+            line-height: 1.375rem;
+            padding-bottom: 20px;
+        }
+    }
+
+    .icons {
+        display: flex;
+        padding-left: 60px;
+        gap: 20px;
+        align-items: center;
+
+    }
+}
+
+.flex {
+    display: flex;
+}
+
+.pr-3 {
+    padding-right: .75rem;
 }
