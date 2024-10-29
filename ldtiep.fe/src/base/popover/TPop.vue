@@ -38,7 +38,7 @@ export default {
       clearTimeout(this.isShowTO);
       this.isShowTO = setTimeout(() => {
         this.isShow = false;
-      }, 500);
+      }, 300);
     },
   },
 };

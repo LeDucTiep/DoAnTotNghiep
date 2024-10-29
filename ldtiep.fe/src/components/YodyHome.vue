@@ -48,7 +48,6 @@
           <div class="menu-item">Bán chạy</div>
           <TPop>
             <div class="menu-item">Nam</div>
-
             <template #content>
               <div class="cloth-nam-popup">
                 <div class="col">
@@ -102,8 +101,123 @@
               </div>
             </template>
           </TPop>
-          <div class="menu-item">Nữ</div>
-          <div class="menu-item">Trẻ em</div>
+          <TPop>
+            <div class="menu-item">Nữ</div>
+            <template #content>
+              <div class="cloth-nam-popup">
+                <div class="col">
+                  <div class="title">Áo Nữ</div>
+                  <div class="row">Áo polo</div>
+                  <div class="row">Áo thun</div>
+                  <div class="row">Áo sơ mi</div>
+                  <div class="row">Áo chống nắng</div>
+                  <div class="row">Áo khoác</div>
+                  <div class="row">Áo hoodie - Áo nỉ</div>
+                  <div class="row">Áo len</div>
+                </div>
+                <div class="col">
+                  <div class="title">Quần Nữ</div>
+                  <div class="row">Quần jeans</div>
+                  <div class="row">Quần âu</div>
+                  <div class="row">Quần kaki</div>
+                  <div class="row">Quần dài</div>
+                  <div class="row">Quần short</div>
+                  <div class="row">Quần nỉ nữ</div>
+                </div>
+                <div class="col">
+                  <div class="title">Đồ Bộ</div>
+                  <div class="row">Đồ bộ ngắn tay</div>
+                  <div class="row">Đồ bộ dài tay</div>
+                  <div class="title p-t-20">Đồ Mặc Trong</div>
+                  <div class="row">Áo ba lỗ - 2 dây</div>
+                  <div class="row">Quần lót</div>
+                  <div class="row">Áo bra</div>
+                  <div class="row">Áo giữ nhiệt</div>
+                </div>
+
+                <div class="col">
+                  <div class="title">Đồ Thể Thao</div>
+                  <div class="row">Áo thun thể thao</div>
+                  <div class="row">Áo polo thể thao</div>
+                  <div class="row">Quần thể thao</div>
+                  <div class="row">Bộ thể thao</div>
+                  <div class="title p-t-20">Váy Nữ</div>
+                  <div class="row">Đầm</div>
+                  <div class="row">Chân váy</div>
+                </div>
+
+                <div class="col">
+                  <div class="title">Phụ Kiện Nữ</div>
+                  <div class="row">Giày</div>
+                  <div class="row">Túi xách</div>
+                  <div class="row">Mũ</div>
+                  <div class="row">Ví nữ</div>
+                  <div class="row">Tất nữ</div>
+                  <div class="row">Khác</div>
+                </div>
+
+                <div class="col">
+                  <div class="img">
+                    <img src="../assets/images/girl_header.png" width="430" />
+                  </div>
+                </div>
+              </div>
+            </template>
+          </TPop>
+          <TPop>
+            <div class="menu-item">Trẻ em</div>
+            <template #content>
+              <div class="cloth-nam-popup">
+                <div class="col">
+                  <div class="title">Áo Trẻ Em</div>
+                  <div class="row">Áo polo</div>
+                  <div class="row">Áo thun</div>
+                  <div class="row">Áo sơ mi</div>
+                  <div class="row">Áo khoác</div>
+                  <div class="row">Áo hoodie - Áo nỉ</div>
+                  <div class="row">Áo len</div>
+                </div>
+                <div class="col">
+                  <div class="title">Quần Trẻ Em</div>
+                  <div class="row">Quần jeans</div>
+                  <div class="row">Quần kaki</div>
+                  <div class="row">Quần dài</div>
+                  <div class="row">Quần short</div>
+                  <div class="row">Quần nỉ</div>
+                </div>
+
+                <div class="col">
+                  <div class="title">Đồ Bộ Trẻ Em</div>
+                  <div class="row">Đồ bộ ngắn tay</div>
+                  <div class="row">Đồ bộ dài tay</div>
+                  <div class="title p-t-20">Đồ Mặc Trong</div>
+                  <div class="row">Áo giữ nhiệt</div>
+                </div>
+
+                <div class="col">
+                  <div class="title">Đồ Thể Thao</div>
+                  <div class="row">Áo thun thể thao</div>
+                  <div class="title p-t-20">Đầm - Chân Váy</div>
+                  <div class="row">Đầm</div>
+                  <div class="row">Chân váy</div>
+                </div>
+
+                <div class="col">
+                  <div class="title">Phụ Kiện trẻ em</div>
+                  <div class="row">Giày & dép</div>
+                  <div class="row">Mũ</div>
+                  <div class="row">Tất</div>
+                  <div class="row">Khác</div>
+                </div>
+
+                <div class="col">
+                  <div class="img">
+                    <img src="../assets/images/girl_header.png" width="430" />
+                  </div>
+                </div>
+              </div>
+            </template>
+          </TPop>
           <div class="menu-item">Ưu đãi</div>
           <div class="menu-item">Bộ sưu tập</div>
           <div class="menu-item">Đồng phục</div>
@@ -798,4 +912,5 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 @import "/src/components/YodyHome.scss";
+@import "/src/base/style/style.scss";
 </style>
