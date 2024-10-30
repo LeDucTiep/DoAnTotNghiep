@@ -1,5 +1,6 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import YodyHome from './components/YodyHome.vue'
+import ProductsView from './components/products-view/ProductsView.vue'
 
 const routes = [
   {
@@ -7,10 +8,15 @@ const routes = [
     name: 'YodyHome',
     component: YodyHome
   },
+  {
+    path: '/ao-nam',
+    name: 'ProductsView',
+    component: ProductsView
+  },
 ]
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes
 })
 

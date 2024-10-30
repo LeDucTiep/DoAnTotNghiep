@@ -281,7 +281,7 @@
       </div>
     </div>
 
-    <router-view></router-view>
+    <RouterView></RouterView>
 
     <div class="home-footer">
       <div class="dich-vu">

@@ -1,0 +1,36 @@
+.product-view-container {
+  padding: 40px 200px;
+  justify-content: space-between;
+
+  .bo-loc {
+    min-width: 215px;
+
+    .total {
+      color: #394960;
+      font-size: 16px;
+      padding-bottom: 20px;
+    }
+
+    .name {
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    .gender {
+      .title {
+        margin-top: 15px;
+        margin-bottom: 10px;
+      }
+    }
+  }
+
+  .products-list {
+    .w-25 {
+      width: calc(25% - 14px) !important;
+    }
+
+    .products {
+      gap: 14px;
+    }
+  }
+}
