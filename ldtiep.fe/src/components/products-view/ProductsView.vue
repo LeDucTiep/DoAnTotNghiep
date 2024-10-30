@@ -16,6 +16,19 @@
           </TCheckbox>
         </div>
       </div>
+      <div class="colors">
+        <div class="title">Màu sắc</div>
+        <div class="col">
+          <TColorCheck
+            v-for="(item, index) in colorFilters"
+            :key="index"
+            :cusclass="'color'"
+            :id="item.id"
+            v-model="item.value"
+          >
+          </TColorCheck>
+        </div>
+      </div>
     </div>
 
     <div class="products-list">
@@ -34,12 +47,14 @@
 <script>
 import ProductSP from "/src/components/cloth/ProductSP.vue";
 import TCheckbox from "/src/base/checkbox/TCheckbox.vue";
+import TColorCheck from "/src/base/checkbox/TColorCheck.vue";
 export default {
   name: "ProductsView",
   props: {},
   components: {
     ProductSP,
     TCheckbox,
+    TColorCheck,
   },
   data() {
     return {
@@ -54,6 +69,48 @@ export default {
         },
         {
           name: "Unisex",
+          value: false,
+        },
+      ],
+      colorFilters: [
+        {
+          id: 1,
+          value: false,
+        },
+        {
+          id: 2,
+          value: false,
+        },
+        {
+          id: 3,
+          value: false,
+        },
+        {
+          id: 4,
+          value: false,
+        },
+        {
+          id: 5,
+          value: false,
+        },
+        {
+          id: 6,
+          value: false,
+        },
+        {
+          id: 7,
+          value: false,
+        },
+        {
+          id: 8,
+          value: false,
+        },
+        {
+          id: 9,
+          value: false,
+        },
+        {
+          id: 10,
           value: false,
         },
       ],

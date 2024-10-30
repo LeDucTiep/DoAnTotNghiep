@@ -33,4 +33,24 @@
       gap: 14px;
     }
   }
+
+  .colors {
+    .title {
+      margin-top: 15px;
+      margin-bottom: 10px;
+    }
+
+    .col {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 14px;
+
+      .color {
+        width: 27%;
+        border-radius: 6px;
+
+      }
+    }
+  }
 }
