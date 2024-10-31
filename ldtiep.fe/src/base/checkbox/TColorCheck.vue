@@ -1,30 +1,34 @@
 <template>
   <div :class="`tcolorcheck ${cusclass}`" @click="onClick()">
     <div class="box">
-      <div v-if="model" class="checked-box">
+      <div
+        v-if="model"
+        class="checked-box"
+        :style="{ backgroundColor: currentColor }"
+        :class="{ 'other-color': !currentColor }"
+      >
         <svg
           width="18"
           height="18"
           viewBox="0 0 24 24"
-          fill="none"
+          :fill="currentIconColor"
           xmlns="http://www.w3.org/2000/svg"
           id=":ru7:"
           class="text-white"
         >
           <path
             d="M9.9998 13.6L15.8998 7.70005C16.0831 7.51672 16.3165 7.42505 16.5998 7.42505C16.8831 7.42505 17.1165 7.51672 17.2998 7.70005C17.4831 7.88338 17.5748 8.11671 17.5748 8.40005C17.5748 8.68338 17.4831 8.91672 17.2998 9.10005L10.6998 15.7C10.4998 15.9 10.2665 16 9.9998 16C9.73314 16 9.4998 15.9 9.2998 15.7L6.6998 13.1C6.51647 12.9167 6.4248 12.6834 6.4248 12.4C6.4248 12.1167 6.51647 11.8834 6.6998 11.7C6.88314 11.5167 7.11647 11.425 7.3998 11.425C7.68314 11.425 7.91647 11.5167 8.0998 11.7L9.9998 13.6Z"
-            fill="currentcolor"
+            :fill="currentIconColor"
           ></path>
         </svg>
       </div>
 
       <div
-        v-else-if="currentColor"
+        v-else
         :style="{ backgroundColor: currentColor }"
         class="uncheck-box"
+        :class="{ 'other-color': !currentColor }"
       ></div>
-
-      <div v-else class="other-color uncheck-box"></div>
 
       <input ref="inputCB" class="hidden" type="checkbox" v-model="model" />
     </div>
@@ -77,6 +81,32 @@ export default {
             return "#FFFFFF";
           default:
             return null;
+        }
+      },
+    },
+    currentIconColor: {
+      get() {
+        switch (this.id) {
+          case 1:
+            return "#ffffff";
+          case 2:
+            return "#ffffff";
+          case 3:
+            return "#000000";
+          case 4:
+            return "#ffffff";
+          case 5:
+            return "#ffffff";
+          case 6:
+            return "#ffffff";
+          case 7:
+            return "#ffffff";
+          case 8:
+            return "#ffffff";
+          case 9:
+            return "#000000";
+          default:
+            return "#ffffff";
         }
       },
     },
@@ -152,15 +182,12 @@ export default {
   border-radius: 50%;
 }
 .checked-box {
-  opacity: 0.3;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 24px;
   height: 24px;
-  border: 1px solid #cfd7e3;
-  background-color: #394960;
-  color: white;
+  border: 1px solid #53565a;
   border-radius: 50%;
 }
 .other-color {
