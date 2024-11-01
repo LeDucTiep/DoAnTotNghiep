@@ -29,6 +29,19 @@
           </TColorCheck>
         </div>
       </div>
+      <div class="sizes">
+        <div class="title">Kích thước</div>
+        <div class="col">
+          <TSizeCheck
+            v-for="(item, index) in sizes"
+            :key="index"
+            :cusclass="'size'"
+            v-model="item.value"
+          >
+            {{ item.name }}
+          </TSizeCheck>
+        </div>
+      </div>
     </div>
 
     <div class="products-list">
@@ -48,6 +61,7 @@
 import ProductSP from "/src/components/cloth/ProductSP.vue";
 import TCheckbox from "/src/base/checkbox/TCheckbox.vue";
 import TColorCheck from "/src/base/checkbox/TColorCheck.vue";
+import TSizeCheck from "/src/base/checkbox/TSizeCheck.vue";
 export default {
   name: "ProductsView",
   props: {},
@@ -55,6 +69,7 @@ export default {
     ProductSP,
     TCheckbox,
     TColorCheck,
+    TSizeCheck,
   },
   data() {
     return {
@@ -113,6 +128,46 @@ export default {
           id: 10,
           value: false,
         },
+      ],
+      sizes: [
+        { value: false, name: "S" },
+        { value: false, name: "M" },
+        { value: false, name: "L" },
+        { value: false, name: "XL" },
+        { value: false, name: "2XL" },
+        { value: false, name: "3XL" },
+        { value: false, name: "3XL" },
+        { value: false, name: "4XL" },
+        { value: false, name: "5XL" },
+        { value: false, name: "F" },
+        { value: false, name: "XXX" },
+        { value: false, name: "0" },
+        { value: false, name: "1" },
+        { value: false, name: "2" },
+        { value: false, name: "3" },
+        { value: false, name: "4" },
+        { value: false, name: "27" },
+        { value: false, name: "28" },
+        { value: false, name: "29" },
+        { value: false, name: "30" },
+        { value: false, name: "31" },
+        { value: false, name: "32" },
+        { value: false, name: "33" },
+        { value: false, name: "34" },
+        { value: false, name: "35" },
+        { value: false, name: "36" },
+        { value: false, name: "38" },
+        { value: false, name: "39" },
+        { value: false, name: "40" },
+        { value: false, name: "41" },
+        { value: false, name: "42" },
+        { value: false, name: "43" },
+        { value: false, name: "44" },
+        { value: false, name: "110" },
+        { value: false, name: "115" },
+        { value: false, name: "120" },
+        { value: false, name: "125" },
+        { value: false, name: "130" },
       ],
       products: [
         {},
