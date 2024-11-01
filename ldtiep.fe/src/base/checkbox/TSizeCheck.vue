@@ -42,7 +42,7 @@ export default {
   },
 };
 </script>
-    
+
 <style scoped lang="scss">
 .tsizecheck {
   padding: 10px;

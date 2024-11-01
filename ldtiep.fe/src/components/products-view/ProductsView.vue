@@ -10,7 +10,7 @@
             v-for="(item, index) in genderFilters"
             :key="index"
             v-model="item.value"
-            @change="onChangeGenderFilter()"
+            @change="onChangeFilter()"
           >
             {{ item.name }}
           </TCheckbox>
@@ -25,6 +25,7 @@
             :cusclass="'color'"
             :id="item.id"
             v-model="item.value"
+            @change="onChangeFilter()"
           >
           </TColorCheck>
         </div>
@@ -37,9 +38,24 @@
             :key="index"
             :cusclass="'size'"
             v-model="item.value"
+            @change="onChangeFilter()"
           >
             {{ item.name }}
           </TSizeCheck>
+        </div>
+      </div>
+
+      <div class="by-cost">
+        <div class="title">Theo giá</div>
+        <div class="col">
+          <TCheckbox
+            v-for="(item, index) in costFilters"
+            :key="index"
+            v-model="item.value"
+            @change="onChangeFilter()"
+          >
+            {{ item.name }}
+          </TCheckbox>
         </div>
       </div>
     </div>
@@ -84,6 +100,20 @@ export default {
         },
         {
           name: "Unisex",
+          value: false,
+        },
+      ],
+      costFilters: [
+        {
+          name: "Dưới 350.000đ",
+          value: false,
+        },
+        {
+          name: "Từ 350.000đ - 750.000đ",
+          value: false,
+        },
+        {
+          name: "Trên 750.000đ",
           value: false,
         },
       ],
@@ -232,7 +262,7 @@ export default {
     };
   },
   methods: {
-    onChangeGenderFilter() {
+    onChangeFilter() {
       console.log("Genders changed");
     },
   },
