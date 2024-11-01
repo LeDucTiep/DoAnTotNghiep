@@ -40,7 +40,7 @@
       
   <script>
 export default {
-  name: "TCheckbox",
+  name: "TColorCheck",
   components: {},
   props: {
     modelValue: { type: [Boolean] },
