@@ -270,6 +270,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import "/src/base/style/style.scss";
 @import "./ProductsView.scss";
 </style>

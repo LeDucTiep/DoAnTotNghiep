@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import YodyHome from './components/YodyHome.vue'
 import ProductsView from './components/products-view/ProductsView.vue'
+import ProductDetail from './components/product-detail/ProductDetail.vue'
 
 const routes = [
   {
@@ -12,6 +13,11 @@ const routes = [
     path: '/ao-nam',
     name: 'ProductsView',
     component: ProductsView
+  },
+  {
+    path: '/detail',
+    name: 'ProductDetail',
+    component: ProductDetail
   },
 ]
 

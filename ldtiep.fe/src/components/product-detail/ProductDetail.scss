@@ -1,0 +1,129 @@
+.t-product-detail {
+    padding: 20px 200px;
+    width: 100%;
+
+    .detail-image {
+        width: 40%;
+    }
+
+    .right-block {
+        width: 60%;
+        padding: 10px 20px;
+    }
+
+    .colors {
+        color: #1c2430;
+
+        .title {
+            margin-top: 14px;
+            font-size: 14px;
+        }
+
+        .color {
+            display: flex;
+
+            .color-cell {
+                width: 60px;
+            }
+        }
+    }
+
+    .sizes {
+        color: #1c2430;
+
+        .title {
+            font-size: 14px;
+
+        }
+
+        .col {
+            margin-top: 14px;
+            gap: 14px;
+        }
+
+        .size {
+            width: 60px;
+            padding: 14px;
+            border-radius: 10px;
+        }
+    }
+
+    .counter {
+
+        margin-top: 20px;
+
+        .row {
+            margin-top: 20px;
+            display: flex;
+            gap: 14px;
+
+            .add-gio-hang {
+                cursor: pointer;
+                border-color: #1c2430;
+                font-size: 16px;
+                padding: 14px;
+                border-radius: 10px;
+                border: 1px solid black;
+                user-select: none;
+                background-color: white;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+
+                &:hover {
+                    background-color: #F9FAFB;
+                }
+            }
+        }
+    }
+
+    .by-now-block {
+        background-color: #FCAF17;
+        color: #2a2a86;
+        cursor: pointer;
+        margin-top: 20px;
+        border-color: #1c2430;
+        font-size: 16px;
+        padding: 14px;
+        border-radius: 10px;
+        user-select: none;
+        width: 100%;
+        display: flex;
+        border-bottom: 3px solid;
+        border-color: #ca8c12;
+        justify-content: center;
+
+        &:hover {
+            background-color: #fdc75d;
+        }
+    }
+
+    .pay-block {
+        background-color: #F9FAFB;
+        padding: 25px;
+        display: flex;
+        align-items: center;
+        margin-top: 20px;
+        flex-direction: column;
+        justify-content: center;
+        gap: 10px;
+        color: #394960;
+        font-size: 12px;
+        user-select: none;
+
+        .pays {
+            gap: 10px;
+        }
+    }
+
+    .product-risk-reduce-policies_wrapper__9fNZL {
+        gap: 14px;
+        display: flex;
+        flex-direction: column;
+        padding: 14px 0;
+
+        .product-risk-reduce-line_wrapper__fqSe0 {
+            gap: 10px;
+        }
+    }
+}
