@@ -990,9 +990,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.Common\\MISA.WebFresher2023.Demo.Common.csproj",
-      "projectName": "MISA.WebFresher2023.Demo.Common",
-      "projectPath": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.Common\\MISA.WebFresher2023.Demo.Common.csproj",
+      "projectUniqueName": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.Common\\ldtiep.be.Common.csproj",
+      "projectName": "ldtiep.be.Common",
+      "projectPath": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.Common\\ldtiep.be.Common.csproj",
       "packagesPath": "C:\\Users\\tiepl\\.nuget\\packages\\",
       "outputPath": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.Common\\obj\\",
       "projectStyle": "PackageReference",
@@ -1061,20 +1061,6 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[6.0.35, 6.0.35]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Ref",
-            "version": "[6.0.35, 6.0.35]"
-          },
-          {
-            "name": "Microsoft.WindowsDesktop.App.Ref",
-            "version": "[6.0.35, 6.0.35]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"

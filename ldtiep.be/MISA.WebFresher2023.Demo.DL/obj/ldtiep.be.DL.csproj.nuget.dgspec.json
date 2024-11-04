@@ -1,7 +1,7 @@
 {
   "format": 1,
   "restore": {
-    "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.DL\\MISA.WebFresher2023.Demo.DL.csproj": {}
+    "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.DL\\ldtiep.be.DL.csproj": {}
   },
   "projects": {
     "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.Common\\ldtiep.be.Common.csproj": {
@@ -87,12 +87,12 @@
         }
       }
     },
-    "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.DL\\MISA.WebFresher2023.Demo.DL.csproj": {
+    "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.DL\\ldtiep.be.DL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.DL\\MISA.WebFresher2023.Demo.DL.csproj",
-        "projectName": "MISA.WebFresher2023.Demo.DL",
-        "projectPath": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.DL\\MISA.WebFresher2023.Demo.DL.csproj",
+        "projectUniqueName": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.DL\\ldtiep.be.DL.csproj",
+        "projectName": "ldtiep.be.DL",
+        "projectPath": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.DL\\ldtiep.be.DL.csproj",
         "packagesPath": "C:\\Users\\tiepl\\.nuget\\packages\\",
         "outputPath": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.DL\\obj\\",
         "projectStyle": "PackageReference",

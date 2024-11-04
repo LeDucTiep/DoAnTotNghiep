@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "egr7TRHbh8Q=",
+  "dgSpecHash": "7VIOjkmIqHA=",
   "success": true,
-  "projectFilePath": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.DL\\MISA.WebFresher2023.Demo.DL.csproj",
+  "projectFilePath": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.DL\\ldtiep.be.DL.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\tiepl\\.nuget\\packages\\dapper\\2.0.123\\dapper.2.0.123.nupkg.sha512",
     "C:\\Users\\tiepl\\.nuget\\packages\\firebaseadmin\\2.2.0\\firebaseadmin.2.2.0.nupkg.sha512",
@@ -30,10 +30,7 @@
     "C:\\Users\\tiepl\\.nuget\\packages\\system.identitymodel.tokens.jwt\\6.7.1\\system.identitymodel.tokens.jwt.6.7.1.nupkg.sha512",
     "C:\\Users\\tiepl\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
     "C:\\Users\\tiepl\\.nuget\\packages\\system.security.cryptography.cng\\4.5.0\\system.security.cryptography.cng.4.5.0.nupkg.sha512",
-    "C:\\Users\\tiepl\\.nuget\\packages\\system.text.encodings.web\\4.5.0\\system.text.encodings.web.4.5.0.nupkg.sha512",
-    "C:\\Users\\tiepl\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.35\\microsoft.windowsdesktop.app.ref.6.0.35.nupkg.sha512",
-    "C:\\Users\\tiepl\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.35\\microsoft.netcore.app.ref.6.0.35.nupkg.sha512",
-    "C:\\Users\\tiepl\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.35\\microsoft.aspnetcore.app.ref.6.0.35.nupkg.sha512"
+    "C:\\Users\\tiepl\\.nuget\\packages\\system.text.encodings.web\\4.5.0\\system.text.encodings.web.4.5.0.nupkg.sha512"
   ],
   "logs": [
     {

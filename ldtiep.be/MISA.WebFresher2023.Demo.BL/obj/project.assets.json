@@ -2228,7 +2228,7 @@
           "lib/netstandard1.6/XLParser.dll": {}
         }
       },
-      "MISA.WebFresher2023.Demo.Common/1.0.0": {
+      "ldtiep.be.Common/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
@@ -2238,26 +2238,26 @@
           "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0"
         },
         "compile": {
-          "bin/placeholder/MISA.WebFresher2023.Demo.Common.dll": {}
+          "bin/placeholder/ldtiep.be.Common.dll": {}
         },
         "runtime": {
-          "bin/placeholder/MISA.WebFresher2023.Demo.Common.dll": {}
+          "bin/placeholder/ldtiep.be.Common.dll": {}
         }
       },
-      "MISA.WebFresher2023.Demo.DL/1.0.0": {
+      "ldtiep.be.DL/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
           "Dapper": "2.0.123",
-          "MISA.WebFresher2023.Demo.Common": "1.0.0",
           "Microsoft.Extensions.Configuration.Abstractions": "7.0.0",
-          "MySqlConnector": "2.2.6"
+          "MySqlConnector": "2.2.6",
+          "ldtiep.be.Common": "1.0.0"
         },
         "compile": {
-          "bin/placeholder/MISA.WebFresher2023.Demo.DL.dll": {}
+          "bin/placeholder/ldtiep.be.DL.dll": {}
         },
         "runtime": {
-          "bin/placeholder/MISA.WebFresher2023.Demo.DL.dll": {}
+          "bin/placeholder/ldtiep.be.DL.dll": {}
         }
       }
     }
@@ -6734,15 +6734,15 @@
         "xlparser.nuspec"
       ]
     },
-    "MISA.WebFresher2023.Demo.Common/1.0.0": {
+    "ldtiep.be.Common/1.0.0": {
       "type": "project",
-      "path": "../MISA.WebFresher2023.Demo.Common/MISA.WebFresher2023.Demo.Common.csproj",
-      "msbuildProject": "../MISA.WebFresher2023.Demo.Common/MISA.WebFresher2023.Demo.Common.csproj"
+      "path": "../MISA.WebFresher2023.Demo.Common/ldtiep.be.Common.csproj",
+      "msbuildProject": "../MISA.WebFresher2023.Demo.Common/ldtiep.be.Common.csproj"
     },
-    "MISA.WebFresher2023.Demo.DL/1.0.0": {
+    "ldtiep.be.DL/1.0.0": {
       "type": "project",
-      "path": "../MISA.WebFresher2023.Demo.DL/MISA.WebFresher2023.Demo.DL.csproj",
-      "msbuildProject": "../MISA.WebFresher2023.Demo.DL/MISA.WebFresher2023.Demo.DL.csproj"
+      "path": "../MISA.WebFresher2023.Demo.DL/ldtiep.be.DL.csproj",
+      "msbuildProject": "../MISA.WebFresher2023.Demo.DL/ldtiep.be.DL.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -6750,9 +6750,9 @@
       "AutoMapper >= 12.0.1",
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 12.0.1",
       "ClosedXML >= 0.101.0",
-      "MISA.WebFresher2023.Demo.Common >= 1.0.0",
-      "MISA.WebFresher2023.Demo.DL >= 1.0.0",
-      "Microsoft.AspNetCore.Mvc.Core >= 2.2.5"
+      "Microsoft.AspNetCore.Mvc.Core >= 2.2.5",
+      "ldtiep.be.Common >= 1.0.0",
+      "ldtiep.be.DL >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -6762,9 +6762,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.BL\\MISA.WebFresher2023.Demo.BL.csproj",
-      "projectName": "MISA.WebFresher2023.Demo.BL",
-      "projectPath": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.BL\\MISA.WebFresher2023.Demo.BL.csproj",
+      "projectUniqueName": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.BL\\ldtiep.be.BL.csproj",
+      "projectName": "ldtiep.be.BL",
+      "projectPath": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.BL\\ldtiep.be.BL.csproj",
       "packagesPath": "C:\\Users\\tiepl\\.nuget\\packages\\",
       "outputPath": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.BL\\obj\\",
       "projectStyle": "PackageReference",
@@ -6787,11 +6787,11 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.Common\\MISA.WebFresher2023.Demo.Common.csproj": {
-              "projectPath": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.Common\\MISA.WebFresher2023.Demo.Common.csproj"
+            "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.Common\\ldtiep.be.Common.csproj": {
+              "projectPath": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.Common\\ldtiep.be.Common.csproj"
             },
-            "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.DL\\MISA.WebFresher2023.Demo.DL.csproj": {
-              "projectPath": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.DL\\MISA.WebFresher2023.Demo.DL.csproj"
+            "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.DL\\ldtiep.be.DL.csproj": {
+              "projectPath": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.DL\\ldtiep.be.DL.csproj"
             }
           }
         }
@@ -6840,20 +6840,6 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[6.0.35, 6.0.35]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Ref",
-            "version": "[6.0.35, 6.0.35]"
-          },
-          {
-            "name": "Microsoft.WindowsDesktop.App.Ref",
-            "version": "[6.0.35, 6.0.35]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"

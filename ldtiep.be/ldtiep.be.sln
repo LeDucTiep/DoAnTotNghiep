@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MISA.WebFresher2023.Demo", "MISA.WebFresher2023.Demo\MISA.WebFresher2023.Demo.csproj", "{077B4102-08EB-4605-83CC-18D35739BAB0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ldtiep.be.api", "MISA.WebFresher2023.Demo\ldtiep.be.api.csproj", "{077B4102-08EB-4605-83CC-18D35739BAB0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MISA.WebFresher2023.Demo.BL", "MISA.WebFresher2023.Demo.BL\MISA.WebFresher2023.Demo.BL.csproj", "{0FE5E0D0-3BB1-431D-807A-5E330F9FB295}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ldtiep.be.BL", "MISA.WebFresher2023.Demo.BL\ldtiep.be.BL.csproj", "{0FE5E0D0-3BB1-431D-807A-5E330F9FB295}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MISA.WebFresher2023.Demo.DL", "MISA.WebFresher2023.Demo.DL\MISA.WebFresher2023.Demo.DL.csproj", "{D5644ECC-056F-4229-AE1E-DE6FE3FE03A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ldtiep.be.DL", "MISA.WebFresher2023.Demo.DL\ldtiep.be.DL.csproj", "{D5644ECC-056F-4229-AE1E-DE6FE3FE03A6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MISA.WebFresher2023.Demo.Common", "MISA.WebFresher2023.Demo.Common\MISA.WebFresher2023.Demo.Common.csproj", "{32039E98-5F6A-4F53-A72D-436E984F57C7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ldtiep.be.Common", "MISA.WebFresher2023.Demo.Common\ldtiep.be.Common.csproj", "{32039E98-5F6A-4F53-A72D-436E984F57C7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Config", "Config", "{F1B24671-C31B-4A6A-8BE3-731DD3436F5E}"
 	ProjectSection(SolutionItems) = preProject

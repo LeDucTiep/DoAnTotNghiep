@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MISA.WebFresher2023.Demo.DL")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0df1a5e82772df187cc175b64b449ce1070ac333")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cd88b9eba541202eea5f70f387422ff5bf249aca")]
 [assembly: System.Reflection.AssemblyProductAttribute("MISA.WebFresher2023.Demo.DL")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MISA.WebFresher2023.Demo.DL")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

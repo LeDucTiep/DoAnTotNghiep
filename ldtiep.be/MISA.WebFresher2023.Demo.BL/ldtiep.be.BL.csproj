@@ -14,8 +14,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MISA.WebFresher2023.Demo.Common\MISA.WebFresher2023.Demo.Common.csproj" />
-    <ProjectReference Include="..\MISA.WebFresher2023.Demo.DL\MISA.WebFresher2023.Demo.DL.csproj" />
+    <ProjectReference Include="..\MISA.WebFresher2023.Demo.Common\ldtiep.be.Common.csproj" />
+    <ProjectReference Include="..\MISA.WebFresher2023.Demo.DL\ldtiep.be.DL.csproj" />
   </ItemGroup>
 
 </Project>
