@@ -111,19 +111,6 @@
           }
         }
       },
-      "FirebaseAuthentication.net/3.7.1": {
-        "type": "package",
-        "dependencies": {
-          "NETStandard.Library": "1.6.1",
-          "Newtonsoft.Json": "11.0.2"
-        },
-        "compile": {
-          "lib/netstandard1.1/Firebase.Auth.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard1.1/Firebase.Auth.dll": {}
-        }
-      },
       "Google.Api.Gax/3.2.0": {
         "type": "package",
         "dependencies": {
@@ -2577,7 +2564,6 @@
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "12.0.1",
           "ClosedXML": "0.101.0",
           "Microsoft.AspNetCore.Mvc.Core": "2.2.5",
-          "ldtiep.be.Common": "1.0.0",
           "ldtiep.be.DL": "1.0.0"
         },
         "compile": {
@@ -2738,18 +2724,6 @@
         "lib/net461/FirebaseAdmin.xml",
         "lib/netstandard2.0/FirebaseAdmin.dll",
         "lib/netstandard2.0/FirebaseAdmin.xml"
-      ]
-    },
-    "FirebaseAuthentication.net/3.7.1": {
-      "sha512": "V8rIhr8rpvT8TjPJwMEbK8gX8uz5bYyTtFnzMZqEo/Tr/zPs1ycPcfqXmP3zLpTomuoZap7ER2xXrZyolcb1/g==",
-      "type": "package",
-      "path": "firebaseauthentication.net/3.7.1",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "firebaseauthentication.net.3.7.1.nupkg.sha512",
-        "firebaseauthentication.net.nuspec",
-        "lib/netstandard1.1/Firebase.Auth.dll"
       ]
     },
     "Google.Api.Gax/3.2.0": {
@@ -7804,16 +7778,12 @@
     "net6.0": [
       "ClosedXML >= 0.101.0",
       "Dapper >= 2.0.123",
-      "FirebaseAdmin >= 2.2.0",
-      "FirebaseAuthentication.net >= 3.7.1",
       "Microsoft.AspNetCore.Authentication >= 2.2.0",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 5.0.11",
       "MySqlConnector >= 2.2.6",
       "Swashbuckle.AspNetCore >= 6.5.0",
       "System.IdentityModel.Tokens.Jwt >= 6.32.0",
-      "ldtiep.be.BL >= 1.0.0",
-      "ldtiep.be.Common >= 1.0.0",
-      "ldtiep.be.DL >= 1.0.0"
+      "ldtiep.be.BL >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -7850,12 +7820,6 @@
           "projectReferences": {
             "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.BL\\ldtiep.be.BL.csproj": {
               "projectPath": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.BL\\ldtiep.be.BL.csproj"
-            },
-            "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.Common\\ldtiep.be.Common.csproj": {
-              "projectPath": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.Common\\ldtiep.be.Common.csproj"
-            },
-            "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.DL\\ldtiep.be.DL.csproj": {
-              "projectPath": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.DL\\ldtiep.be.DL.csproj"
             }
           }
         }
@@ -7883,14 +7847,6 @@
           "Dapper": {
             "target": "Package",
             "version": "[2.0.123, )"
-          },
-          "FirebaseAdmin": {
-            "target": "Package",
-            "version": "[2.2.0, )"
-          },
-          "FirebaseAuthentication.net": {
-            "target": "Package",
-            "version": "[3.7.1, )"
           },
           "Microsoft.AspNetCore.Authentication": {
             "target": "Package",

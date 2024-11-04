@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MISA.WebFresher2023.Demo.Common.Attribute
+namespace ldtiep.be.Common.Attribute
 {
     /// <summary>
     /// Attribute kiểm tra độ dài chuỗi 

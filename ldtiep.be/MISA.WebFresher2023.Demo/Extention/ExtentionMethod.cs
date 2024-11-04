@@ -1,9 +1,8 @@
 ﻿
 using Microsoft.Extensions.Options;
-using MISA.WebFresher2023.Demo.Common.MyException;
 using System.Reflection;
 
-namespace MISA.WebFresher2023.Demo.Common
+namespace ldtiep.be.Common
 {
     public static class ExtensionMethod
     {
@@ -11,16 +10,16 @@ namespace MISA.WebFresher2023.Demo.Common
         {
             //string baseUrl = AppDomain.CurrentDomain.BaseDirectory;
 
-            //string projectName = Assembly.GetExecutingAssembly().GetName().Name ?? "MISA.WebFresher2023.Demo";
+            //string projectName = Assembly.GetExecutingAssembly().GetName().Name ?? "ldtiep.be";
 
             //int index = baseUrl.LastIndexOf(projectName);
 
             //if (index != -1)
             //{
                 //string path = baseUrl[..index] + @"default.json";
-            string path = "D:/default.json";
+            //string path = "D:\\do-an\\ldtiep.be\\default.json";
 
-            builder.Configuration.AddJsonFile(path);
+            //builder.Configuration.AddJsonFile(path);
             //}
             //else
             //{

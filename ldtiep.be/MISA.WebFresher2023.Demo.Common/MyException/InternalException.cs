@@ -1,8 +1,8 @@
-﻿using MISA.WebFresher2023.Demo.Common.Constant;
-using MISA.WebFresher2023.Demo.Common.Resource;
+﻿using ldtiep.be.Common.Constant;
+using ldtiep.be.Common.Resource;
 using System.Net;
 
-namespace MISA.WebFresher2023.Demo.Common.MyException
+namespace ldtiep.be.Common
 {
     /// <summary>
     /// Class lỗi từ nội bộ

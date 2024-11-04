@@ -1,4 +1,4 @@
-﻿namespace MISA.WebFresher2023.Demo.Common.Constant
+﻿namespace ldtiep.be.Common.Constant
 {
 
     /// <summary>
@@ -159,7 +159,7 @@
         /// Tài khoản ngân hàng quá dài 
         /// </summary>
         /// Author: LeDucTiep (23/05/2023)
-        BankAccountNumberTooLong = 1012,
+        BankProductNumberTooLong = 1012,
 
         /// <summary>
         /// Tên ngân hàng quá dài 
@@ -171,7 +171,7 @@
         /// Chi nhánh ngân hàng quá dài 
         /// </summary>
         /// Author: LeDucTiep (23/05/2023)
-        BankAccountBranchTooLong = 1014,
+        BankProductBranchTooLong = 1014,
 
         /// <summary>
         /// Ngày sinh không được phép lớn hơn ngày hiện tại
@@ -248,7 +248,7 @@
     /// Mã lỗi tài khoản
     /// </summary>
     /// Author: LeDucTiep (12/07/2023)
-    public enum AccountErrorCode
+    public enum ProductErrorCode
     {
         // Số tài khoản quá dài
         CodeTooLong = 8001,
@@ -257,7 +257,7 @@
         // Tên tài khoản không được để trống
         NameIsRequired = 8003,
         // Tính chất tài khoản không được để trống
-        AccountPropertyIsRequired = 8004,
+        ProductPropertyIsRequired = 8004,
         // Tên tài khoản quá dài 
         NameViTooLong = 8005,
         // Tên tiếng anh quá dài
@@ -269,7 +269,7 @@
         // Trùng số tài khoản
         DuplicatedCode = 8011,
         // Khong the xoa tai khoan da co phieu thu
-        CantDeleteAccountInReceipt = 8012,
+        CantDeleteProductInReceipt = 8012,
     }
 
     /// <summary>

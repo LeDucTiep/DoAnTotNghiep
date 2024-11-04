@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MISA.WebFresher2023.Demo.Common.Resource
+namespace ldtiep.be.Common.Resource
 {
     /// <summary>
     /// Resource nội dung lỗi 
@@ -215,7 +215,7 @@ namespace MISA.WebFresher2023.Demo.Common.Resource
         /// Tài khoản ngân hàng không được dài quá 25 ký tự
         /// </summary>
         /// Author: LeDucTiep (23/05/2023)
-        public static readonly string BankAccountNumberTooLong = "Tài khoản ngân hàng không được dài quá 25 ký tự";
+        public static readonly string BankProductNumberTooLong = "Tài khoản ngân hàng không được dài quá 25 ký tự";
 
         /// <summary>
         /// Tên ngân hàng không được dài quá 255 ký tự
@@ -227,7 +227,7 @@ namespace MISA.WebFresher2023.Demo.Common.Resource
         /// Chi nhánh ngân hàng không được dài quá 255 ký tự
         /// </summary>
         /// Author: LeDucTiep (23/05/2023)
-        public static readonly string BankAccountBranchTooLong = "Chi nhánh ngân hàng không được dài quá 255 ký tự";
+        public static readonly string BankProductBranchTooLong = "Chi nhánh ngân hàng không được dài quá 255 ký tự";
 
         /// <summary>
         /// Ngày sinh không được phép lớn hơn ngày hiện tại
@@ -340,7 +340,7 @@ namespace MISA.WebFresher2023.Demo.Common.Resource
         /// Tài khoản ngân hàng không được dài quá 25 ký tự
         /// </summary>
         /// Author: LeDucTiep (23/05/2023)
-        public static readonly string BankAccountNumberTooLong = "Tài khoản ngân hàng không được dài quá 25 ký tự";
+        public static readonly string BankProductNumberTooLong = "Tài khoản ngân hàng không được dài quá 25 ký tự";
 
         /// <summary>
         /// Tên ngân hàng không được dài quá 255 ký tự
@@ -352,7 +352,7 @@ namespace MISA.WebFresher2023.Demo.Common.Resource
         /// Chi nhánh ngân hàng không được dài quá 255 ký tự
         /// </summary>
         /// Author: LeDucTiep (23/05/2023)
-        public static readonly string BankAccountBranchTooLong = "Chi nhánh ngân hàng không được dài quá 255 ký tự";
+        public static readonly string BankProductBranchTooLong = "Chi nhánh ngân hàng không được dài quá 255 ký tự";
 
         /// <summary>
         /// Ngày sinh không được phép lớn hơn ngày hiện tại
@@ -419,33 +419,33 @@ namespace MISA.WebFresher2023.Demo.Common.Resource
         public static readonly string CantDeleteCustomerInReceipt = "Không được xóa khách hàng đã có phiếu thu";
     }
 
-    public static class AccountUserMessage
+    public static class ProductUserMessage
     {
         public static readonly string CodeTooLong = "Số tài khoản không được dài quá 20 ký tự";
         public static readonly string CodeIsRequired = "Số tài khoản không được để trống";
         public static readonly string NameIsRequired = "Tên tài khoản không được để trống";
-        public static readonly string AccountPropertyIsRequired = "Tính chất tài khoản không được để trống";
+        public static readonly string ProductPropertyIsRequired = "Tính chất tài khoản không được để trống";
         public static readonly string NameViTooLong = "Tên tài khoản không được dài quá 100 ký tự";
         public static readonly string NameEnTooLong = "Tên tiếng anh không được phép dài hơn 100 ký tự";
         public static readonly string NoteTooLong = "Diễn giải không được dài quá 255 ký tự";
         public static readonly string CantDeleteParent = "Không thể xóa danh mục cha nếu chưa xóa danh mục con";
         public static readonly string DuplicatedCode = "Không thể nhập trùng số tài khoản";
-        public static readonly string CantDeleteAccountInReceipt = "Không thể xóa tài khoản đã có trong phiếu thu";
+        public static readonly string CantDeleteProductInReceipt = "Không thể xóa tài khoản đã có trong phiếu thu";
 
     }
 
-    public static class AccountDevMessage
+    public static class ProductDevMessage
     {
         public static readonly string CodeTooLong = "Số tài khoản không được dài quá 20 ký tự";
         public static readonly string CodeIsRequired = "Số tài khoản không được để trống";
         public static readonly string NameIsRequired = "Tên tài khoản không được để trống";
-        public static readonly string AccountPropertyIsRequired = "Tính chất tài khoản không được để trống";
+        public static readonly string ProductPropertyIsRequired = "Tính chất tài khoản không được để trống";
         public static readonly string NameViTooLong = "Tên tài khoản không được dài quá 100 ký tự";
         public static readonly string NameEnTooLong = "Tên tiếng anh không được phép dài hơn 100 ký tự";
         public static readonly string NoteTooLong = "Diễn giải không được dài quá 255 ký tự";
         public static readonly string CantDeleteParent = "Bạn phải xóa tài khoản con trước";
         public static readonly string DuplicatedCode = "Trùng số tài khoản";
-        public static readonly string CantDeleteAccountInReceipt = "Khong the xoa tai khoan co phat sinh";
+        public static readonly string CantDeleteProductInReceipt = "Khong the xoa tai khoan co phat sinh";
     }
 
     public static class RequestUserMessage

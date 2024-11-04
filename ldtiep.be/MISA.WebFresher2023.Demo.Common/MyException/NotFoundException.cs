@@ -1,5 +1,5 @@
-﻿using MISA.WebFresher2023.Demo.Common.Constant;
-using MISA.WebFresher2023.Demo.Common.Resource;
+﻿using ldtiep.be.Common.Constant;
+using ldtiep.be.Common.Resource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MISA.WebFresher2023.Demo.Common.MyException
+namespace ldtiep.be.Common
 {
     /// <summary>
     /// Class lỗi không tìm thấy

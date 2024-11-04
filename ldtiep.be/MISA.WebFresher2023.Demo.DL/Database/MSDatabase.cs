@@ -1,12 +1,11 @@
-﻿using MISA.WebFresher2023.Demo.Common;
-using MISA.WebFresher2023.Demo.Common.Constant;
-using MISA.WebFresher2023.Demo.Common.MyException;
+﻿using ldtiep.be.Common;
+using ldtiep.be.Common.Constant;
 using MySqlConnector;
 using System.Data;
 using System.Data.Common;
 using System.Transactions;
 
-namespace MISA.WebFresher2023.Demo.DL
+namespace ldtiep.be.DL
 {
     /// <summary>
     /// Cơ sở dữ liệu

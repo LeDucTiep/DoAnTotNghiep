@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MISA.WebFresher2023.Demo.Common.Resource
+namespace ldtiep.be.Common.Resource
 {
     /// <summary>
     /// Class thông tin người dùng

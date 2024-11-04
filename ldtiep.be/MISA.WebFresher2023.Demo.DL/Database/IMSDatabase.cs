@@ -2,7 +2,7 @@
 using System.Data.Common;
 using System.Transactions;
 
-namespace MISA.WebFresher2023.Demo.DL
+namespace ldtiep.be.DL
 {
     public interface IMSDatabase
     {

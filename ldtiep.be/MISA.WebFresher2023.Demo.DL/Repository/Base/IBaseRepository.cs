@@ -1,8 +1,8 @@
-﻿using MISA.WebFresher2023.Demo.DL.Entity;
-using MISA.WebFresher2023.Demo.DL.Model;
+﻿using ldtiep.be.DL.Entity;
+using ldtiep.be.DL.Model;
 using System.Data.Common;
 
-namespace MISA.WebFresher2023.Demo.DL.Repository
+namespace ldtiep.be.DL.Repository
 {
     public interface IBaseRepository<TEntity>
     {
@@ -69,14 +69,7 @@ namespace MISA.WebFresher2023.Demo.DL.Repository
         /// Author: LeDucTiep (08/05/2023)
         Task<BasePage<TEntityInPage>> GetPageAsync<TEntityInPage>(BasePagingArgument basePagingArgument);
 
-        /// <summary>
-        /// Hàm xuất excel
-        /// </summary>
-        /// <typeparam name="TEntityExport">Loại bản ghi để xuất</typeparam>
-        /// <returns>Danh sách bản ghi cần xuất</returns>
-        /// Author: LeDucTiep (08/05/2023)
-        Task<IEnumerable<TEntityExport>> GetExportAsync<TEntityExport>();
-        Task<Account?> GetAccountByGuid28(string guid28);
-        Task InsertAccount(Account account);
+        Task<Product?> GetProductByGuid28(string guid28);
+        Task InsertProduct(Product Product);
     }
 }

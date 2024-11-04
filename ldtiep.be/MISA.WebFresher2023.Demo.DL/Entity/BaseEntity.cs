@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MISA.WebFresher2023.Demo.DL.Entity
+namespace ldtiep.be.DL.Entity
 {
     /// <summary>
     /// Class entity

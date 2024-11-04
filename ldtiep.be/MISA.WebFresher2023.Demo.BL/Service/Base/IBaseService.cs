@@ -1,9 +1,9 @@
 ﻿using ClosedXML.Excel;
-using MISA.WebFresher2023.Demo.Common;
-using MISA.WebFresher2023.Demo.DL.Entity;
-using MISA.WebFresher2023.Demo.DL.Model;
+using ldtiep.be.Common;
+using ldtiep.be.DL.Entity;
+using ldtiep.be.DL.Model;
 
-namespace MISA.WebFresher2023.Demo.BL.Service
+namespace ldtiep.be.BL.Service
 {
     public interface IBaseService<TEntityDto, TEntityCreateDto, TEntityUpdateDto>
     {
@@ -81,13 +81,5 @@ namespace MISA.WebFresher2023.Demo.BL.Service
         /// Author: LeDucTiep (12/07/2023)
         Task<BasePage<TEntityDto>> GetPageAsync(BasePagingArgument basePagingArgument);
 
-        /// <summary>
-        /// Hàm xuất khẩu dữ liệu thành file excel
-        /// </summary>
-        /// <param name="baseExportArgument">Tham số để xuất khẩu</param>
-        /// <returns>Excel</returns>
-        /// Author: LeDucTiep (12/07/2023)
-        Task<XLWorkbook> ExportAsync(BaseExportArgument baseExportArgument);
-        Task<Account?> CheckPermission(FirebaseUser user);
     }
 }

@@ -1,9 +1,8 @@
-﻿using MISA.WebFresher2023.Demo.BL.Service;
-using MISA.WebFresher2023.Demo.DL;
-using MISA.WebFresher2023.Demo.DL.Repository;
-using MISA.WebFresher2023.Demo.Middleware;
-using MISA.WebFresher2023.Demo.Common;
-using FirebaseAdmin;
+﻿using ldtiep.be.BL.Service;
+using ldtiep.be.DL;
+using ldtiep.be.DL.Repository;
+using ldtiep.be.Middleware;
+using ldtiep.be.Common;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authentication;
 
@@ -29,21 +28,6 @@ builder.Services.AddControllers().AddJsonOptions(option =>
 
 });
 
-// Firebase 
-builder.Services.AddSingleton(FirebaseApp.Create());
-
-builder.Services
-                .AddAuthentication(options =>
-                {
-                    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-                })
-                .AddScheme<AuthenticationSchemeOptions, FirebaseAuthenticationHandler>(JwtBearerDefaults.AuthenticationScheme, (o) => { });
-
-builder.Services.AddScoped<FirebaseAuthenticationFunctionHandler>();
-
-//builder.Services.AddFirebaseAuthentication();
-
-
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -68,19 +52,9 @@ builder.Services.AddCors(options =>
 // Sử dụng automapper
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-builder.Services.AddScoped<ICommentRepository, CommentRepository>();
-builder.Services.AddScoped<INewsRepository, NewsRepository>();
-builder.Services.AddScoped<IAccountRepository, AccountRepository>();
-builder.Services.AddScoped<ICityRepository, CityRepository>();
-builder.Services.AddScoped<IDistrictRepository, DistrictRepository>();
-builder.Services.AddScoped<ICommuneRepository, CommuneRepository>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
-builder.Services.AddScoped<ICommentService, CommentService>();
-builder.Services.AddScoped<INewsService, NewsService>();
-builder.Services.AddScoped<IAccountService, AccountService>();
-builder.Services.AddScoped<ICityService, CityService>();
-builder.Services.AddScoped<IDistrictService, DistrictService>();
-builder.Services.AddScoped<ICommuneService, CommuneService>();
+builder.Services.AddScoped<IProductService, ProductService>();
 
 builder.Services.AddScoped<IMSDatabase, MSDatabase>();
 

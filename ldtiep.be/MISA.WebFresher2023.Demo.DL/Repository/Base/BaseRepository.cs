@@ -1,14 +1,14 @@
 ﻿using Dapper;
-using MISA.WebFresher2023.Demo.Common.MyException;
-using MISA.WebFresher2023.Demo.Common.Resource;
-using MISA.WebFresher2023.Demo.DL.Entity;
-using MISA.WebFresher2023.Demo.DL.Model;
-using MISA.WebFresher2023.Demo.Enum;
+using ldtiep.be.Common;
+using ldtiep.be.Common.Resource;
+using ldtiep.be.DL.Entity;
+using ldtiep.be.DL.Model;
+using ldtiep.be.Enum;
 using System;
 using System.Data;
 using System.Net;
 
-namespace MISA.WebFresher2023.Demo.DL.Repository
+namespace ldtiep.be.DL.Repository
 {
     public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity>
     {
@@ -28,56 +28,16 @@ namespace MISA.WebFresher2023.Demo.DL.Repository
         #endregion
 
         #region Method
-        public async Task<Account?> GetAccountByGuid28(string guid28)
+
+        public async Task InsertProduct(Product product)
         {
             // Tạo connection
             var connection = await _msDatabase.GetOpenConnectionAsync();
 
-            string sql = $"SELECT * FROM account a WHERE a.Guid28 = '{guid28}' limit 1;";
+            string sql = $"select 0;";
 
             // Gọi procedure 
-            Account res = await connection.QueryFirstOrDefaultAsync<Account>(sql);
-
-            // trả về kết quả
-            return res;
-        }
-
-        public async Task InsertAccount(Account account)
-        {
-            // Tạo connection
-            var connection = await _msDatabase.GetOpenConnectionAsync();
-
-            string sql = $"INSERT INTO account (Guid28, AccountId, Email, Picture, FullName, Role)" +
-                $" VALUES ('{account.Guid28}', '{account.AccountId}', '{account.Email}', '{account.Picture}', '{account.FullName}', 0);";
-
-            // Gọi procedure 
-            await connection.QueryAsync<Account>(sql);
-        }
-
-
-        /// <summary>
-        /// Hàm xuất excel
-        /// </summary>
-        /// <typeparam name="TEntityExport">Loại bản ghi để xuất</typeparam>
-        /// <returns>Danh sách bản ghi cần xuất</returns>
-        /// Author: LeDucTiep (08/05/2023)
-        public async Task<IEnumerable<TEntityExport>> GetExportAsync<TEntityExport>()
-        {
-            var table = typeof(TEntity).Name;
-
-            // Tạo connection
-            var connection = await _msDatabase.GetOpenConnectionAsync();
-
-            string procedure = ProcedureResource.Export(table);
-
-            // Gọi procedure 
-            var res = await connection.QueryAsync<TEntityExport>(
-                procedure,
-                commandType: CommandType.StoredProcedure
-            );
-
-            // trả về kết quả
-            return res;
+            await connection.QueryAsync<Product>(sql);
         }
 
         /// <summary>
@@ -497,6 +457,11 @@ namespace MISA.WebFresher2023.Demo.DL.Repository
                 await Console.Out.WriteLineAsync(ex.Message);
                 return null;
             }
+        }
+
+        public Task<Product?> GetProductByGuid28(string guid28)
+        {
+            throw new NotImplementedException();
         }
         #endregion
     }

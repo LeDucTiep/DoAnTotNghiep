@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace MISA.WebFresher2023.Demo.Common.Attribute
+namespace ldtiep.be.Common.Attribute
 {
     /// <summary>
     /// Attribute trường bắt buộc 

@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace MISA.WebFresher2023.Demo.Common
+namespace ldtiep.be.Common
 {
     public static class AddFirebaseAuthenticationExtensions
     {

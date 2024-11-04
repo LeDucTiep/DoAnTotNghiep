@@ -1,12 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using MISA.WebFresher2023.Demo.BL.Service;
-using MISA.WebFresher2023.Demo.Common;
-using MISA.WebFresher2023.Demo.Common.MyException;
-using MISA.WebFresher2023.Demo.DL.Entity;
-using MISA.WebFresher2023.Demo.DL.Model;
+using ldtiep.be.BL.Service;
+using ldtiep.be.Common;
+using ldtiep.be.DL.Entity;
+using ldtiep.be.DL.Model;
 
-namespace MISA.WebFresher2023.Demo.Controllers
+namespace ldtiep.be.Controllers
 {
     [ApiController]
     public abstract class BaseController<TEntity, TEntityDto, TEntityCreateDto, TEntityUpdateDto> : ControllerBase
@@ -23,18 +22,6 @@ namespace MISA.WebFresher2023.Demo.Controllers
         #endregion
 
         #region Method
-        [Authorize]
-        [Route("check-token")]
-        [HttpGet]
-        public async Task<IActionResult> CheckLoginAsync()
-        {
-            FirebaseUser user = HttpContext.GetFirebaseUser();
-
-            Account? account = await _baseService.CheckPermission(user);
-
-            return Ok(account);
-        }
-
         /// <summary>
         /// API thêm một bản ghi
         /// </summary>

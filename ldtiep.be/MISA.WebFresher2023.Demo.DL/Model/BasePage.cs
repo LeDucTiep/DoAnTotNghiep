@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MISA.WebFresher2023.Demo.DL.Entity;
+using ldtiep.be.DL.Entity;
 
-namespace MISA.WebFresher2023.Demo.DL.Model
+namespace ldtiep.be.DL.Model
 {
     /// <summary>
     /// Class trang nhân viên

@@ -1,0 +1,564 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\do-an\\ldtiep.be\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{077B4102-08EB-4605-83CC-18D35739BAB0}|MISA.WebFresher2023.Demo\\ldtiep.be.api.csproj|d:\\do-an\\ldtiep.be\\misa.webfresher2023.demo\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{077B4102-08EB-4605-83CC-18D35739BAB0}|MISA.WebFresher2023.Demo\\ldtiep.be.api.csproj|solutionrelative:misa.webfresher2023.demo\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{077B4102-08EB-4605-83CC-18D35739BAB0}|MISA.WebFresher2023.Demo\\ldtiep.be.api.csproj|d:\\do-an\\ldtiep.be\\misa.webfresher2023.demo\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{077B4102-08EB-4605-83CC-18D35739BAB0}|MISA.WebFresher2023.Demo\\ldtiep.be.api.csproj|solutionrelative:misa.webfresher2023.demo\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{077B4102-08EB-4605-83CC-18D35739BAB0}|MISA.WebFresher2023.Demo\\ldtiep.be.api.csproj|d:\\do-an\\ldtiep.be\\misa.webfresher2023.demo\\ldtiep.be.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{077B4102-08EB-4605-83CC-18D35739BAB0}|MISA.WebFresher2023.Demo\\ldtiep.be.api.csproj|solutionrelative:misa.webfresher2023.demo\\ldtiep.be.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32039E98-5F6A-4F53-A72D-436E984F57C7}|MISA.WebFresher2023.Demo.Common\\ldtiep.be.Common.csproj|d:\\do-an\\ldtiep.be\\misa.webfresher2023.demo.common\\myexception\\baseexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32039E98-5F6A-4F53-A72D-436E984F57C7}|MISA.WebFresher2023.Demo.Common\\ldtiep.be.Common.csproj|solutionrelative:misa.webfresher2023.demo.common\\myexception\\baseexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0FE5E0D0-3BB1-431D-807A-5E330F9FB295}|MISA.WebFresher2023.Demo.BL\\ldtiep.be.BL.csproj|d:\\do-an\\ldtiep.be\\misa.webfresher2023.demo.bl\\service\\base\\baseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0FE5E0D0-3BB1-431D-807A-5E330F9FB295}|MISA.WebFresher2023.Demo.BL\\ldtiep.be.BL.csproj|solutionrelative:misa.webfresher2023.demo.bl\\service\\base\\baseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32039E98-5F6A-4F53-A72D-436E984F57C7}|MISA.WebFresher2023.Demo.Common\\ldtiep.be.Common.csproj|d:\\do-an\\ldtiep.be\\misa.webfresher2023.demo.common\\ldtiep.be.common.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{32039E98-5F6A-4F53-A72D-436E984F57C7}|MISA.WebFresher2023.Demo.Common\\ldtiep.be.Common.csproj|solutionrelative:misa.webfresher2023.demo.common\\ldtiep.be.common.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{077B4102-08EB-4605-83CC-18D35739BAB0}|MISA.WebFresher2023.Demo\\ldtiep.be.api.csproj|d:\\do-an\\ldtiep.be\\misa.webfresher2023.demo\\middleware\\exceptionmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{077B4102-08EB-4605-83CC-18D35739BAB0}|MISA.WebFresher2023.Demo\\ldtiep.be.api.csproj|solutionrelative:misa.webfresher2023.demo\\middleware\\exceptionmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{077B4102-08EB-4605-83CC-18D35739BAB0}|MISA.WebFresher2023.Demo\\ldtiep.be.api.csproj|d:\\do-an\\ldtiep.be\\misa.webfresher2023.demo\\controllers\\basecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{077B4102-08EB-4605-83CC-18D35739BAB0}|MISA.WebFresher2023.Demo\\ldtiep.be.api.csproj|solutionrelative:misa.webfresher2023.demo\\controllers\\basecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D5644ECC-056F-4229-AE1E-DE6FE3FE03A6}|MISA.WebFresher2023.Demo.DL\\ldtiep.be.DL.csproj|d:\\do-an\\ldtiep.be\\misa.webfresher2023.demo.dl\\repository\\base\\baserepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D5644ECC-056F-4229-AE1E-DE6FE3FE03A6}|MISA.WebFresher2023.Demo.DL\\ldtiep.be.DL.csproj|solutionrelative:misa.webfresher2023.demo.dl\\repository\\base\\baserepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D5644ECC-056F-4229-AE1E-DE6FE3FE03A6}|MISA.WebFresher2023.Demo.DL\\ldtiep.be.DL.csproj|d:\\do-an\\ldtiep.be\\misa.webfresher2023.demo.dl\\database\\msdatabase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D5644ECC-056F-4229-AE1E-DE6FE3FE03A6}|MISA.WebFresher2023.Demo.DL\\ldtiep.be.DL.csproj|solutionrelative:misa.webfresher2023.demo.dl\\database\\msdatabase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32039E98-5F6A-4F53-A72D-436E984F57C7}|MISA.WebFresher2023.Demo.Common\\ldtiep.be.Common.csproj|d:\\do-an\\ldtiep.be\\misa.webfresher2023.demo.common\\myexception\\notfoundexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32039E98-5F6A-4F53-A72D-436E984F57C7}|MISA.WebFresher2023.Demo.Common\\ldtiep.be.Common.csproj|solutionrelative:misa.webfresher2023.demo.common\\myexception\\notfoundexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32039E98-5F6A-4F53-A72D-436E984F57C7}|MISA.WebFresher2023.Demo.Common\\ldtiep.be.Common.csproj|d:\\do-an\\ldtiep.be\\misa.webfresher2023.demo.common\\myexception\\internalexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32039E98-5F6A-4F53-A72D-436E984F57C7}|MISA.WebFresher2023.Demo.Common\\ldtiep.be.Common.csproj|solutionrelative:misa.webfresher2023.demo.common\\myexception\\internalexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32039E98-5F6A-4F53-A72D-436E984F57C7}|MISA.WebFresher2023.Demo.Common\\ldtiep.be.Common.csproj|d:\\do-an\\ldtiep.be\\misa.webfresher2023.demo.common\\myexception\\badrequestexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32039E98-5F6A-4F53-A72D-436E984F57C7}|MISA.WebFresher2023.Demo.Common\\ldtiep.be.Common.csproj|solutionrelative:misa.webfresher2023.demo.common\\myexception\\badrequestexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{077B4102-08EB-4605-83CC-18D35739BAB0}|MISA.WebFresher2023.Demo\\ldtiep.be.api.csproj|d:\\do-an\\ldtiep.be\\misa.webfresher2023.demo\\extention\\extentionmethod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{077B4102-08EB-4605-83CC-18D35739BAB0}|MISA.WebFresher2023.Demo\\ldtiep.be.api.csproj|solutionrelative:misa.webfresher2023.demo\\extention\\extentionmethod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{077B4102-08EB-4605-83CC-18D35739BAB0}|MISA.WebFresher2023.Demo\\ldtiep.be.api.csproj|d:\\do-an\\ldtiep.be\\misa.webfresher2023.demo\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{077B4102-08EB-4605-83CC-18D35739BAB0}|MISA.WebFresher2023.Demo\\ldtiep.be.api.csproj|solutionrelative:misa.webfresher2023.demo\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0FE5E0D0-3BB1-431D-807A-5E330F9FB295}|MISA.WebFresher2023.Demo.BL\\ldtiep.be.BL.csproj|d:\\do-an\\ldtiep.be\\misa.webfresher2023.demo.bl\\service\\product\\iaccountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0FE5E0D0-3BB1-431D-807A-5E330F9FB295}|MISA.WebFresher2023.Demo.BL\\ldtiep.be.BL.csproj|solutionrelative:misa.webfresher2023.demo.bl\\service\\product\\iaccountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0FE5E0D0-3BB1-431D-807A-5E330F9FB295}|MISA.WebFresher2023.Demo.BL\\ldtiep.be.BL.csproj|d:\\do-an\\ldtiep.be\\misa.webfresher2023.demo.bl\\service\\base\\ibaseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0FE5E0D0-3BB1-431D-807A-5E330F9FB295}|MISA.WebFresher2023.Demo.BL\\ldtiep.be.BL.csproj|solutionrelative:misa.webfresher2023.demo.bl\\service\\base\\ibaseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0FE5E0D0-3BB1-431D-807A-5E330F9FB295}|MISA.WebFresher2023.Demo.BL\\ldtiep.be.BL.csproj|d:\\do-an\\ldtiep.be\\misa.webfresher2023.demo.bl\\automapper\\productprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0FE5E0D0-3BB1-431D-807A-5E330F9FB295}|MISA.WebFresher2023.Demo.BL\\ldtiep.be.BL.csproj|solutionrelative:misa.webfresher2023.demo.bl\\automapper\\productprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D5644ECC-056F-4229-AE1E-DE6FE3FE03A6}|MISA.WebFresher2023.Demo.DL\\ldtiep.be.DL.csproj|d:\\do-an\\ldtiep.be\\misa.webfresher2023.demo.dl\\repository\\base\\ibaserepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D5644ECC-056F-4229-AE1E-DE6FE3FE03A6}|MISA.WebFresher2023.Demo.DL\\ldtiep.be.DL.csproj|solutionrelative:misa.webfresher2023.demo.dl\\repository\\base\\ibaserepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D5644ECC-056F-4229-AE1E-DE6FE3FE03A6}|MISA.WebFresher2023.Demo.DL\\ldtiep.be.DL.csproj|d:\\do-an\\ldtiep.be\\misa.webfresher2023.demo.dl\\repository\\account\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D5644ECC-056F-4229-AE1E-DE6FE3FE03A6}|MISA.WebFresher2023.Demo.DL\\ldtiep.be.DL.csproj|solutionrelative:misa.webfresher2023.demo.dl\\repository\\account\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D5644ECC-056F-4229-AE1E-DE6FE3FE03A6}|MISA.WebFresher2023.Demo.DL\\ldtiep.be.DL.csproj|d:\\do-an\\ldtiep.be\\misa.webfresher2023.demo.dl\\repository\\account\\iproductrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D5644ECC-056F-4229-AE1E-DE6FE3FE03A6}|MISA.WebFresher2023.Demo.DL\\ldtiep.be.DL.csproj|solutionrelative:misa.webfresher2023.demo.dl\\repository\\account\\iproductrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D5644ECC-056F-4229-AE1E-DE6FE3FE03A6}|MISA.WebFresher2023.Demo.DL\\ldtiep.be.DL.csproj|d:\\do-an\\ldtiep.be\\misa.webfresher2023.demo.dl\\ldtiep.be.dl.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{D5644ECC-056F-4229-AE1E-DE6FE3FE03A6}|MISA.WebFresher2023.Demo.DL\\ldtiep.be.DL.csproj|solutionrelative:misa.webfresher2023.demo.dl\\ldtiep.be.dl.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0FE5E0D0-3BB1-431D-807A-5E330F9FB295}|MISA.WebFresher2023.Demo.BL\\ldtiep.be.BL.csproj|d:\\do-an\\ldtiep.be\\misa.webfresher2023.demo.bl\\service\\product\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0FE5E0D0-3BB1-431D-807A-5E330F9FB295}|MISA.WebFresher2023.Demo.BL\\ldtiep.be.BL.csproj|solutionrelative:misa.webfresher2023.demo.bl\\service\\product\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0FE5E0D0-3BB1-431D-807A-5E330F9FB295}|MISA.WebFresher2023.Demo.BL\\ldtiep.be.BL.csproj|d:\\do-an\\ldtiep.be\\misa.webfresher2023.demo.bl\\dto\\product\\productupdatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0FE5E0D0-3BB1-431D-807A-5E330F9FB295}|MISA.WebFresher2023.Demo.BL\\ldtiep.be.BL.csproj|solutionrelative:misa.webfresher2023.demo.bl\\dto\\product\\productupdatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0FE5E0D0-3BB1-431D-807A-5E330F9FB295}|MISA.WebFresher2023.Demo.BL\\ldtiep.be.BL.csproj|d:\\do-an\\ldtiep.be\\misa.webfresher2023.demo.bl\\dto\\product\\productdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0FE5E0D0-3BB1-431D-807A-5E330F9FB295}|MISA.WebFresher2023.Demo.BL\\ldtiep.be.BL.csproj|solutionrelative:misa.webfresher2023.demo.bl\\dto\\product\\productdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0FE5E0D0-3BB1-431D-807A-5E330F9FB295}|MISA.WebFresher2023.Demo.BL\\ldtiep.be.BL.csproj|d:\\do-an\\ldtiep.be\\misa.webfresher2023.demo.bl\\dto\\product\\productcreatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0FE5E0D0-3BB1-431D-807A-5E330F9FB295}|MISA.WebFresher2023.Demo.BL\\ldtiep.be.BL.csproj|solutionrelative:misa.webfresher2023.demo.bl\\dto\\product\\productcreatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D5644ECC-056F-4229-AE1E-DE6FE3FE03A6}|MISA.WebFresher2023.Demo.DL\\ldtiep.be.DL.csproj|d:\\do-an\\ldtiep.be\\misa.webfresher2023.demo.dl\\entity\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D5644ECC-056F-4229-AE1E-DE6FE3FE03A6}|MISA.WebFresher2023.Demo.DL\\ldtiep.be.DL.csproj|solutionrelative:misa.webfresher2023.demo.dl\\entity\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D5644ECC-056F-4229-AE1E-DE6FE3FE03A6}|MISA.WebFresher2023.Demo.DL\\ldtiep.be.DL.csproj|d:\\do-an\\ldtiep.be\\misa.webfresher2023.demo.dl\\model\\productpagingargument.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D5644ECC-056F-4229-AE1E-DE6FE3FE03A6}|MISA.WebFresher2023.Demo.DL\\ldtiep.be.DL.csproj|solutionrelative:misa.webfresher2023.demo.dl\\model\\productpagingargument.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D5644ECC-056F-4229-AE1E-DE6FE3FE03A6}|MISA.WebFresher2023.Demo.DL\\ldtiep.be.DL.csproj|d:\\do-an\\ldtiep.be\\misa.webfresher2023.demo.dl\\model\\basepagingargument.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D5644ECC-056F-4229-AE1E-DE6FE3FE03A6}|MISA.WebFresher2023.Demo.DL\\ldtiep.be.DL.csproj|solutionrelative:misa.webfresher2023.demo.dl\\model\\basepagingargument.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D5644ECC-056F-4229-AE1E-DE6FE3FE03A6}|MISA.WebFresher2023.Demo.DL\\ldtiep.be.DL.csproj|d:\\do-an\\ldtiep.be\\misa.webfresher2023.demo.dl\\model\\basepage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D5644ECC-056F-4229-AE1E-DE6FE3FE03A6}|MISA.WebFresher2023.Demo.DL\\ldtiep.be.DL.csproj|solutionrelative:misa.webfresher2023.demo.dl\\model\\basepage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0FE5E0D0-3BB1-431D-807A-5E330F9FB295}|MISA.WebFresher2023.Demo.BL\\ldtiep.be.BL.csproj|d:\\do-an\\ldtiep.be\\misa.webfresher2023.demo.bl\\ldtiep.be.bl.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{0FE5E0D0-3BB1-431D-807A-5E330F9FB295}|MISA.WebFresher2023.Demo.BL\\ldtiep.be.BL.csproj|solutionrelative:misa.webfresher2023.demo.bl\\ldtiep.be.bl.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{077B4102-08EB-4605-83CC-18D35739BAB0}|MISA.WebFresher2023.Demo\\ldtiep.be.api.csproj|d:\\do-an\\ldtiep.be\\misa.webfresher2023.demo\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{077B4102-08EB-4605-83CC-18D35739BAB0}|MISA.WebFresher2023.Demo\\ldtiep.be.api.csproj|solutionrelative:misa.webfresher2023.demo\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "MISA.WebFresher2023.Demo\\Properties\\launchSettings.json",
+              "ToolTip": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo\\Properties\\launchSettings.json",
+              "RelativeToolTip": "MISA.WebFresher2023.Demo\\Properties\\launchSettings.json",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAAABcAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-11-04T13:31:50.903Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "BaseException.cs",
+              "DocumentMoniker": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.Common\\MyException\\BaseException.cs",
+              "RelativeDocumentMoniker": "MISA.WebFresher2023.Demo.Common\\MyException\\BaseException.cs",
+              "ToolTip": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.Common\\MyException\\BaseException.cs",
+              "RelativeToolTip": "MISA.WebFresher2023.Demo.Common\\MyException\\BaseException.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAD0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T13:27:54.071Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "BaseRepository.cs",
+              "DocumentMoniker": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.DL\\Repository\\Base\\BaseRepository.cs",
+              "RelativeDocumentMoniker": "MISA.WebFresher2023.Demo.DL\\Repository\\Base\\BaseRepository.cs",
+              "ToolTip": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.DL\\Repository\\Base\\BaseRepository.cs",
+              "RelativeToolTip": "MISA.WebFresher2023.Demo.DL\\Repository\\Base\\BaseRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T13:21:49.795Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "BaseController.cs",
+              "DocumentMoniker": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo\\Controllers\\BaseController.cs",
+              "RelativeDocumentMoniker": "MISA.WebFresher2023.Demo\\Controllers\\BaseController.cs",
+              "ToolTip": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo\\Controllers\\BaseController.cs",
+              "RelativeToolTip": "MISA.WebFresher2023.Demo\\Controllers\\BaseController.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAQwB4AAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T12:48:45.8Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ExceptionMiddleware.cs",
+              "DocumentMoniker": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo\\Middleware\\ExceptionMiddleware.cs",
+              "RelativeDocumentMoniker": "MISA.WebFresher2023.Demo\\Middleware\\ExceptionMiddleware.cs",
+              "ToolTip": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo\\Middleware\\ExceptionMiddleware.cs",
+              "RelativeToolTip": "MISA.WebFresher2023.Demo\\Middleware\\ExceptionMiddleware.cs",
+              "ViewState": "AgIAACoAAAAAAAAAAAAYwDIAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T12:45:17.932Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ldtiep.be.Common",
+              "DocumentMoniker": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.Common\\ldtiep.be.Common.csproj",
+              "RelativeDocumentMoniker": "MISA.WebFresher2023.Demo.Common\\ldtiep.be.Common.csproj",
+              "ToolTip": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.Common\\ldtiep.be.Common.csproj",
+              "RelativeToolTip": "MISA.WebFresher2023.Demo.Common\\ldtiep.be.Common.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-11-04T13:26:52.182Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "BaseService.cs",
+              "DocumentMoniker": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.BL\\Service\\Base\\BaseService.cs",
+              "RelativeDocumentMoniker": "MISA.WebFresher2023.Demo.BL\\Service\\Base\\BaseService.cs",
+              "ToolTip": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.BL\\Service\\Base\\BaseService.cs",
+              "RelativeToolTip": "MISA.WebFresher2023.Demo.BL\\Service\\Base\\BaseService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T12:45:17.987Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "BadRequestException.cs",
+              "DocumentMoniker": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.Common\\MyException\\BadRequestException.cs",
+              "RelativeDocumentMoniker": "MISA.WebFresher2023.Demo.Common\\MyException\\BadRequestException.cs",
+              "ToolTip": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.Common\\MyException\\BadRequestException.cs",
+              "RelativeToolTip": "MISA.WebFresher2023.Demo.Common\\MyException\\BadRequestException.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T13:27:47.376Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo\\Program.cs",
+              "RelativeDocumentMoniker": "MISA.WebFresher2023.Demo\\Program.cs",
+              "ToolTip": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo\\Program.cs",
+              "RelativeToolTip": "MISA.WebFresher2023.Demo\\Program.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAAAAB4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T12:44:18.44Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "InternalException.cs",
+              "DocumentMoniker": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.Common\\MyException\\InternalException.cs",
+              "RelativeDocumentMoniker": "MISA.WebFresher2023.Demo.Common\\MyException\\InternalException.cs",
+              "ToolTip": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.Common\\MyException\\InternalException.cs",
+              "RelativeToolTip": "MISA.WebFresher2023.Demo.Common\\MyException\\InternalException.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T13:27:59.126Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ldtiep.be.api",
+              "DocumentMoniker": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo\\ldtiep.be.api.csproj",
+              "RelativeDocumentMoniker": "MISA.WebFresher2023.Demo\\ldtiep.be.api.csproj",
+              "ToolTip": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo\\ldtiep.be.api.csproj",
+              "RelativeToolTip": "MISA.WebFresher2023.Demo\\ldtiep.be.api.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-11-04T13:26:32.793Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "MSDatabase.cs",
+              "DocumentMoniker": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.DL\\Database\\MSDatabase.cs",
+              "RelativeDocumentMoniker": "MISA.WebFresher2023.Demo.DL\\Database\\MSDatabase.cs",
+              "ToolTip": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.DL\\Database\\MSDatabase.cs",
+              "RelativeToolTip": "MISA.WebFresher2023.Demo.DL\\Database\\MSDatabase.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T12:58:45.196Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "NotFoundException.cs",
+              "DocumentMoniker": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.Common\\MyException\\NotFoundException.cs",
+              "RelativeDocumentMoniker": "MISA.WebFresher2023.Demo.Common\\MyException\\NotFoundException.cs",
+              "ToolTip": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.Common\\MyException\\NotFoundException.cs",
+              "RelativeToolTip": "MISA.WebFresher2023.Demo.Common\\MyException\\NotFoundException.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T13:28:08.111Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "IAccountService.cs",
+              "DocumentMoniker": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.BL\\Service\\Product\\IAccountService.cs",
+              "RelativeDocumentMoniker": "MISA.WebFresher2023.Demo.BL\\Service\\Product\\IAccountService.cs",
+              "ToolTip": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.BL\\Service\\Product\\IAccountService.cs",
+              "RelativeToolTip": "MISA.WebFresher2023.Demo.BL\\Service\\Product\\IAccountService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T13:14:36.546Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "IBaseService.cs",
+              "DocumentMoniker": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.BL\\Service\\Base\\IBaseService.cs",
+              "RelativeDocumentMoniker": "MISA.WebFresher2023.Demo.BL\\Service\\Base\\IBaseService.cs",
+              "ToolTip": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.BL\\Service\\Base\\IBaseService.cs",
+              "RelativeToolTip": "MISA.WebFresher2023.Demo.BL\\Service\\Base\\IBaseService.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAcwFMAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T13:24:23.219Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "ProductProfile.cs",
+              "DocumentMoniker": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.BL\\Automapper\\ProductProfile.cs",
+              "RelativeDocumentMoniker": "MISA.WebFresher2023.Demo.BL\\Automapper\\ProductProfile.cs",
+              "ToolTip": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.BL\\Automapper\\ProductProfile.cs",
+              "RelativeToolTip": "MISA.WebFresher2023.Demo.BL\\Automapper\\ProductProfile.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T13:00:05.623Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "IBaseRepository.cs",
+              "DocumentMoniker": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.DL\\Repository\\Base\\IBaseRepository.cs",
+              "RelativeDocumentMoniker": "MISA.WebFresher2023.Demo.DL\\Repository\\Base\\IBaseRepository.cs",
+              "ToolTip": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.DL\\Repository\\Base\\IBaseRepository.cs",
+              "RelativeToolTip": "MISA.WebFresher2023.Demo.DL\\Repository\\Base\\IBaseRepository.cs",
+              "ViewState": "AgIAAEEAAAAA9aY3vSklwEsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T13:22:21.662Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "ExtentionMethod.cs",
+              "DocumentMoniker": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo\\Extention\\ExtentionMethod.cs",
+              "RelativeDocumentMoniker": "MISA.WebFresher2023.Demo\\Extention\\ExtentionMethod.cs",
+              "ToolTip": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo\\Extention\\ExtentionMethod.cs",
+              "RelativeToolTip": "MISA.WebFresher2023.Demo\\Extention\\ExtentionMethod.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAgwBsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T12:46:54.119Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "ProductRepository.cs",
+              "DocumentMoniker": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.DL\\Repository\\Account\\ProductRepository.cs",
+              "RelativeDocumentMoniker": "MISA.WebFresher2023.Demo.DL\\Repository\\Account\\ProductRepository.cs",
+              "ToolTip": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.DL\\Repository\\Account\\ProductRepository.cs",
+              "RelativeToolTip": "MISA.WebFresher2023.Demo.DL\\Repository\\Account\\ProductRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T13:04:38.804Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "IProductRepository.cs",
+              "DocumentMoniker": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.DL\\Repository\\Account\\IProductRepository.cs",
+              "RelativeDocumentMoniker": "MISA.WebFresher2023.Demo.DL\\Repository\\Account\\IProductRepository.cs",
+              "ToolTip": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.DL\\Repository\\Account\\IProductRepository.cs",
+              "RelativeToolTip": "MISA.WebFresher2023.Demo.DL\\Repository\\Account\\IProductRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAUAAABBAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T13:04:41.869Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "ProductController.cs",
+              "DocumentMoniker": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo\\Controllers\\ProductController.cs",
+              "RelativeDocumentMoniker": "MISA.WebFresher2023.Demo\\Controllers\\ProductController.cs",
+              "ToolTip": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo\\Controllers\\ProductController.cs",
+              "RelativeToolTip": "MISA.WebFresher2023.Demo\\Controllers\\ProductController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T12:50:14.619Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "ldtiep.be.DL",
+              "DocumentMoniker": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.DL\\ldtiep.be.DL.csproj",
+              "RelativeDocumentMoniker": "MISA.WebFresher2023.Demo.DL\\ldtiep.be.DL.csproj",
+              "ToolTip": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.DL\\ldtiep.be.DL.csproj",
+              "RelativeToolTip": "MISA.WebFresher2023.Demo.DL\\ldtiep.be.DL.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-11-04T13:17:16.036Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "ProductService.cs",
+              "DocumentMoniker": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.BL\\Service\\Product\\ProductService.cs",
+              "RelativeDocumentMoniker": "MISA.WebFresher2023.Demo.BL\\Service\\Product\\ProductService.cs",
+              "ToolTip": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.BL\\Service\\Product\\ProductService.cs",
+              "RelativeToolTip": "MISA.WebFresher2023.Demo.BL\\Service\\Product\\ProductService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T13:13:35.963Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "ProductUpdateDto.cs",
+              "DocumentMoniker": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.BL\\Dto\\Product\\ProductUpdateDto.cs",
+              "RelativeDocumentMoniker": "MISA.WebFresher2023.Demo.BL\\Dto\\Product\\ProductUpdateDto.cs",
+              "ToolTip": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.BL\\Dto\\Product\\ProductUpdateDto.cs",
+              "RelativeToolTip": "MISA.WebFresher2023.Demo.BL\\Dto\\Product\\ProductUpdateDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T13:11:19.365Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "ProductCreateDto.cs",
+              "DocumentMoniker": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.BL\\Dto\\Product\\ProductCreateDto.cs",
+              "RelativeDocumentMoniker": "MISA.WebFresher2023.Demo.BL\\Dto\\Product\\ProductCreateDto.cs",
+              "ToolTip": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.BL\\Dto\\Product\\ProductCreateDto.cs",
+              "RelativeToolTip": "MISA.WebFresher2023.Demo.BL\\Dto\\Product\\ProductCreateDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T13:12:13.338Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "Product.cs",
+              "DocumentMoniker": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.DL\\Entity\\Product.cs",
+              "RelativeDocumentMoniker": "MISA.WebFresher2023.Demo.DL\\Entity\\Product.cs",
+              "ToolTip": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.DL\\Entity\\Product.cs",
+              "RelativeToolTip": "MISA.WebFresher2023.Demo.DL\\Entity\\Product.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T13:09:51.814Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "ProductPagingArgument.cs",
+              "DocumentMoniker": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.DL\\Model\\ProductPagingArgument.cs",
+              "RelativeDocumentMoniker": "MISA.WebFresher2023.Demo.DL\\Model\\ProductPagingArgument.cs",
+              "ToolTip": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.DL\\Model\\ProductPagingArgument.cs",
+              "RelativeToolTip": "MISA.WebFresher2023.Demo.DL\\Model\\ProductPagingArgument.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T13:04:19.451Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "BasePagingArgument.cs",
+              "DocumentMoniker": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.DL\\Model\\BasePagingArgument.cs",
+              "RelativeDocumentMoniker": "MISA.WebFresher2023.Demo.DL\\Model\\BasePagingArgument.cs",
+              "ToolTip": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.DL\\Model\\BasePagingArgument.cs",
+              "RelativeToolTip": "MISA.WebFresher2023.Demo.DL\\Model\\BasePagingArgument.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T13:04:27.365Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "ProductDto.cs",
+              "DocumentMoniker": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.BL\\Dto\\Product\\ProductDto.cs",
+              "RelativeDocumentMoniker": "MISA.WebFresher2023.Demo.BL\\Dto\\Product\\ProductDto.cs",
+              "ToolTip": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.BL\\Dto\\Product\\ProductDto.cs",
+              "RelativeToolTip": "MISA.WebFresher2023.Demo.BL\\Dto\\Product\\ProductDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T13:01:33.13Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "BasePage.cs",
+              "DocumentMoniker": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.DL\\Model\\BasePage.cs",
+              "RelativeDocumentMoniker": "MISA.WebFresher2023.Demo.DL\\Model\\BasePage.cs",
+              "ToolTip": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.DL\\Model\\BasePage.cs",
+              "RelativeToolTip": "MISA.WebFresher2023.Demo.DL\\Model\\BasePage.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T13:04:31.944Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "ldtiep.be.BL",
+              "DocumentMoniker": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.BL\\ldtiep.be.BL.csproj",
+              "RelativeDocumentMoniker": "MISA.WebFresher2023.Demo.BL\\ldtiep.be.BL.csproj",
+              "ToolTip": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.BL\\ldtiep.be.BL.csproj",
+              "RelativeToolTip": "MISA.WebFresher2023.Demo.BL\\ldtiep.be.BL.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-11-04T12:59:32.466Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo\\appsettings.json",
+              "RelativeDocumentMoniker": "MISA.WebFresher2023.Demo\\appsettings.json",
+              "ToolTip": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo\\appsettings.json",
+              "RelativeToolTip": "MISA.WebFresher2023.Demo\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-11-04T12:43:48.684Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

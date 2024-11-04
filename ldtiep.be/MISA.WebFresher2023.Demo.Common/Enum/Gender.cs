@@ -1,4 +1,4 @@
-﻿namespace MISA.WebFresher2023.Demo.Enum
+﻿namespace ldtiep.be.Enum
 {
     /// <summary>
     /// Enum giới tính

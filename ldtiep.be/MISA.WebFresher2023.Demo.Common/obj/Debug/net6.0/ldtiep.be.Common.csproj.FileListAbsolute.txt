@@ -1,0 +1,13 @@
+D:\do-an\ldtiep.be\MISA.WebFresher2023.Demo.Common\bin\Debug\net6.0\ldtiep.be.Common.deps.json
+D:\do-an\ldtiep.be\MISA.WebFresher2023.Demo.Common\bin\Debug\net6.0\ldtiep.be.Common.dll
+D:\do-an\ldtiep.be\MISA.WebFresher2023.Demo.Common\bin\Debug\net6.0\ldtiep.be.Common.pdb
+D:\do-an\ldtiep.be\MISA.WebFresher2023.Demo.Common\obj\Debug\net6.0\ldtiep.be.Common.csproj.AssemblyReference.cache
+D:\do-an\ldtiep.be\MISA.WebFresher2023.Demo.Common\obj\Debug\net6.0\ldtiep.be.Common.GeneratedMSBuildEditorConfig.editorconfig
+D:\do-an\ldtiep.be\MISA.WebFresher2023.Demo.Common\obj\Debug\net6.0\ldtiep.be.Common.AssemblyInfoInputs.cache
+D:\do-an\ldtiep.be\MISA.WebFresher2023.Demo.Common\obj\Debug\net6.0\ldtiep.be.Common.AssemblyInfo.cs
+D:\do-an\ldtiep.be\MISA.WebFresher2023.Demo.Common\obj\Debug\net6.0\ldtiep.be.Common.csproj.CoreCompileInputs.cache
+D:\do-an\ldtiep.be\MISA.WebFresher2023.Demo.Common\obj\Debug\net6.0\ldtiep.be.Common.sourcelink.json
+D:\do-an\ldtiep.be\MISA.WebFresher2023.Demo.Common\obj\Debug\net6.0\ldtiep.be.Common.dll
+D:\do-an\ldtiep.be\MISA.WebFresher2023.Demo.Common\obj\Debug\net6.0\refint\ldtiep.be.Common.dll
+D:\do-an\ldtiep.be\MISA.WebFresher2023.Demo.Common\obj\Debug\net6.0\ldtiep.be.Common.pdb
+D:\do-an\ldtiep.be\MISA.WebFresher2023.Demo.Common\obj\Debug\net6.0\ref\ldtiep.be.Common.dll

@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
 
-namespace MISA.WebFresher2023.Demo.Common
+namespace ldtiep.be.Common
 {
     public class FirebaseAuthenticationFunctionHandler
     {

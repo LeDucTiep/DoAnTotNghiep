@@ -9,8 +9,6 @@
   <ItemGroup>
     <PackageReference Include="ClosedXML" Version="0.101.0" />
     <PackageReference Include="Dapper" Version="2.0.123" />
-    <PackageReference Include="FirebaseAdmin" Version="2.2.0" />
-    <PackageReference Include="FirebaseAuthentication.net" Version="3.7.1" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.11" />
     <PackageReference Include="MySqlConnector" Version="2.2.6" />
@@ -20,8 +18,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MISA.WebFresher2023.Demo.BL\ldtiep.be.BL.csproj" />
-    <ProjectReference Include="..\MISA.WebFresher2023.Demo.Common\ldtiep.be.Common.csproj" />
-    <ProjectReference Include="..\MISA.WebFresher2023.Demo.DL\ldtiep.be.DL.csproj" />
   </ItemGroup>
 
 </Project>

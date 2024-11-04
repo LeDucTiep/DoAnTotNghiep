@@ -1,4 +1,4 @@
-﻿namespace MISA.WebFresher2023.Demo.Common.Attribute
+﻿namespace ldtiep.be.Common.Attribute
 {
     /// <summary>
     /// Attribute ngày tháng trong quá khứ là hợp lệ

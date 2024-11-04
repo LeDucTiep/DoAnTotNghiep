@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace MISA.WebFresher2023.Demo.Common.Attribute
+namespace ldtiep.be.Common.Attribute
 {
     /// <summary>
     /// Attribute kiểm tra chuỗi là gmail

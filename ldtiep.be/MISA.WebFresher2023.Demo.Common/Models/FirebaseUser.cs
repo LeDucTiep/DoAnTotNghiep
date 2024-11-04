@@ -1,4 +1,4 @@
-﻿namespace MISA.WebFresher2023.Demo.Common
+﻿namespace ldtiep.be.Common
 {
     public class FirebaseUser
     {

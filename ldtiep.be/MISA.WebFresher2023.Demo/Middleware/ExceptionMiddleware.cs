@@ -1,6 +1,7 @@
-﻿using MISA.WebFresher2023.Demo.Common.MyException;
+﻿
+using ldtiep.be.Common;
 
-namespace MISA.WebFresher2023.Demo.Middleware
+namespace ldtiep.be.Middleware
 {
     /// <summary>
     /// Class xử lý exception bằng middleware 

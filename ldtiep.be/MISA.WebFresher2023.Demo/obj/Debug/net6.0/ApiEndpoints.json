@@ -1,0 +1,138 @@
+[
+  {
+    "ContainingType": "ldtiep.be.Controllers.BaseController\u00604[[ldtiep.be.DL.Entity.Product, ldtiep.be.DL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.ProductDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.ProductCreateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.ProductUpdateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "PostAsync",
+    "RelativePath": "api/v1/Products",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "entityCreateDto",
+        "Type": "ldtiep.be.BL.Dto.ProductCreateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ldtiep.be.Controllers.BaseController\u00604[[ldtiep.be.DL.Entity.Product, ldtiep.be.DL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.ProductDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.ProductCreateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.ProductUpdateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "DeleteManyAsync",
+    "RelativePath": "api/v1/Products",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "arrayId",
+        "Type": "System.Guid[]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ldtiep.be.Controllers.BaseController\u00604[[ldtiep.be.DL.Entity.Product, ldtiep.be.DL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.ProductDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.ProductCreateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.ProductUpdateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "GetAsync",
+    "RelativePath": "api/v1/Products/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ldtiep.be.Controllers.BaseController\u00604[[ldtiep.be.DL.Entity.Product, ldtiep.be.DL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.ProductDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.ProductCreateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.ProductUpdateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "DeleteAsync",
+    "RelativePath": "api/v1/Products/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ldtiep.be.Controllers.BaseController\u00604[[ldtiep.be.DL.Entity.Product, ldtiep.be.DL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.ProductDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.ProductCreateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.ProductUpdateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "PutAsync",
+    "RelativePath": "api/v1/Products/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "entityUpdateDto",
+        "Type": "ldtiep.be.BL.Dto.ProductUpdateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ldtiep.be.Controllers.BaseController\u00604[[ldtiep.be.DL.Entity.Product, ldtiep.be.DL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.ProductDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.ProductCreateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.ProductUpdateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "GetPageAsync",
+    "RelativePath": "api/v1/Products/paging",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "PageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "PageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "SearchTerm",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Category",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "NewsType",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "NewsStatus",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "ProvinceId",
+        "Type": "System.Nullable\u00601[[System.Guid, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "NewsId",
+        "Type": "System.Nullable\u00601[[System.Guid, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

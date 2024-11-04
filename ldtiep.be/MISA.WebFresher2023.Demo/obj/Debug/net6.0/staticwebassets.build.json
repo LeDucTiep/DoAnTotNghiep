@@ -1,11 +1,12 @@
 {
   "Version": 1,
-  "Hash": "t6ZQ5kHdBlYCUy9iyLG6AxE+XYFiZffdrdXONi806h4=",
-  "Source": "MISA.WebFresher2023.Demo",
-  "BasePath": "_content/MISA.WebFresher2023.Demo",
+  "Hash": "oriPbz1+i6sfj4OzI03Njn2XivlSnnQEnVgfx4FUiD4=",
+  "Source": "ldtiep.be.api",
+  "BasePath": "_content/ldtiep.be.api",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [],
-  "Assets": []
+  "Assets": [],
+  "Endpoints": []
 }

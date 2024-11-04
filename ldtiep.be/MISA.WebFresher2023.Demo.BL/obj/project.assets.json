@@ -6751,7 +6751,6 @@
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 12.0.1",
       "ClosedXML >= 0.101.0",
       "Microsoft.AspNetCore.Mvc.Core >= 2.2.5",
-      "ldtiep.be.Common >= 1.0.0",
       "ldtiep.be.DL >= 1.0.0"
     ]
   },
@@ -6787,9 +6786,6 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.Common\\ldtiep.be.Common.csproj": {
-              "projectPath": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.Common\\ldtiep.be.Common.csproj"
-            },
             "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.DL\\ldtiep.be.DL.csproj": {
               "projectPath": "D:\\do-an\\ldtiep.be\\MISA.WebFresher2023.Demo.DL\\ldtiep.be.DL.csproj"
             }

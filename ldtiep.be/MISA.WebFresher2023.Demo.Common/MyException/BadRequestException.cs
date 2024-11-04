@@ -1,8 +1,8 @@
-﻿using MISA.WebFresher2023.Demo.Common.Constant;
-using MISA.WebFresher2023.Demo.Common.Resource;
+﻿using ldtiep.be.Common.Constant;
+using ldtiep.be.Common.Resource;
 using System.Net;
 
-namespace MISA.WebFresher2023.Demo.Common.MyException
+namespace ldtiep.be.Common
 {
     /// <summary>
     /// Class Exception
@@ -44,50 +44,50 @@ namespace MISA.WebFresher2023.Demo.Common.MyException
 
 
 
-                    // Account
+                    // Product
 
-                    case (int)AccountErrorCode.CodeTooLong:
-                        userMessage.Add(AccountUserMessage.CodeTooLong);
-                        devMessage.Add(AccountDevMessage.CodeTooLong);
+                    case (int)ProductErrorCode.CodeTooLong:
+                        userMessage.Add(ProductUserMessage.CodeTooLong);
+                        devMessage.Add(ProductDevMessage.CodeTooLong);
                         break;
                     
-                    case (int)AccountErrorCode.CantDeleteAccountInReceipt:
-                        userMessage.Add(AccountUserMessage.CantDeleteAccountInReceipt);
-                        devMessage.Add(AccountDevMessage.CantDeleteAccountInReceipt);
+                    case (int)ProductErrorCode.CantDeleteProductInReceipt:
+                        userMessage.Add(ProductUserMessage.CantDeleteProductInReceipt);
+                        devMessage.Add(ProductDevMessage.CantDeleteProductInReceipt);
                         break;
-                    case (int)AccountErrorCode.CodeIsRequired:
-                        userMessage.Add(AccountUserMessage.CodeIsRequired);
-                        devMessage.Add(AccountDevMessage.CodeIsRequired);
+                    case (int)ProductErrorCode.CodeIsRequired:
+                        userMessage.Add(ProductUserMessage.CodeIsRequired);
+                        devMessage.Add(ProductDevMessage.CodeIsRequired);
                         break;
-                    case (int)AccountErrorCode.NameIsRequired:
-                        userMessage.Add(AccountUserMessage.NameIsRequired);
-                        devMessage.Add(AccountDevMessage.NameIsRequired);
+                    case (int)ProductErrorCode.NameIsRequired:
+                        userMessage.Add(ProductUserMessage.NameIsRequired);
+                        devMessage.Add(ProductDevMessage.NameIsRequired);
                         break;
-                    case (int)AccountErrorCode.AccountPropertyIsRequired:
-                        userMessage.Add(AccountUserMessage.AccountPropertyIsRequired);
-                        devMessage.Add(AccountDevMessage.AccountPropertyIsRequired);
+                    case (int)ProductErrorCode.ProductPropertyIsRequired:
+                        userMessage.Add(ProductUserMessage.ProductPropertyIsRequired);
+                        devMessage.Add(ProductDevMessage.ProductPropertyIsRequired);
                         break;
-                    case (int)AccountErrorCode.NameViTooLong:
-                        userMessage.Add(AccountUserMessage.NameViTooLong);
-                        devMessage.Add(AccountDevMessage.NameViTooLong);
+                    case (int)ProductErrorCode.NameViTooLong:
+                        userMessage.Add(ProductUserMessage.NameViTooLong);
+                        devMessage.Add(ProductDevMessage.NameViTooLong);
                         break;
-                    case (int)AccountErrorCode.NameEnTooLong:
-                        userMessage.Add(AccountUserMessage.NameEnTooLong);
-                        devMessage.Add(AccountDevMessage.NameEnTooLong);
-                        break;
-
-                    case (int)AccountErrorCode.NoteTooLong:
-                        userMessage.Add(AccountUserMessage.NoteTooLong);
-                        devMessage.Add(AccountDevMessage.NoteTooLong);
+                    case (int)ProductErrorCode.NameEnTooLong:
+                        userMessage.Add(ProductUserMessage.NameEnTooLong);
+                        devMessage.Add(ProductDevMessage.NameEnTooLong);
                         break;
 
-                    case (int)AccountErrorCode.CantDeleteParent:
-                        userMessage.Add(AccountUserMessage.CantDeleteParent);
-                        devMessage.Add(AccountDevMessage.CantDeleteParent);
+                    case (int)ProductErrorCode.NoteTooLong:
+                        userMessage.Add(ProductUserMessage.NoteTooLong);
+                        devMessage.Add(ProductDevMessage.NoteTooLong);
                         break;
-                    case (int)AccountErrorCode.DuplicatedCode:
-                        userMessage.Add(AccountUserMessage.DuplicatedCode);
-                        devMessage.Add(AccountDevMessage.DuplicatedCode);
+
+                    case (int)ProductErrorCode.CantDeleteParent:
+                        userMessage.Add(ProductUserMessage.CantDeleteParent);
+                        devMessage.Add(ProductDevMessage.CantDeleteParent);
+                        break;
+                    case (int)ProductErrorCode.DuplicatedCode:
+                        userMessage.Add(ProductUserMessage.DuplicatedCode);
+                        devMessage.Add(ProductDevMessage.DuplicatedCode);
                         break;
 
 
@@ -220,9 +220,9 @@ namespace MISA.WebFresher2023.Demo.Common.MyException
                         devMessage.Add(EmployeeDevMessage.IdentityPlaceTooLong);
                         break;
 
-                    case (int)EmployeeErrorCode.BankAccountNumberTooLong:
-                        userMessage.Add(EmployeeUserMessage.BankAccountNumberTooLong);
-                        devMessage.Add(EmployeeDevMessage.BankAccountNumberTooLong);
+                    case (int)EmployeeErrorCode.BankProductNumberTooLong:
+                        userMessage.Add(EmployeeUserMessage.BankProductNumberTooLong);
+                        devMessage.Add(EmployeeDevMessage.BankProductNumberTooLong);
                         break;
 
                     case (int)EmployeeErrorCode.NameOfBankTooLong:
@@ -230,9 +230,9 @@ namespace MISA.WebFresher2023.Demo.Common.MyException
                         devMessage.Add(EmployeeDevMessage.NameOfBankTooLong);
                         break;
 
-                    case (int)EmployeeErrorCode.BankAccountBranchTooLong:
-                        userMessage.Add(EmployeeUserMessage.BankAccountBranchTooLong);
-                        devMessage.Add(EmployeeDevMessage.BankAccountBranchTooLong);
+                    case (int)EmployeeErrorCode.BankProductBranchTooLong:
+                        userMessage.Add(EmployeeUserMessage.BankProductBranchTooLong);
+                        devMessage.Add(EmployeeDevMessage.BankProductBranchTooLong);
                         break;
 
                     case (int)EmployeeErrorCode.DateOfBirthInvalidTime:
