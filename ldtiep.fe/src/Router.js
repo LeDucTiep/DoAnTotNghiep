@@ -10,7 +10,7 @@ const routes = [
     component: YodyHome
   },
   {
-    path: '/ao-nam',
+    path: '/quan-ao-nam',
     name: 'ProductsView',
     component: ProductsView
   },

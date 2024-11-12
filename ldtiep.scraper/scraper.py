@@ -30,7 +30,8 @@ driver = initDriver()
 
 if __name__ == '__main__':
 
-    worker()
+    driver.get("https://yody.vn/category/nam")
+    input()
     # with concurrent.futures.ThreadPoolExecutor() as executor:
     #     # Submit tasks to the executor
     #     futures = [executor.submit(task, task_id) for task_id in task_ids]

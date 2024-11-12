@@ -47,7 +47,7 @@
           <div class="menu-item">Mới về</div>
           <div class="menu-item">Bán chạy</div>
           <TPop>
-            <div class="menu-item">Nam</div>
+            <div class="menu-item" @click="toManPage()">Nam</div>
             <template #content>
               <div class="cloth-nam-popup">
                 <div class="col">
@@ -625,6 +625,11 @@ export default {
     return {
       inputValue: "",
     };
+  },
+  methods: {
+    toManPage() {
+      this.$router.push("/quan-ao-nam");
+    },
   },
 };
 </script>
