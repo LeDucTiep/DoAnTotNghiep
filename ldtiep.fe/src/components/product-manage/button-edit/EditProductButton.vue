@@ -81,7 +81,7 @@ export default {
     return {
       cellValue: null,
       isShowPopupDelete: false,
-      isShowPopupEdit: true,
+      isShowPopupEdit: false,
       itemData: {
         product_id: 123,
         name: "Áo Khoác Gió Thông Minh Nữ Trượt Nước",

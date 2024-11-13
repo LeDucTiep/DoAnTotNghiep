@@ -2,66 +2,60 @@
   <div class="admin-container">
     <div class="tabbar">
       <div class="left">
-        <div class="tab-content tab-content--active">Quản lý sản phẩm</div>
+        <div
+          v-for="(item, index) in tabs"
+          :key="index"
+          :class="{ 'tab-content--active': index == currentTab }"
+          class="tab-content"
+          @click="onChangeTab(index)"
+        >
+          {{ item.name }}
+        </div>
       </div>
-      <div class="right">
-        <div class="table-head">
-          <div class="add-button">Thêm mới</div>
-        </div>
-        <div class="table-data">
-          <ag-grid-vue
-            :rowData="rowData"
-            :columnDefs="colDefs"
-            :rowSelection="rowSelection"
-            :onSelectionChanged="onSelectionChanged"
-            style="height: 500px"
-            class="ag-theme-quartz"
-          >
-          </ag-grid-vue>
-        </div>
+      <div v-if="currentTab == 0" class="right">
+        <ProductGrid></ProductGrid>
+      </div>
+      <div v-if="currentTab == 1" class="right">
+        <ColorGrid></ColorGrid>
+      </div>
+      <div v-if="currentTab == 2" class="right">
+        <CategoryGrid></CategoryGrid>
       </div>
     </div>
   </div>
 </template>
   
   <script>
-import "ag-grid-community/styles/ag-grid.css"; // Mandatory CSS required by the Data Grid
-import "ag-grid-community/styles/ag-theme-quartz.css"; // Optional Theme applied to the Data Grid
-import { AgGridVue } from "ag-grid-vue3";
-import EditProductButton from "/src/components/product-manage/button-edit/EditProductButton.vue";
+import ProductGrid from "./product-grid/ProductGrid.vue";
+import ColorGrid from "./color-grid/ColorGrid.vue";
+import CategoryGrid from "./category-grid/CategoryGrid.vue";
 
 export default {
-  name: "ProductsManage",
+  name: "ProductManage",
   props: {},
   components: {
-    AgGridVue,
+    ProductGrid,
+
+    ColorGrid,
+    CategoryGrid,
   },
   data() {
     return {
-      rowData: [
+      currentTab: 0,
+      tabs: [
         {
-          product_id: 123,
-          name: "Áo Khoác Gió Thông Minh Nữ Trượt Nước",
-          image:
-            "https://m.yodycdn.com/fit-in/filters:format(webp)/products/akn5042-den-4.jpg",
-          price: 569050,
-          original_price: 599000,
-          discount: 5,
-          category: [],
-          size: [],
-          color: [],
+          id: 0,
+          name: "Sản phẩm",
+        },
+        {
+          id: 1,
+          name: "Màu sắc",
+        },
+        {
+          id: 2,
+          name: "Thể loại",
         },
       ],
-      colDefs: [
-        { field: "name", width: 420 },
-        { field: "price" },
-        { field: "original_price" },
-        { field: "discount" },
-        { field: "product_id", cellRenderer: EditProductButton },
-      ],
-      rowSelection: {
-        mode: "multiRow",
-      },
     };
   },
   methods: {
@@ -69,6 +63,10 @@ export default {
       const selected = e.api.getSelectedNodes();
 
       console.log(selected);
+    },
+    onChangeTab(e) {
+      const me = this;
+      me.currentTab = e;
     },
   },
 };
