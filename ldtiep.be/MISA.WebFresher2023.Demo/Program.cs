@@ -1,10 +1,13 @@
 ﻿using ldtiep.be.BL.Service;
+using ldtiep.be.BL;
 using ldtiep.be.DL;
 using ldtiep.be.DL.Repository;
 using ldtiep.be.Middleware;
 using ldtiep.be.Common;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authentication;
+using AutoMapper;
+using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
@@ -50,11 +53,21 @@ builder.Services.AddCors(options =>
 //});
 
 // Sử dụng automapper
-builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+var mapperConfig = new MapperConfiguration(mc =>
+{
+    mc.AddProfile(new ColorProfile());
+});
+
+IMapper mapper = mapperConfig.CreateMapper();
+builder.Services.AddSingleton(mapper);
 
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IColorRepository, ColorRepository>();
+
 
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IColorService, ColorService>();
+
 
 builder.Services.AddScoped<IMSDatabase, MSDatabase>();
 

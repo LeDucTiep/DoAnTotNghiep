@@ -3,8 +3,8 @@ D:\do-an\ldtiep.be\MISA.WebFresher2023.Demo.BL\bin\Debug\net6.0\ldtiep.be.BL.dll
 D:\do-an\ldtiep.be\MISA.WebFresher2023.Demo.BL\bin\Debug\net6.0\ldtiep.be.BL.pdb
 D:\do-an\ldtiep.be\MISA.WebFresher2023.Demo.BL\bin\Debug\net6.0\ldtiep.be.Common.dll
 D:\do-an\ldtiep.be\MISA.WebFresher2023.Demo.BL\bin\Debug\net6.0\ldtiep.be.DL.dll
-D:\do-an\ldtiep.be\MISA.WebFresher2023.Demo.BL\bin\Debug\net6.0\ldtiep.be.Common.pdb
 D:\do-an\ldtiep.be\MISA.WebFresher2023.Demo.BL\bin\Debug\net6.0\ldtiep.be.DL.pdb
+D:\do-an\ldtiep.be\MISA.WebFresher2023.Demo.BL\bin\Debug\net6.0\ldtiep.be.Common.pdb
 D:\do-an\ldtiep.be\MISA.WebFresher2023.Demo.BL\obj\Debug\net6.0\ldtiep.be.BL.csproj.AssemblyReference.cache
 D:\do-an\ldtiep.be\MISA.WebFresher2023.Demo.BL\obj\Debug\net6.0\ldtiep.be.BL.GeneratedMSBuildEditorConfig.editorconfig
 D:\do-an\ldtiep.be\MISA.WebFresher2023.Demo.BL\obj\Debug\net6.0\ldtiep.be.BL.AssemblyInfoInputs.cache

@@ -3,7 +3,7 @@ using ldtiep.be.BL.Dto;
 using ldtiep.be.DL.Entity;
 using ldtiep.be.DL.Model;
 
-namespace ldtiep.be.BL.Automapper
+namespace ldtiep.be.BL
 {
     /// <summary>
     /// Class dành cho automapper 

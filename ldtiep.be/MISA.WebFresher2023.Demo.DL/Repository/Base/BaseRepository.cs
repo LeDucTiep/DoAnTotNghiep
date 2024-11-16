@@ -6,6 +6,7 @@ using ldtiep.be.DL.Model;
 using ldtiep.be.Enum;
 using System;
 using System.Data;
+using System.Linq;
 using System.Net;
 
 namespace ldtiep.be.DL.Repository
@@ -61,7 +62,7 @@ namespace ldtiep.be.DL.Repository
             {
                 // Khởi tạo các tham số 
                 var dynamicParams = new DynamicParameters();
-                dynamicParams.Add($"{table}Id", id);
+                dynamicParams.Add($"{table}ID", id);
 
                 var countChanged = await connection.ExecuteAsync(
                     procedure,
@@ -168,7 +169,7 @@ namespace ldtiep.be.DL.Repository
             {
                 // Tham số 
                 var dynamicParams = new DynamicParameters();
-                dynamicParams.Add($"{table}Id", id);
+                dynamicParams.Add($"v_{table}ID", id);
 
                 // Bản ghi trả về 
                 var entity = await connection.QueryFirstOrDefaultAsync<TEntity>(
@@ -215,11 +216,13 @@ namespace ldtiep.be.DL.Repository
                 var name = property.Name;
 
                 // Gán id mới
-                if (name == $"{table}Id")
+                if (name == $"{table}ID")
                 {
                     property.SetValue(entity, newId, null);
 
-                    dynamicParams.Add($"{table}Id", newId);
+                    dynamicParams.Add($"v_{table}ID", newId);
+
+                    continue;
                 }
 
                 // Bỏ qua ngày sửa và người sửa 
@@ -238,14 +241,8 @@ namespace ldtiep.be.DL.Repository
                 }
 
                 // Thêm tham số 
-                dynamicParams.Add(name, value);
+                dynamicParams.Add($"v_{name}", value);
             }
-
-            // Thêm người tạo 
-            dynamicParams.Add("CreatedBy", UserResource.Name);
-            // Thêm ngày tạo 
-            dynamicParams.Add("CreatedDate", DateTime.Now);
-
 
             try
             {
@@ -276,13 +273,16 @@ namespace ldtiep.be.DL.Repository
             // Tên bảng 
             var table = typeof(TEntity).Name;
 
-            // Tên procedure
-            string procedure = ProcedureResource.Update(table);
+           
+            string tableName = $"ldt_{table.ToLower()}";
+
 
             // Mở kết nối tới database
             var connection = await _msDatabase.GetOpenConnectionAsync();
             // Khởi tạo tham số 
             var dynamicParams = new DynamicParameters();
+            var setBlock = new List<string>();
+            var whereBlock = new List<string>();
 
             // Duyệt qua tất cả thuộc tính của entity
             System.Reflection.PropertyInfo[] properties = entity.GetType().GetProperties();
@@ -292,9 +292,10 @@ namespace ldtiep.be.DL.Repository
                 var name = property.Name;
 
                 // Gán id truyền vào 
-                if (name == $"{table}Id")
+                if (name == $"{table}ID")
                 {
-                    dynamicParams.Add($"{table}Id", id);
+                    dynamicParams.Add($"v_{table}ID", id);
+                    whereBlock.Add($"{table}ID = @v_{table}ID");
                     continue;
                 }
 
@@ -307,27 +308,26 @@ namespace ldtiep.be.DL.Repository
 
                 if (value != null && value.Equals(Guid.Empty))
                 {
-                    dynamicParams.Add(name, null);
-                    continue;
+                    value = null;
                 }
 
                 // Thêm tham số
-                dynamicParams.Add(name, value);
+                dynamicParams.Add($"v_{name}", value);
+
+                setBlock.Add($"{name} = @v_{name}");
             }
-
-            // Thêm người sửa 
-            dynamicParams.Add("ModifiedBy", UserResource.Name);
-
-            // Thêm ngày sửa 
-            dynamicParams.Add("ModifiedDate", DateTime.Now);
 
             try
             {
-                // Gọi procedure
+                string whereCmd = string.Join(" and ", whereBlock);
+                string setCmd = string.Join(" , ", setBlock);
+                string query = $"update {tableName} set {setCmd} where {whereCmd} ;";
+
+                // Gọi update
                 int changedCount = await connection.ExecuteAsync(
-                    procedure,
+                    query,
                     param: dynamicParams,
-                    commandType: CommandType.StoredProcedure
+                    commandType: CommandType.Text
                 );
 
                 return changedCount;
@@ -390,7 +390,7 @@ namespace ldtiep.be.DL.Repository
 
                 // Tham số 
                 var dynamicParams = new DynamicParameters();
-                dynamicParams.Add($"{table}Id", id);
+                dynamicParams.Add($"{table}ID", id);
 
                 // Bản ghi trả về 
                 bool isExists = await connection.QueryFirstAsync<bool>(
@@ -431,10 +431,10 @@ namespace ldtiep.be.DL.Repository
             // OUT TotalRecord: Tổng số bản ghi tìm thấy
             var parameters = new DynamicParameters();
             int offset = (basePagingArgument.PageNumber - 1) * basePagingArgument.PageSize;
-            parameters.Add("_offset", offset);
-            parameters.Add("_limit", basePagingArgument.PageSize);
-            parameters.Add("searchTerm", basePagingArgument.SearchTerm ?? "");
-            parameters.Add("totalRecord", dbType: DbType.Int32, direction: ParameterDirection.Output);
+            parameters.Add("v_offset", offset);
+            parameters.Add("v_limit", basePagingArgument.PageSize);
+            parameters.Add("v_searchTerm", basePagingArgument.SearchTerm ?? "");
+            parameters.Add("v_totalRecord", dbType: DbType.Int32, direction: ParameterDirection.Output);
 
             try
             {
@@ -447,7 +447,7 @@ namespace ldtiep.be.DL.Repository
                 );
 
                 // Lấy tổng số trang 
-                var totalRecord = parameters.Get<int>("totalRecord");
+                var totalRecord = parameters.Get<int>("v_totalRecord");
 
                 // trả về kết quả
                 return new BasePage<TEntityInPage>(totalRecord, res);

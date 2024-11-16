@@ -5,6 +5,199 @@
     "version": "1.0"
   },
   "paths": {
+    "/api/v1/Colors": {
+      "post": {
+        "tags": [
+          "Color"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ColorCreateDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ColorCreateDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ColorCreateDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Color"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/v1/Colors/{id}": {
+      "get": {
+        "tags": [
+          "Color"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Color"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Color"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ColorUpdateDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ColorUpdateDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ColorUpdateDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/v1/Colors/paging": {
+      "get": {
+        "tags": [
+          "Color"
+        ],
+        "parameters": [
+          {
+            "name": "PageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "PageNumber",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "SearchTerm",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/api/v1/Products": {
       "post": {
         "tags": [
@@ -189,46 +382,6 @@
             "schema": {
               "type": "string"
             }
-          },
-          {
-            "name": "Category",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "NewsType",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "NewsStatus",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "ProvinceId",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "name": "NewsId",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
           }
         ],
         "responses": {
@@ -241,12 +394,144 @@
   },
   "components": {
     "schemas": {
+      "ColorCreateDto": {
+        "type": "object",
+        "properties": {
+          "ColorName": {
+            "type": "string",
+            "nullable": true
+          },
+          "ColorCode": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ColorUpdateDto": {
+        "type": "object",
+        "properties": {
+          "ColorID": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "ColorName": {
+            "type": "string",
+            "nullable": true
+          },
+          "ColorCode": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "ProductCreateDto": {
         "type": "object",
+        "properties": {
+          "ProductID": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "ProductName": {
+            "type": "string",
+            "nullable": true
+          },
+          "ProductCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "ColorIDs": {
+            "type": "string",
+            "nullable": true
+          },
+          "ColorNames": {
+            "type": "string",
+            "nullable": true
+          },
+          "Price": {
+            "type": "number",
+            "format": "double"
+          },
+          "OriginalPrice": {
+            "type": "number",
+            "format": "double"
+          },
+          "Discount": {
+            "type": "number",
+            "format": "double"
+          },
+          "SizeIDs": {
+            "type": "string",
+            "nullable": true
+          },
+          "SizeNames": {
+            "type": "string",
+            "nullable": true
+          },
+          "CategoryIDs": {
+            "type": "string",
+            "nullable": true
+          },
+          "CategoryNames": {
+            "type": "string",
+            "nullable": true
+          }
+        },
         "additionalProperties": false
       },
       "ProductUpdateDto": {
         "type": "object",
+        "properties": {
+          "ProductID": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "ProductName": {
+            "type": "string",
+            "nullable": true
+          },
+          "ProductCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "ColorIDs": {
+            "type": "string",
+            "nullable": true
+          },
+          "ColorNames": {
+            "type": "string",
+            "nullable": true
+          },
+          "Price": {
+            "type": "number",
+            "format": "double"
+          },
+          "OriginalPrice": {
+            "type": "number",
+            "format": "double"
+          },
+          "Discount": {
+            "type": "number",
+            "format": "double"
+          },
+          "SizeIDs": {
+            "type": "string",
+            "nullable": true
+          },
+          "SizeNames": {
+            "type": "string",
+            "nullable": true
+          },
+          "CategoryIDs": {
+            "type": "string",
+            "nullable": true
+          },
+          "CategoryNames": {
+            "type": "string",
+            "nullable": true
+          }
+        },
         "additionalProperties": false
       }
     }

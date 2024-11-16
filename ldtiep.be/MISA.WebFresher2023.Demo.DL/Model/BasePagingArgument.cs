@@ -32,11 +32,5 @@ namespace ldtiep.be.DL.Model
         /// Author: LeDucTiep (09/06/2023)
         [MSMaxLength(Length = 255, ErrorCode = (int)PagingErrorCode.EmployeeSearchTermTooLong)]
         public string? SearchTerm { get => searchTerm; set => searchTerm = value; }
-
-        public int? Category { get; set; }
-        public int? NewsType { get; set; }
-        public int? NewsStatus { get; set; }
-        public Guid? ProvinceId { get; set; }
-        public Guid? NewsId { get; set; }
     }
 }

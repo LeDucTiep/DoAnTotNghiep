@@ -15,3 +15,21 @@
 .hidden {
     visibility: hidden;
 }
+
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.picker {
+    z-index: 999999999 !important;
+}
+
+.color-picker {
+    cursor: pointer;
+}
+
+.vs-button * {
+    user-select: none;
+}
