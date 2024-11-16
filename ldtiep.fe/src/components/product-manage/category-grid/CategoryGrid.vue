@@ -1,58 +1,79 @@
 <template>
   <div class="table-head">
-    <div class="add-button">Thêm mới</div>
+    <div></div>
+    <div class="add-button">
+      <vs-button @click="showAddForm()" color="primary" type="filled"
+        >Thêm mới</vs-button
+      >
+    </div>
   </div>
   <div class="table-data">
-    <ag-grid-vue
-      :rowData="rowData"
-      :columnDefs="colDefs"
-      :rowSelection="rowSelection"
-      :onSelectionChanged="onSelectionChanged"
-      style="height: 500px"
-      class="ag-theme-quartz"
-    >
-    </ag-grid-vue>
+    <TGrid
+      v-if="rowData.length > 0"
+      :multiple="false"
+      :columns="columns"
+      :dataSource="rowData"
+      @edit="onEdit($event)"
+      @delete="onDelete($event)"
+    ></TGrid>
+    <div v-else class="nodata-img flex-center">
+      <img
+        style="height: 500px"
+        src="../../../assets/images/nodata.png"
+        alt="Không có dữ liệu"
+      />
+    </div>
   </div>
+
+  <vs-popup title="Thêm thể loại" v-model:active="isShowAddForm">
+    <div class="popup-content">
+      <div class="add-form">
+        <div class="name-row">
+          <vs-input
+            :danger="isExistsCategory"
+            danger-text="Thể loại này đã tồn tại"
+            label="Tên thể loại"
+            placeholder="Trẻ em"
+            v-model="addFormData.CategoryName"
+          />
+        </div>
+        .d
+      </div>
+      <div class="buttons">
+        <vs-button @click="onAdd()" color="primary" type="filled"
+          >Xác nhận</vs-button
+        >
+      </div>
+    </div>
+  </vs-popup>
 </template>
     
 <script>
-import "ag-grid-community/styles/ag-grid.css"; // Mandatory CSS required by the Data Grid
-import "ag-grid-community/styles/ag-theme-quartz.css"; // Optional Theme applied to the Data Grid
-import { AgGridVue } from "ag-grid-vue3";
-import EditProductButton from "/src/components/product-manage/button-edit/EditProductButton.vue";
-
 export default {
   name: "CategoryGrid",
   props: [],
-  components: {
-    AgGridVue,
-  },
+  components: {},
   data() {
     return {
       rowData: [
         {
-          product_id: 123,
-          name: "Quần áo nam",
-          image:
-            "https://m.yodycdn.com/fit-in/filters:format(webp)/products/akn5042-den-4.jpg",
-          price: 569050,
-          original_price: 599000,
-          discount: 5,
-          category: [],
-          size: [],
-          color: [],
+          CategoryName: "Nam",
+          CategoryID: 1234,
+          Children: [
+            {
+              CategoryID: 2213,
+              CategoryName: "Quần nam",
+            },
+          ],
         },
       ],
-      colDefs: [
-        { field: "name", width: 420 },
-        { field: "price" },
-        { field: "original_price" },
-        { field: "discount" },
-        { field: "product_id", cellRenderer: EditProductButton },
+      isExistsCategory: false,
+      columns: [
+        { field: "CategoryName", name: "Thể loại", type: 0 },
+        { field: "CategoryID", type: 1 },
       ],
-      rowSelection: {
-        mode: "multiRow",
-      },
+      isShowAddForm: false,
+      addFormData: {},
     };
   },
   beforeMount() {},
@@ -61,6 +82,17 @@ export default {
       const selected = e.api.getSelectedNodes();
 
       console.log(selected);
+    },
+    deleteSelected() {},
+    showAddForm() {
+      this.isShowAddForm = true;
+    },
+    onAdd() {},
+    onEdit(e) {
+      console.log(e);
+    },
+    onDelete(e) {
+      console.log(e);
     },
   },
 };

@@ -5,9 +5,11 @@ import Vuesax from 'vuesax3'
 import 'vuesax3/dist/vuesax.css'
 import "material-icons/iconfont/material-icons.css";
 import PickColors from "vue-pick-colors";
+import TGrid from "/src/base/tgrid/TGrid";
 
 createApp(App)
     .use(router)
     .use(Vuesax)
     .component('PickColors', PickColors)
+    .component('TGrid', TGrid)
     .mount('#app')
