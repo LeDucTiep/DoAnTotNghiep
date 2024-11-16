@@ -1,7 +1,7 @@
 <template>
   <div class="menu-table-buttons">
-    <div class="edit-product-button" @click="onEdit()">Sửa</div>
-    <div class="delete-product-button" @click="onDelete()">Xóa</div>
+    <vs-button @click="onEdit()" color="primary" type="border">Sửa</vs-button>
+    <vs-button @click="onDelete()" color="danger" type="border">Xóa</vs-button>
   </div>
 
   <vs-popup title="Xóa sản phẩm" v-model:active="isShowPopupDelete">
@@ -15,11 +15,7 @@
     </div>
   </vs-popup>
 
-  <vs-popup
-    v-if="isShowPopupEdit"
-    title="Chỉnh sửa màu sắc"
-    v-model:active="isShowPopupEdit"
-  >
+  <vs-popup title="Chỉnh sửa màu sắc" v-model:active="isShowPopupEdit">
     <div class="popup-content">
       <div class="add-form">
         <div class="name-row">
@@ -76,15 +72,22 @@ export default {
     onDelete() {
       this.isShowPopupDelete = true;
     },
-    confirmDelete() {
+    async confirmDelete() {
       this.isShowPopupDelete = false;
 
-      console.log(this.colorID);
+      await this.api.deleteByID(this.colorID);
+
+      this.params.action();
+    },
+    validateColor() {
+      if (!this.isValidHexColor(this.itemData.ColorCode)) {
+        return false;
+      }
+      return true;
     },
     async confirmEdit() {
-      if (!this.isValidHexColor(this.itemData.ColorCode)) {
-        return;
-      }
+      if (!this.validateColor()) return;
+
       await this.api.updateByID(this.colorID, this.itemData);
 
       this.isShowPopupEdit = false;
@@ -103,6 +106,8 @@ export default {
 .menu-table-buttons {
   display: flex;
   gap: 10px;
+  height: 100%;
+  align-items: center;
 
   .edit-product-button {
     background-color: #94ffffff;

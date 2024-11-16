@@ -59,11 +59,6 @@ export default {
     };
   },
   methods: {
-    onSelectionChanged(e) {
-      const selected = e.api.getSelectedNodes();
-
-      console.log(selected);
-    },
     onChangeTab(e) {
       const me = this;
       me.currentTab = e;

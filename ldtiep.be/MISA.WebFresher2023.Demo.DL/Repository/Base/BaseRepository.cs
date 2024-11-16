@@ -51,9 +51,7 @@ namespace ldtiep.be.DL.Repository
         {
             // Tên bảng 
             var table = typeof(TEntity).Name;
-
-            // Tên procedure
-            string procedure = ProcedureResource.Delete(table);
+            var whereBlock = new List<string>();
 
             // Connection với database 
             var connection = await _msDatabase.GetOpenConnectionAsync();
@@ -62,12 +60,17 @@ namespace ldtiep.be.DL.Repository
             {
                 // Khởi tạo các tham số 
                 var dynamicParams = new DynamicParameters();
-                dynamicParams.Add($"{table}ID", id);
+                dynamicParams.Add($"v_{table}ID", id);
+                whereBlock.Add($"{table}ID = @v_{table}ID");
+
+                string where = string.Join(" and ", whereBlock);
+
+                string query = $"delete from ldt_{table} where {where} ;";
 
                 var countChanged = await connection.ExecuteAsync(
-                    procedure,
+                    query,
                     param: dynamicParams,
-                    commandType: CommandType.StoredProcedure
+                    commandType: CommandType.Text
                 );
 
                 return countChanged;
@@ -93,12 +96,8 @@ namespace ldtiep.be.DL.Repository
             // Tên bảng 
             var table = typeof(TEntity).Name;
 
-            // Tên procedure
-            string procedure = ProcedureResource.DeleteMany(table);
-
             // Connection với database 
             var connection = await _msDatabase.GetOpenConnectionAsync();
-
 
             try
             {
@@ -108,37 +107,31 @@ namespace ldtiep.be.DL.Repository
                 // Còn thở thì còn xóa
                 while (listId.Count > 0)
                 {
-                    string param = "";
-                    int counterFlag = 0;
+                    var whereBlock = new List<string>() { "true"};
+                    var ids = new List<string>();
 
                     // Xóa mỗi lần 10 bản ghi
-                    while (listId.Count > 0 && counterFlag < 10)
+                    while (listId.Count > 0)
                     {
                         Guid guid = listId[0];
 
-                        param += $"'{guid}'";
+                        ids.Add($"'{guid}'");
 
                         listId.RemoveAt(0);
-
-                        counterFlag++;
-
-                        // Nếu là phần tử cuối cùng thì không cần dấu ,
-                        if (listId.Count > 0 && counterFlag < 10)
-                        {
-                            param += ",";
-                        }
                     }
 
-                    // Khởi tạo các tham số 
-                    var dynamicParams = new DynamicParameters();
-                    dynamicParams.Add($"arrayId", param);
+                    string param = string.Join(",", ids);
+
+                    whereBlock.Add($"{table}ID in ({param})");
+
+                    string where = string.Join(" and ", whereBlock);
+
+                    string query = $"delete from ldt_{table.ToLower()} where {where}";
 
                     countChanged += await connection.ExecuteAsync(
-                        procedure,
-                        param: dynamicParams,
-                        commandType: CommandType.StoredProcedure
+                        query,
+                        commandType: CommandType.Text
                     );
-
                 }
                 return countChanged;
             }
@@ -374,29 +367,41 @@ namespace ldtiep.be.DL.Repository
         /// <param name="table">Tên table</param>
         /// <returns>bool</returns>
         /// Author: LeDucTiep (12/07/2023)
-        public async Task<bool> CheckExistedAsync(Guid id, string table = "")
+        public async Task<bool> CheckExistedAsync(Dictionary<string, string> param)
         {
             // Tên bảng
-            if (table.Equals(string.Empty))
-                table = typeof(TEntity).Name;
+            string table = typeof(TEntity).Name;
 
             // Kết nối với database
             var connection = await _msDatabase.GetOpenConnectionAsync();
 
             try
             {
-                // Tên procedure
-                string procedure = ProcedureResource.CheckExistedById(table);
-
-                // Tham số 
+                var whereBlock = new List<string>() { "1 = 1"};
                 var dynamicParams = new DynamicParameters();
-                dynamicParams.Add($"{table}ID", id);
+
+                foreach (var item in param.Keys)
+                {
+                    string val = param.GetValueOrDefault(item);
+
+                    if (!string.IsNullOrEmpty(val))
+                    {
+                        whereBlock.Add($"{item} = @v_{item}");
+
+                        // Tham số 
+                        dynamicParams.Add($"v_{item}", val);
+                    }
+                }
+
+
+                string where = string.Join(" and ", whereBlock);
+                string query = $"select exists(select * from ldt_{table} where {where})";
 
                 // Bản ghi trả về 
                 bool isExists = await connection.QueryFirstAsync<bool>(
-                        procedure,
+                        query,
                         param: dynamicParams,
-                        commandType: CommandType.StoredProcedure
+                        commandType: CommandType.Text
                     );
 
                 return isExists;
@@ -459,10 +464,6 @@ namespace ldtiep.be.DL.Repository
             }
         }
 
-        public Task<Product?> GetProductByGuid28(string guid28)
-        {
-            throw new NotImplementedException();
-        }
         #endregion
     }
 }

@@ -56,7 +56,13 @@ export default {
     };
   },
   beforeMount() {},
-  methods: {},
+  methods: {
+    onSelectionChanged(e) {
+      const selected = e.api.getSelectedNodes();
+
+      console.log(selected);
+    },
+  },
 };
 </script>
     

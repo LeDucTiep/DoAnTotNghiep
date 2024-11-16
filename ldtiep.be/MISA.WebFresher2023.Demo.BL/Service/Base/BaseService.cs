@@ -420,7 +420,21 @@ namespace ldtiep.be.BL.Service
             // Trả về danh sách rỗng
             return await task;
         }
-
+        public virtual async Task<bool> CheckExistedAsync(Dictionary<string, string> param)
+        {
+            try
+            {
+                return await _baseRepository.CheckExistedAsync(param);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            finally
+            {
+                await _msDatabase.CloseConnectionAsync();
+            }
+        }
         /// <summary>
         /// hàm lấy trang bản ghi
         /// </summary>

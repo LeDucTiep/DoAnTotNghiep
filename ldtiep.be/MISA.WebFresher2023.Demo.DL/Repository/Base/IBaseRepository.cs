@@ -58,7 +58,7 @@ namespace ldtiep.be.DL.Repository
         /// </summary>
         /// <returns>bool</returns>
         /// Author: LeDucTiep (08/05/2023)
-        Task<bool> CheckExistedAsync(Guid id, string table = "");
+        Task<bool> CheckExistedAsync(Dictionary<string, string> param);
 
         /// <summary>
         /// Hàm lấy trang bản ghi
@@ -69,7 +69,6 @@ namespace ldtiep.be.DL.Repository
         /// Author: LeDucTiep (08/05/2023)
         Task<BasePage<TEntityInPage>> GetPageAsync<TEntityInPage>(BasePagingArgument basePagingArgument);
 
-        Task<Product?> GetProductByGuid28(string guid28);
         Task InsertProduct(Product Product);
     }
 }

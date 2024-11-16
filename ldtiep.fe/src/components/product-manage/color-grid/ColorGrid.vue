@@ -1,6 +1,19 @@
 <template>
   <div class="table-head">
-    <div class="add-button" @click="showAddForm()">Thêm mới</div>
+    <div class="util-buttons">
+      <vs-button
+        v-if="rowSelected.length > 0"
+        @click="deleteSelected()"
+        color="danger"
+        type="filled"
+        >Xóa màu đã chọn</vs-button
+      >
+    </div>
+    <div class="add-button">
+      <vs-button @click="showAddForm()" color="primary" type="filled"
+        >Thêm mới</vs-button
+      >
+    </div>
   </div>
   <div class="table-data">
     <ag-grid-vue
@@ -22,15 +35,13 @@
     </div>
   </div>
 
-  <vs-popup
-    v-if="isShowAdd"
-    title="Thêm mới màu sắc"
-    v-model:active="isShowAdd"
-  >
+  <vs-popup title="Thêm mới màu sắc" v-model:active="isShowAdd">
     <div class="popup-content">
       <div class="add-form">
         <div class="name-row">
           <vs-input
+            :danger="isExistsColor"
+            danger-text="Màu sắc này đã tồn tại"
             label="Tên màu"
             placeholder="Hồng cánh sen"
             v-model="addFormData.ColorName"
@@ -47,6 +58,17 @@
       </div>
       <div class="buttons">
         <vs-button @click="addColor()" color="primary" type="filled"
+          >Xác nhận</vs-button
+        >
+      </div>
+    </div>
+  </vs-popup>
+
+  <vs-popup title="Xóa sản phẩm" v-model:active="isShowPopupDelete">
+    <div class="popup-content">
+      <div class="content">Bạn có chắc chắn muốn xóa các màu sắc đã chọn?</div>
+      <div class="buttons">
+        <vs-button @click="confirmDelete()" color="primary" type="filled"
           >Xác nhận</vs-button
         >
       </div>
@@ -70,6 +92,7 @@ export default {
   },
   data() {
     return {
+      isExistsColor: false,
       api: new API("Colors"),
       rowData: [],
       colDefs: [
@@ -94,6 +117,8 @@ export default {
       },
       addFormData: {},
       isShowAdd: false,
+      rowSelected: [],
+      isShowPopupDelete: false,
     };
   },
   created() {
@@ -101,25 +126,61 @@ export default {
   },
   beforeMount() {},
   methods: {
+    onSelectionChanged(e) {
+      const selected = e.api.getSelectedNodes();
+
+      this.rowSelected = selected;
+    },
     async getData() {
       const param = {
-        PageSize: 1,
+        PageSize: 500,
         PageNumber: 1,
       };
       const res = await this.api.paging(param);
 
       this.rowData = res.Data;
     },
-    async addColor() {
+    async validateColor() {
       if (!this.isValidHexColor(this.addFormData.ColorCode)) {
+        return false;
+      }
+
+      const param = {
+        ColorName: this.addFormData.ColorName,
+      };
+
+      const res = await this.api.checkExisted(param);
+
+      this.isExistsColor = res;
+
+      return !res;
+    },
+    async addColor() {
+      if (!(await this.validateColor())) {
         return;
       }
+      this.isShowAdd = false;
+
       await this.api.add(this.addFormData);
+
+      this.getData();
+    },
+    async deleteSelected() {
+      this.isShowPopupDelete = true;
+    },
+    async confirmDelete() {
+      this.isShowPopupDelete = false;
+
+      const ids = this.rowSelected.map((e) => e.data.ColorID);
+
+      await this.api.deleteMany(ids);
 
       this.getData();
     },
     showAddForm() {
       this.isShowAdd = true;
+      this.addFormData = {};
+      this.isExistsColor = false;
     },
     isValidHexColor(hexColor) {
       const regex = /^#([0-9A-F]{3}|[0-9A-F]{6})$/i;
@@ -133,6 +194,11 @@ export default {
 .color-row {
   display: flex;
   align-items: end;
+}
+.add-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 </style>
     

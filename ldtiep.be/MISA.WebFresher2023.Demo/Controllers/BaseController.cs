@@ -40,6 +40,23 @@ namespace ldtiep.be.Controllers
 
             return StatusCode(201, entityDto);
         }
+        /// <summary>
+        /// Hàm kiểm tra bản ghi có tồn tại không 
+        /// </summary>
+        /// <param name="param"></param>
+        /// <returns></returns>
+        /// <exception cref="BadRequestException"></exception>
+        [HttpPost("checkExisted")]
+        public virtual async Task<IActionResult> CheckExistedAsync(Dictionary<string, string> param)
+        {
+            if (param == null || param.Keys.Count == 0)
+            {
+                throw new BadRequestException();
+            }
+            bool isExists = await _baseService.CheckExistedAsync(param);
+
+            return StatusCode(200, isExists);
+        }
 
         /// <summary>
         /// API Lấy một nhân viên theo id

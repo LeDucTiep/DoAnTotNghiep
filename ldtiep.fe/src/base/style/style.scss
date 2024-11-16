@@ -33,3 +33,13 @@
 .vs-button * {
     user-select: none;
 }
+
+.vs-popup--content {
+    * {
+        font-size: 14px;
+    }
+
+    .vs-input--label {
+        font-size: 16px;
+    }
+}

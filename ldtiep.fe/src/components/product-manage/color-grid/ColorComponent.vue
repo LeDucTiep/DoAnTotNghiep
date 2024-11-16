@@ -19,7 +19,6 @@ export default {
   },
   beforeMount() {
     this.colorCode = this.params.value;
-    console.log(this.params);
   },
   methods: {},
 };

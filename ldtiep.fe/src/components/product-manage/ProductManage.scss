@@ -43,20 +43,7 @@
 
     .table-head {
         display: flex;
-        justify-content: end;
-
-        .add-button {
-            border: 1px solid #ccc;
-            padding: 14px;
-            border-radius: 10px;
-            user-select: none;
-            background-color: greenyellow;
-            cursor: pointer;
-            margin-bottom: 20px;
-
-            &:hover {
-                opacity: 0.8;
-            }
-        }
+        justify-content: space-between;
+        padding-bottom: 16px;
     }
 }
