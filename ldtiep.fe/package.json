@@ -18,6 +18,7 @@
     "vue-easytable": "^2.27.1",
     "vue-pick-colors": "^1.7.7",
     "vue-router": "^4.4.5",
+    "vue-uuid": "^3.0.0",
     "vuesax3": "^4.2.1"
   },
   "devDependencies": {
