@@ -22,6 +22,8 @@
       :dataSource="rowData"
       @edit="onEdit($event)"
       @delete="onDelete($event)"
+      @sort="onSort($event)"
+      @changePage="onChangePage($event)"
       v-model="rowSelected"
     ></TGrid>
     <div v-else class="nodata-img flex-center">
@@ -143,6 +145,10 @@ export default {
       isShowPopupDeleteOne: false,
       isShowPopupEdit: false,
       itemData: {},
+      currentSort: {
+        ModifiedDate: "desc",
+      },
+      pageIndex: 1,
     };
   },
   created() {
@@ -150,10 +156,19 @@ export default {
   },
   beforeMount() {},
   methods: {
+    onSort(e) {
+      this.currentSort = e;
+      this.getData();
+    },
+    onChangePage(e) {
+      this.pageIndex = e;
+      this.getData();
+    },
     async getData() {
       const param = {
-        PageSize: 500,
-        PageNumber: 1,
+        PageSize: 100,
+        PageNumber: this.pageIndex,
+        Sorter: this.currentSort,
       };
       const res = await this.api.paging(param);
 
@@ -197,6 +212,8 @@ export default {
       }
       this.isShowAdd = false;
 
+      if (!this.addFormData.ColorCode) this.addFormData.ColorCode = "";
+
       await this.api.add(this.addFormData);
 
       this.getData();
@@ -219,6 +236,8 @@ export default {
       this.isExistsColor = false;
     },
     isValidHexColor(hexColor) {
+      if (hexColor == null || hexColor == "") return true;
+
       const regex = /^#([0-9A-F]{3}|[0-9A-F]{6})$/i;
       return regex.test(hexColor);
     },
@@ -241,6 +260,8 @@ export default {
     },
     async confirmEdit() {
       if (!this.validateEditColor()) return;
+
+      if (!this.itemData.ColorCode) this.itemData.ColorCode = "";
 
       await this.api.updateByID(this.itemData.ColorID, this.itemData);
 

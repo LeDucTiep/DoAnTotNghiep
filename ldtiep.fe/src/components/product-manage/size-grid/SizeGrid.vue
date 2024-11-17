@@ -22,6 +22,8 @@
       :dataSource="rowData"
       @edit="onEdit($event)"
       @delete="onDelete($event)"
+      @sort="onSort($event)"
+      @changePage="onChangePage($event)"
       v-model="rowSelected"
     ></TGrid>
     <div v-else class="nodata-img flex-center">
@@ -124,6 +126,10 @@ export default {
       isShowPopupDeleteOne: false,
       isShowPopupEdit: false,
       itemData: {},
+      pageIndex: 1,
+      currentSort: {
+        ModifiedDate: "desc",
+      },
     };
   },
   created() {
@@ -131,13 +137,19 @@ export default {
   },
   beforeMount() {},
   methods: {
+    onSort(e) {
+      this.currentSort = e;
+      this.getData();
+    },
+    onChangePage(e) {
+      this.pageIndex = e;
+      this.getData();
+    },
     async getData() {
       const param = {
-        PageSize: 500,
-        PageNumber: 1,
-        Sorter: {
-          ModifiedDate: "desc",
-        },
+        PageSize: 100,
+        PageNumber: this.pageIndex,
+        Sorter: this.currentSort,
       };
       const res = await this.api.paging(param);
       this.rowData = res.Data;

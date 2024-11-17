@@ -1288,5 +1288,9 @@ export default {
   display: flex;
 
   flex-wrap: wrap;
+
+  .col {
+    margin-bottom: 20px;
+  }
 }
 </style>

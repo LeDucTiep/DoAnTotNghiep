@@ -1,15 +1,18 @@
 <template>
   <vs-table
     :multiple="multiple"
+    :sst="true"
     :search="search"
     v-model="selected"
     :pagination="!!pageSize"
     :max-items="pageSize"
     :data="dataSource"
+    @change-page="handleChangePage"
+    :total="total"
+    @sort="handleSort"
+    maxHeight="700px"
   >
-    <template #header>
-      <slot name="selectMultiUtil"></slot>
-    </template>
+    <template #header> </template>
     <template #thead>
       <vs-th
         v-for="(item, index) in columns"
@@ -117,10 +120,13 @@ export default {
       default: [],
     },
     pageSize: {
-      default: null,
+      default: 100,
+    },
+    total: {
+      default: 0,
     },
   },
-  emits: ["update:modelValue", "edit", "delete"],
+  emits: ["update:modelValue", "edit", "delete", "sort", "changePage"],
   components: { ColorComponent },
   computed: {
     selected: {
@@ -144,6 +150,18 @@ export default {
     onDelete(e, row) {
       e.preventDefault();
       this.$emit("delete", row);
+    },
+    handleChangePage(page) {
+      this.$emit("changePage", page);
+    },
+    handleSort(key, active) {
+      const param = {};
+
+      if (active) {
+        param[key] = active;
+      }
+
+      this.$emit("sort", param);
     },
   },
 };
@@ -205,6 +223,26 @@ export default {
   }
   td.active-expanded.td-check:not(:has(.vs-checkbox--input))::before {
     transform: rotate(0deg);
+  }
+
+  .vs-con-tbody.vs-table--tbody {
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #ccc;
+      border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: #f1f1f1;
+      border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background-color: #aaa;
+    }
   }
 }
 </style>
