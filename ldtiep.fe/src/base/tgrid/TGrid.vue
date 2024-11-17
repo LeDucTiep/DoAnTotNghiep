@@ -184,7 +184,8 @@ export default {
   .menu-table-buttons {
     justify-content: end;
   }
-  td.td-check::before {
+
+  td.td-check:not(:has(.vs-checkbox--input))::before {
     content: "";
     display: inline-block;
     width: 20px;
@@ -195,7 +196,7 @@ export default {
     transform: rotate(-90deg);
     margin-right: 10px;
   }
-  td.active-expanded.td-check::before {
+  td.active-expanded.td-check:not(:has(.vs-checkbox--input))::before {
     transform: rotate(0deg);
   }
 }

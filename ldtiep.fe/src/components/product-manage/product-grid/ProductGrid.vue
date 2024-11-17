@@ -3,30 +3,31 @@
     <div class="add-button">Thêm mới</div>
   </div>
   <div class="table-data">
-    <ag-grid-vue
-      :rowData="rowData"
-      :columnDefs="colDefs"
-      :rowSelection="rowSelection"
-      :onSelectionChanged="onSelectionChanged"
-      style="height: 500px"
-      class="ag-theme-quartz"
-    >
-    </ag-grid-vue>
+    <TGrid
+      v-if="rowData.length > 0"
+      :columns="columns"
+      :dataSource="rowData"
+      @edit="onEdit($event)"
+      @delete="onDelete($event)"
+      v-model="selected"
+    ></TGrid>
+    <div v-else class="nodata-img flex-center">
+      <img
+        style="height: 500px"
+        src="../../../assets/images/nodata.png"
+        alt="Không có dữ liệu"
+      />
+    </div>
   </div>
 </template>
     
 <script>
-import "ag-grid-community/styles/ag-grid.css"; // Mandatory CSS required by the Data Grid
-import "ag-grid-community/styles/ag-theme-quartz.css"; // Optional Theme applied to the Data Grid
-import { AgGridVue } from "ag-grid-vue3";
 import EditProductButton from "/src/components/product-manage/button-edit/EditProductButton.vue";
 
 export default {
   name: "ProductGrid",
   props: [],
-  components: {
-    AgGridVue,
-  },
+  components: {},
   data() {
     return {
       rowData: [
@@ -43,26 +44,18 @@ export default {
           color: [],
         },
       ],
-      colDefs: [
+      columns: [
         { field: "name", width: 420 },
         { field: "price" },
         { field: "original_price" },
         { field: "discount" },
         { field: "product_id", cellRenderer: EditProductButton },
       ],
-      rowSelection: {
-        mode: "multiRow",
-      },
+      selected: [],
     };
   },
   beforeMount() {},
-  methods: {
-    onSelectionChanged(e) {
-      const selected = e.api.getSelectedNodes();
-
-      console.log(selected);
-    },
-  },
+  methods: {},
 };
 </script>
     

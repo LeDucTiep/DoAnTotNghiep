@@ -16,16 +16,14 @@
     </div>
   </div>
   <div class="table-data">
-    <ag-grid-vue
+    <TGrid
       v-if="rowData.length > 0"
-      :rowData="rowData"
-      :columnDefs="colDefs"
-      :rowSelection="rowSelection"
-      :onSelectionChanged="onSelectionChanged"
-      style="height: 500px"
-      class="ag-theme-quartz"
-    >
-    </ag-grid-vue>
+      :columns="columns"
+      :dataSource="rowData"
+      @edit="onEdit($event)"
+      @delete="onDelete($event)"
+      v-model="rowSelected"
+    ></TGrid>
     <div v-else class="nodata-img flex-center">
       <img
         style="height: 500px"
@@ -77,44 +75,28 @@
 </template>
     
 <script>
-import "ag-grid-community/styles/ag-grid.css"; // Mandatory CSS required by the Data Grid
-import "ag-grid-community/styles/ag-theme-quartz.css"; // Optional Theme applied to the Data Grid
-import { AgGridVue } from "ag-grid-vue3";
-import EditColorButton from "/src/components/product-manage/button-edit/EditColorButton.vue";
 import API from "/src/service/api.js";
-import ColorComponent from "./ColorComponent";
-
 export default {
   name: "ColorGrid",
   props: [],
-  components: {
-    AgGridVue,
-  },
+  components: {},
   data() {
     return {
       isExistsColor: false,
       api: new API("Colors"),
       rowData: [],
-      colDefs: [
-        { field: "ColorName", headerName: "Tên màu", width: 520 },
+      columns: [
+        { field: "ColorName", name: "Tên màu" },
         {
           field: "ColorCode",
-          headerName: "Mã màu",
-          width: 320,
-          cellRenderer: ColorComponent,
+          name: "Mã màu",
+          type: 2,
         },
         {
           field: "ColorID",
-          headerName: "",
-          cellRenderer: EditColorButton,
-          cellRendererParams: {
-            action: this.getData,
-          },
+          type: 1,
         },
       ],
-      rowSelection: {
-        mode: "multiRow",
-      },
       addFormData: {},
       isShowAdd: false,
       rowSelected: [],
@@ -126,11 +108,6 @@ export default {
   },
   beforeMount() {},
   methods: {
-    onSelectionChanged(e) {
-      const selected = e.api.getSelectedNodes();
-
-      this.rowSelected = selected;
-    },
     async getData() {
       const param = {
         PageSize: 500,
