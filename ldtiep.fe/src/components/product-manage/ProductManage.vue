@@ -41,7 +41,7 @@ export default {
   },
   data() {
     return {
-      currentTab: 2,
+      currentTab: 1,
       tabs: [
         {
           id: 0,

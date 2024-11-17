@@ -10,22 +10,19 @@
   <script>
 export default {
   name: "ColorComponent",
-  props: ["params"],
+  props: ["colorCode"],
   components: {},
   data() {
-    return {
-      colorCode: "",
-    };
+    return {};
   },
-  beforeMount() {
-    this.colorCode = this.params.value;
-  },
-  methods: {},
 };
 </script>
       
       <style  lang="scss">
 .color-block {
+  width: 100px;
+  justify-content: space-between;
+
   .color {
     height: 24px;
     width: 24px;

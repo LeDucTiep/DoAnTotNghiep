@@ -43,6 +43,9 @@
               >
             </div>
           </div>
+          <div v-else-if="col.type == 2" class="cell">
+            <ColorComponent :colorCode="tr[col.field]"></ColorComponent>
+          </div>
           <div v-else class="cell">
             {{ tr[col.field] }}
           </div>
@@ -77,6 +80,9 @@
                     >
                   </div>
                 </div>
+                <div v-else-if="col.type == 2" class="cell">
+                  <ColorComponent :colorCode="row[col.field]"></ColorComponent>
+                </div>
                 <div v-else class="cell">
                   {{ row[col.field] }}
                 </div>
@@ -90,6 +96,7 @@
 </template>
     
 <script>
+import ColorComponent from "./ColorComponent";
 export default {
   name: "TGrid",
   props: {
@@ -114,7 +121,7 @@ export default {
     },
   },
   emits: ["update:modelValue", "edit", "delete"],
-  components: {},
+  components: { ColorComponent },
   computed: {
     selected: {
       get() {
