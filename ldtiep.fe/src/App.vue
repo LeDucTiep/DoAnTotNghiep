@@ -47,52 +47,44 @@
           <div class="menu-item">Mới về</div>
           <div class="menu-item">Bán chạy</div>
           <TPop>
-            <div class="menu-item" @click="toManPage()">Nam</div>
+            <div class="menu-item" @click="toFilterPage({ CategoryType: 0 })">
+              Nam
+            </div>
             <template #content>
               <div class="cloth-nam-popup">
-                <div class="col">
-                  <div class="title">Áo</div>
-                  <div class="row">Áo polo</div>
-                  <div class="row">Áo thun</div>
-                  <div class="row">Áo sơ mi</div>
-                  <div class="row">Áo khoác</div>
-                  <div class="row">Áo hoodie - Áo nỉ</div>
+                <div class="category-block">
+                  <div
+                    class="col"
+                    v-for="(item, index) in CateMan"
+                    :key="index"
+                  >
+                    <div
+                      class="title"
+                      @click="
+                        toFilterPage({
+                          CategoryType: item.CategoryType,
+                          CategoryID: item.CategoryID,
+                        })
+                      "
+                    >
+                      {{ item.CategoryName }}
+                    </div>
+                    <div
+                      class="row"
+                      v-for="j in item.Children"
+                      :key="j.CategoryID"
+                      @click="
+                        toFilterPage({
+                          CategoryType: item.CategoryType,
+                          CategoryID: j.CategoryID,
+                        })
+                      "
+                    >
+                      {{ j.CategoryName }}
+                    </div>
+                  </div>
                 </div>
-                <div class="col">
-                  <div class="title">Quần</div>
-                  <div class="row">Quần jeans</div>
-                  <div class="row">Quần âu</div>
-                  <div class="row">Quần kaki</div>
-                  <div class="row">Quần dài</div>
-                  <div class="row">Quần short</div>
-                  <div class="row">Quần nỉ</div>
-                </div>
-                <div class="col">
-                  <div class="title">Đồ Bộ</div>
-                  <div class="row">Đồ bộ ngắn tay</div>
-                  <div class="row">Đồ bộ dài tay</div>
 
-                  <div class="title p-t-20">Đồ Mặc Trong</div>
-                  <div class="row">Áo ba lỗ</div>
-                  <div class="row">Quần lót</div>
-                  <div class="row">Áo giữ nhiệt</div>
-                </div>
-                <div class="col">
-                  <div class="title">Đồ Thể Thao Nam</div>
-                  <div class="row">Áo thun thể thao</div>
-                  <div class="row">Áo polo thể thao</div>
-                  <div class="row">Quần thể thao</div>
-                  <div class="row">Bộ thể thao</div>
-                </div>
-                <div class="col">
-                  <div class="title">Phụ Kiện Nam</div>
-                  <div class="row">Giày</div>
-                  <div class="row">Thắt lưng</div>
-                  <div class="row">Túi xách</div>
-                  <div class="row">Mũ</div>
-                  <div class="row">Tất</div>
-                  <div class="row">Khác</div>
-                </div>
                 <div class="col">
                   <div class="img">
                     <img src="./assets/images/boy_header.png" width="430" />
@@ -102,58 +94,42 @@
             </template>
           </TPop>
           <TPop>
-            <div class="menu-item">Nữ</div>
+            <div class="menu-item" @click="toFilterPage({ CategoryType: 1 })">
+              Nữ
+            </div>
             <template #content>
               <div class="cloth-nam-popup">
-                <div class="col">
-                  <div class="title">Áo Nữ</div>
-                  <div class="row">Áo polo</div>
-                  <div class="row">Áo thun</div>
-                  <div class="row">Áo sơ mi</div>
-                  <div class="row">Áo chống nắng</div>
-                  <div class="row">Áo khoác</div>
-                  <div class="row">Áo hoodie - Áo nỉ</div>
-                  <div class="row">Áo len</div>
-                </div>
-                <div class="col">
-                  <div class="title">Quần Nữ</div>
-                  <div class="row">Quần jeans</div>
-                  <div class="row">Quần âu</div>
-                  <div class="row">Quần kaki</div>
-                  <div class="row">Quần dài</div>
-                  <div class="row">Quần short</div>
-                  <div class="row">Quần nỉ nữ</div>
-                </div>
-                <div class="col">
-                  <div class="title">Đồ Bộ</div>
-                  <div class="row">Đồ bộ ngắn tay</div>
-                  <div class="row">Đồ bộ dài tay</div>
-                  <div class="title p-t-20">Đồ Mặc Trong</div>
-                  <div class="row">Áo ba lỗ - 2 dây</div>
-                  <div class="row">Quần lót</div>
-                  <div class="row">Áo bra</div>
-                  <div class="row">Áo giữ nhiệt</div>
-                </div>
-
-                <div class="col">
-                  <div class="title">Đồ Thể Thao</div>
-                  <div class="row">Áo thun thể thao</div>
-                  <div class="row">Áo polo thể thao</div>
-                  <div class="row">Quần thể thao</div>
-                  <div class="row">Bộ thể thao</div>
-                  <div class="title p-t-20">Váy Nữ</div>
-                  <div class="row">Đầm</div>
-                  <div class="row">Chân váy</div>
-                </div>
-
-                <div class="col">
-                  <div class="title">Phụ Kiện Nữ</div>
-                  <div class="row">Giày</div>
-                  <div class="row">Túi xách</div>
-                  <div class="row">Mũ</div>
-                  <div class="row">Ví nữ</div>
-                  <div class="row">Tất nữ</div>
-                  <div class="row">Khác</div>
+                <div class="category-block">
+                  <div
+                    class="col"
+                    v-for="(item, index) in CateWomen"
+                    :key="index"
+                  >
+                    <div
+                      class="title"
+                      @click="
+                        toFilterPage({
+                          CategoryType: item.CategoryType,
+                          CategoryID: item.CategoryID,
+                        })
+                      "
+                    >
+                      {{ item.CategoryName }}
+                    </div>
+                    <div
+                      class="row"
+                      v-for="j in item.Children"
+                      :key="j.CategoryID"
+                      @click="
+                        toFilterPage({
+                          CategoryType: item.CategoryType,
+                          CategoryID: j.CategoryID,
+                        })
+                      "
+                    >
+                      {{ j.CategoryName }}
+                    </div>
+                  </div>
                 </div>
 
                 <div class="col">
@@ -165,54 +141,51 @@
             </template>
           </TPop>
           <TPop>
-            <div class="menu-item">Trẻ em</div>
+            <div class="menu-item" @click="toFilterPage({ CategoryType: 2 })">
+              Trẻ em
+            </div>
             <template #content>
               <div class="cloth-nam-popup">
-                <div class="col">
-                  <div class="title">Áo Trẻ Em</div>
-                  <div class="row">Áo polo</div>
-                  <div class="row">Áo thun</div>
-                  <div class="row">Áo sơ mi</div>
-                  <div class="row">Áo khoác</div>
-                  <div class="row">Áo hoodie - Áo nỉ</div>
-                  <div class="row">Áo len</div>
-                </div>
-                <div class="col">
-                  <div class="title">Quần Trẻ Em</div>
-                  <div class="row">Quần jeans</div>
-                  <div class="row">Quần kaki</div>
-                  <div class="row">Quần dài</div>
-                  <div class="row">Quần short</div>
-                  <div class="row">Quần nỉ</div>
-                </div>
-
-                <div class="col">
-                  <div class="title">Đồ Bộ Trẻ Em</div>
-                  <div class="row">Đồ bộ ngắn tay</div>
-                  <div class="row">Đồ bộ dài tay</div>
-                  <div class="title p-t-20">Đồ Mặc Trong</div>
-                  <div class="row">Áo giữ nhiệt</div>
-                </div>
-
-                <div class="col">
-                  <div class="title">Đồ Thể Thao</div>
-                  <div class="row">Áo thun thể thao</div>
-                  <div class="title p-t-20">Đầm - Chân Váy</div>
-                  <div class="row">Đầm</div>
-                  <div class="row">Chân váy</div>
-                </div>
-
-                <div class="col">
-                  <div class="title">Phụ Kiện trẻ em</div>
-                  <div class="row">Giày & dép</div>
-                  <div class="row">Mũ</div>
-                  <div class="row">Tất</div>
-                  <div class="row">Khác</div>
+                <div class="category-block">
+                  <div
+                    class="col"
+                    v-for="(item, index) in CateKids"
+                    :key="index"
+                  >
+                    <div
+                      class="title"
+                      @click="
+                        toFilterPage({
+                          CategoryType: item.CategoryType,
+                          CategoryID: item.CategoryID,
+                        })
+                      "
+                    >
+                      {{ item.CategoryName }}
+                    </div>
+                    <div
+                      class="row"
+                      v-for="j in item.Children"
+                      :key="j.CategoryID"
+                      @click="
+                        toFilterPage({
+                          CategoryType: item.CategoryType,
+                          CategoryID: j.CategoryID,
+                        })
+                      "
+                    >
+                      {{ j.CategoryName }}
+                    </div>
+                  </div>
                 </div>
 
                 <div class="col">
                   <div class="img">
-                    <img src="./assets/images/child_header.png" width="430" />
+                    <img
+                      src="./assets/images/child_header.png"
+                      width="433"
+                      height="266"
+                    />
                   </div>
                 </div>
               </div>
@@ -252,7 +225,7 @@
             </svg>
           </div>
 
-          <input v-model="inputValue" placeholder="Tìm kiếm" />
+          <input v-model="searchValue" placeholder="Tìm kiếm" />
         </div>
         <div class="m-l-10 store-items">
           <svg
@@ -612,6 +585,7 @@
 </template>
 
 <script>
+import API from "/src/service/api.js";
 import "swiper/css";
 import Popover from "popover-vue";
 import TPop from "/src/base/popover/TPop.vue";
@@ -623,12 +597,71 @@ export default {
   },
   data() {
     return {
-      inputValue: "",
+      CateApi: new API("Categorys"),
+      CateMan: [],
+      CateWomen: [],
+      CateKids: [],
+      searchValue: "",
     };
   },
+  created() {
+    this.getCategory(0);
+    this.getCategory(1);
+    this.getCategory(2);
+  },
   methods: {
-    toManPage() {
-      this.$router.push("/quan-ao-nam");
+    async getCategory(t) {
+      const param = {
+        PageSize: 500,
+        PageNumber: 1,
+        SearchTerm: {
+          CategoryType: t,
+        },
+      };
+
+      let res = await this.CateApi.paging(param);
+
+      let parents = [];
+
+      res.Data.forEach((e) => {
+        if (!e.ParentID) {
+          parents.push(e);
+        }
+      });
+
+      function comparer(a, b) {
+        return a.SortOrder - b.SortOrder;
+      }
+
+      parents.forEach((e) => {
+        e.Children = res.Data.filter((j) => e.CategoryID == j.ParentID).sort(
+          comparer
+        );
+      });
+
+      parents = parents.sort(comparer);
+
+      switch (t) {
+        case 0:
+          this.CateMan = parents;
+          break;
+
+        case 1:
+          this.CateWomen = parents;
+          break;
+
+        case 2:
+          this.CateKids = parents;
+          break;
+      }
+    },
+    toFilterPage(query) {
+      const p = "/tim-kiem-san-pham";
+
+      this.$router.push({
+        path: p,
+        query: query,
+      });
     },
   },
 };
@@ -1232,5 +1265,11 @@ export default {
 
 .p-t-20 {
   padding-top: 20px;
+}
+
+.category-block {
+  display: flex;
+
+  flex-wrap: wrap;
 }
 </style>
