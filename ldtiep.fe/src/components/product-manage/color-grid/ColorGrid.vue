@@ -218,7 +218,7 @@ export default {
 
       this.getData();
     },
-    async deleteSelected() {
+    deleteSelected() {
       this.isShowPopupDelete = true;
     },
     async confirmDelete() {
