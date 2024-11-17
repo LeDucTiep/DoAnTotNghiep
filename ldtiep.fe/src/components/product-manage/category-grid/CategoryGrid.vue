@@ -31,7 +31,7 @@
         <div class="name-row">
           <div class="left">
             <vs-input
-              :danger="isExistsCategory"
+              :danger="isExistsName"
               danger-text="Thể loại này đã tồn tại"
               label="Tên thể loại"
               placeholder="Áo trẻ em"
@@ -69,12 +69,14 @@
                 <div class="flex-center">Thứ tự</div>
               </th>
               <th>
-                <vs-button
-                  @click="formAddChildren()"
-                  color="success"
-                  type="border"
-                  >Thêm</vs-button
-                >
+                <div class="flex-center">
+                  <vs-button
+                    @click="formAddChildren()"
+                    color="success"
+                    type="border"
+                    >Thêm</vs-button
+                  >
+                </div>
               </th>
             </tr>
             <tr
@@ -94,12 +96,14 @@
                 <vs-input-number v-model="item.SortOrder" />
               </td>
               <td>
-                <vs-button
-                  @click="formAddDeleteChildren(item)"
-                  color="danger"
-                  type="border"
-                  >Xóa</vs-button
-                >
+                <div class="flex-center">
+                  <vs-button
+                    @click="formAddDeleteChildren(item)"
+                    color="danger"
+                    type="border"
+                    >Xóa</vs-button
+                  >
+                </div>
               </td>
             </tr>
           </table>
@@ -115,6 +119,7 @@
 </template>
     
 <script>
+import API from "/src/service/api.js";
 import { uuid } from "vue-uuid";
 export default {
   name: "CategoryGrid",
@@ -122,6 +127,7 @@ export default {
   components: {},
   data() {
     return {
+      api: new API("Categorys"),
       uuid: uuid.v1(),
       rowData: [
         {
@@ -147,10 +153,20 @@ export default {
         SortOrder: 1,
         Children: [],
       },
+      isExistsName: false,
     };
   },
-  beforeMount() {},
+  created() {
+    this.getData();
+  },
   methods: {
+    getData() {
+      const param = {
+        PageSize: 500,
+        PageNumber: 1,
+      };
+      this.api.paging(param);
+    },
     getDefaultChildren() {
       return {
         SortOrder: this.addFormData.Children.length + 1,
@@ -172,7 +188,21 @@ export default {
         Children: [newRow],
       };
     },
-    onAdd() {},
+    async onAdd() {
+      const param = {
+        CategoryName: this.addFormData.CategoryName,
+        ParentID: null,
+      };
+
+      this.isExistsName = await this.api.checkExisted(param);
+      if (this.isExistsName) return;
+
+      this.addFormData.Children = this.addFormData.Children.filter((e) =>
+        e.CategoryName?.trim()
+      );
+      const res = await this.api.add(this.addFormData);
+      console.log(res);
+    },
     onEdit(e) {
       console.log(e);
     },

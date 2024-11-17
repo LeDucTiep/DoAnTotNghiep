@@ -12,7 +12,6 @@ namespace ldtiep.be.DL.Model
     {
         private int pageSize = 20;
         private int pageNumber = 1;
-        private string searchTerm = "";
 
         /// <summary>
         /// Kích thước trang 
@@ -30,7 +29,6 @@ namespace ldtiep.be.DL.Model
         /// Từ khóa cần tìm kiếm
         /// </summary>
         /// Author: LeDucTiep (09/06/2023)
-        [MSMaxLength(Length = 255, ErrorCode = (int)PagingErrorCode.EmployeeSearchTermTooLong)]
-        public string? SearchTerm { get => searchTerm; set => searchTerm = value; }
+        public Dictionary<string, object>? SearchTerm { get; set; }
     }
 }

@@ -9,5 +9,9 @@ namespace ldtiep.be.BL.Dto
     public class CategoryCreateDto
     {
         public string CategoryName { get; set; }
+        public int SortOrder { get; set; }
+        public int CategoryType { get; set; }
+        public List<Dictionary<string,object>> Children { get; set; }
+
     }
 }

@@ -227,7 +227,8 @@
             "name": "SearchTerm",
             "in": "query",
             "schema": {
-              "type": "string"
+              "type": "object",
+              "additionalProperties": { }
             }
           }
         ],
@@ -460,7 +461,8 @@
             "name": "SearchTerm",
             "in": "query",
             "schema": {
-              "type": "string"
+              "type": "object",
+              "additionalProperties": { }
             }
           }
         ],
@@ -693,7 +695,8 @@
             "name": "SearchTerm",
             "in": "query",
             "schema": {
-              "type": "string"
+              "type": "object",
+              "additionalProperties": { }
             }
           }
         ],
@@ -713,6 +716,22 @@
           "CategoryName": {
             "type": "string",
             "nullable": true
+          },
+          "SortOrder": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "CategoryType": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Children": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": { }
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -726,6 +745,26 @@
           },
           "CategoryName": {
             "type": "string",
+            "nullable": true
+          },
+          "SortOrder": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ParentID": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "CategoryType": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Children": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CategoryUpdateDto"
+            },
             "nullable": true
           }
         },

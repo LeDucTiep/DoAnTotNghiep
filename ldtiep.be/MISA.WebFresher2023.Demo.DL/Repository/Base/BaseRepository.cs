@@ -152,9 +152,6 @@ namespace ldtiep.be.DL.Repository
             // Tên bảng
             var table = typeof(TEntity).Name;
 
-            // Tên procedure
-            string procedure = ProcedureResource.Get(table);
-
             // Kết nối với database
             var connection = await _msDatabase.GetOpenConnectionAsync();
 
@@ -164,11 +161,13 @@ namespace ldtiep.be.DL.Repository
                 var dynamicParams = new DynamicParameters();
                 dynamicParams.Add($"v_{table}ID", id);
 
+                string query = $"select * from ldt_{table.ToLower()} where {table}ID = @v_{table}ID;";
+
                 // Bản ghi trả về 
                 var entity = await connection.QueryFirstOrDefaultAsync<TEntity>(
-                    procedure,
+                    query,
                     param: dynamicParams,
-                    commandType: CommandType.StoredProcedure
+                    commandType: CommandType.Text
                 );
 
                 return entity;
@@ -190,17 +189,13 @@ namespace ldtiep.be.DL.Repository
             // Tên bảng
             var table = typeof(TEntity).Name;
 
-            // Procedure
-            string procedure = ProcedureResource.Add(table);
-
             // Mở kết nối tới database
             var connection = await _msDatabase.GetOpenConnectionAsync();
 
             // Các tham số
             var dynamicParams = new DynamicParameters();
-
-            //// Tạo id mới
-            //Guid newId = Guid.NewGuid();
+            var valueBlocks = new List<string>();
+            var fieldBlocks = new List<string>();
 
             var properties = entity.GetType().GetProperties();
             foreach (System.Reflection.PropertyInfo property in properties)
@@ -214,7 +209,8 @@ namespace ldtiep.be.DL.Repository
                     property.SetValue(entity, newId, null);
 
                     dynamicParams.Add($"v_{table}ID", newId);
-
+                    valueBlocks.Add($"@v_{table}ID");
+                    fieldBlocks.Add($"{table}ID");
                     continue;
                 }
 
@@ -235,15 +231,20 @@ namespace ldtiep.be.DL.Repository
 
                 // Thêm tham số 
                 dynamicParams.Add($"v_{name}", value);
+                valueBlocks.Add($"@v_{name}");
+                fieldBlocks.Add(name);
             }
 
             try
             {
+                string values = string.Join(" , ", valueBlocks);
+                string fields = string.Join(" , ", fieldBlocks);
+                string query = $"insert into ldt_{table.ToLower()}({fields}) values ({values});";
                 //Gọi procedure
                 int changedCount = await connection.ExecuteAsync(
-                    procedure,
+                    query,
                     param: dynamicParams,
-                    commandType: CommandType.StoredProcedure
+                    commandType: CommandType.Text
                 );
 
                 return changedCount;
@@ -426,8 +427,10 @@ namespace ldtiep.be.DL.Repository
             var connection = await _msDatabase.GetOpenConnectionAsync();
 
             string tableName = typeof(TEntity).Name;
-
-            string procedure = ProcedureResource.GetPaging(tableName);
+            var whereBlocks = new List<string>()
+            {
+                " true "
+            };
 
             // Tạo tham số đầu vào 
             // IN _offset: Số bản ghi bị bỏ qua
@@ -438,21 +441,36 @@ namespace ldtiep.be.DL.Repository
             int offset = (basePagingArgument.PageNumber - 1) * basePagingArgument.PageSize;
             parameters.Add("v_offset", offset);
             parameters.Add("v_limit", basePagingArgument.PageSize);
-            parameters.Add("v_searchTerm", basePagingArgument.SearchTerm ?? "");
-            parameters.Add("v_totalRecord", dbType: DbType.Int32, direction: ParameterDirection.Output);
 
+            if(basePagingArgument.SearchTerm?.Keys != null)
+            {
+                foreach (var key in basePagingArgument.SearchTerm.Keys)
+                {
+                    whereBlocks.Add($"{key} = @v_{key}");
+                    parameters.Add(key, basePagingArgument.SearchTerm.GetValueOrDefault(key));
+                }
+            }
             try
             {
+                string where = string.Join(" and ", whereBlocks);
+                string query = $"select * from ldt_{tableName.ToLower()} where {where} limit @v_limit offset @v_offset;";
 
                 // Gọi procedure 
                 IEnumerable<TEntityInPage> res = await connection.QueryAsync<TEntityInPage>(
-                    procedure,
+                    query,
                     param: parameters,
-                    commandType: CommandType.StoredProcedure
+                    commandType: CommandType.Text
                 );
 
+
+                string queryTotal = $"select count(*) from ldt_{tableName.ToLower()} where {where};";
+
                 // Lấy tổng số trang 
-                var totalRecord = parameters.Get<int>("v_totalRecord");
+                int totalRecord = await connection.QueryFirstOrDefaultAsync<int>(
+                    queryTotal,
+                    param: parameters,
+                    commandType: CommandType.Text
+                );
 
                 // trả về kết quả
                 return new BasePage<TEntityInPage>(totalRecord, res);
