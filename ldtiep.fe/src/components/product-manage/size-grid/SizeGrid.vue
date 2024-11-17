@@ -112,11 +112,6 @@ export default {
       columns: [
         { field: "SizeName", name: "Tên kích thước" },
         {
-          field: "SizeCode",
-          name: "Mã kích thước",
-          type: 2,
-        },
-        {
           field: "SizeID",
           type: 1,
         },
@@ -140,9 +135,11 @@ export default {
       const param = {
         PageSize: 500,
         PageNumber: 1,
+        Sorter: {
+          ModifiedDate: "desc",
+        },
       };
       const res = await this.api.paging(param);
-
       this.rowData = res.Data;
 
       this.rowSelected = [];

@@ -30,5 +30,9 @@ namespace ldtiep.be.DL.Model
         /// </summary>
         /// Author: LeDucTiep (09/06/2023)
         public Dictionary<string, object>? SearchTerm { get; set; }
+        /// <summary>
+        /// Tham số sắp xếp
+        /// </summary>
+        public Dictionary<string, object>? Sorter { get; set; }
     }
 }

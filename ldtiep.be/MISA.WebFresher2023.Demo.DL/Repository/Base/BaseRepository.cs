@@ -415,6 +415,7 @@ namespace ldtiep.be.DL.Repository
             var connection = await _msDatabase.GetOpenConnectionAsync();
 
             string tableName = typeof(TEntity).Name;
+            var orderbyBlocks = new List<string>();
             var whereBlocks = new List<string>()
             {
                 " true "
@@ -438,10 +439,24 @@ namespace ldtiep.be.DL.Repository
                     parameters.Add($"v_{key}", basePagingArgument.SearchTerm.GetValueOrDefault(key)?.ToString());
                 }
             }
+            string orderby = "";
+            if (basePagingArgument.Sorter?.Keys != null)
+            {
+                foreach (var key in basePagingArgument.Sorter.Keys)
+                {
+                    string type = basePagingArgument.Sorter.GetValueOrDefault(key)?.ToString() == "asc" ? "asc" : "desc";
+                    orderbyBlocks.Add($"{key} {type}");
+                }
+
+                if(orderbyBlocks.Count > 0)
+                {
+                    orderby = $"order by {string.Join(" , ", orderbyBlocks)}";
+                }
+            }
             try
             {
                 string where = string.Join(" and ", whereBlocks);
-                string query = $"select * from ldt_{tableName.ToLower()} where {where} limit @v_limit offset @v_offset;";
+                string query = $"select * from ldt_{tableName.ToLower()} where {where} {orderby} limit @v_limit offset @v_offset;";
 
                 // Gọi procedure 
                 IEnumerable<TEntityInPage> res = await connection.QueryAsync<TEntityInPage>(
