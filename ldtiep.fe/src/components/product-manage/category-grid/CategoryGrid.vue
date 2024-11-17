@@ -116,6 +116,107 @@
       </div>
     </div>
   </vs-popup>
+
+  <vs-popup title="Sửa thể loại" v-model:active="isShowEditForm">
+    <div class="popup-content">
+      <div class="add-form">
+        <div class="name-row">
+          <div class="left">
+            <vs-input
+              label="Tên thể loại"
+              placeholder="Áo trẻ em"
+              v-model="editFormData.CategoryName"
+            />
+
+            <vs-input-number v-model="editFormData.SortOrder" label="Thứ tự:" />
+          </div>
+          <div class="type-row">
+            <vs-radio
+              color="success"
+              v-model="editFormData.CategoryType"
+              :vs-value="0"
+              >Nam</vs-radio
+            >
+            <vs-radio
+              color="warning"
+              v-model="editFormData.CategoryType"
+              :vs-value="1"
+              >Nữ</vs-radio
+            >
+            <vs-radio
+              color="rgb(87, 251, 187)"
+              v-model="editFormData.CategoryType"
+              :vs-value="2"
+              >Trẻ em</vs-radio
+            >
+          </div>
+        </div>
+        <div class="children-row">
+          <table class="children-row--table">
+            <tr class="children-row--row">
+              <th>Tên thể loại con</th>
+              <th>
+                <div class="flex-center">Thứ tự</div>
+              </th>
+              <th>
+                <div class="flex-center">
+                  <vs-button
+                    @click="formEditChildren()"
+                    color="success"
+                    type="border"
+                    >Thêm</vs-button
+                  >
+                </div>
+              </th>
+            </tr>
+            <tr
+              v-for="item in editFormData.Children"
+              :key="item.CategoryID"
+              class="children-row--row"
+            >
+              <td>
+                <vs-input
+                  :danger="isExistsCategory"
+                  danger-text="Thể loại này đã tồn tại"
+                  placeholder="Áo polo"
+                  v-model="item.CategoryName"
+                />
+              </td>
+              <td>
+                <vs-input-number v-model="item.SortOrder" />
+              </td>
+              <td>
+                <div class="flex-center">
+                  <vs-button
+                    @click="formEditDeleteChildren(item)"
+                    color="danger"
+                    type="border"
+                    >Xóa</vs-button
+                  >
+                </div>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="buttons">
+        <vs-button @click="onConfirmEdit()" color="primary" type="filled"
+          >Xác nhận</vs-button
+        >
+      </div>
+    </div>
+  </vs-popup>
+
+  <vs-popup title="Xóa thể loại" v-model:active="isShowPopupDelete">
+    <div class="popup-content">
+      <div class="content">Bạn có chắc chắn muốn xóa thể loại này?</div>
+      <div class="buttons">
+        <vs-button @click="confirmDelete()" color="primary" type="filled"
+          >Xác nhận</vs-button
+        >
+      </div>
+    </div>
+  </vs-popup>
 </template>
     
 <script>
@@ -127,20 +228,12 @@ export default {
   components: {},
   data() {
     return {
+      isShowPopupDelete: false,
+      isShowEditForm: false,
+      editFormData: {},
       api: new API("Categorys"),
       uuid: uuid.v1(),
-      rowData: [
-        {
-          CategoryName: "Nam",
-          CategoryID: 1234,
-          Children: [
-            {
-              CategoryID: 2213,
-              CategoryName: "Quần nam",
-            },
-          ],
-        },
-      ],
+      rowData: [],
       isExistsCategory: false,
       columns: [
         { field: "CategoryName", name: "Thể loại", type: 0 },
@@ -154,22 +247,46 @@ export default {
         Children: [],
       },
       isExistsName: false,
+      deletingData: {},
     };
   },
   created() {
     this.getData();
   },
   methods: {
-    getData() {
+    async getData() {
       const param = {
         PageSize: 500,
         PageNumber: 1,
       };
-      this.api.paging(param);
+
+      const res = await this.api.paging(param);
+
+      let parents = [];
+
+      res.Data.forEach((e) => {
+        if (!e.ParentID) {
+          parents.push(e);
+        }
+      });
+
+      function comparer(a, b) {
+        return a.SortOrder - b.SortOrder;
+      }
+
+      parents.forEach((e) => {
+        e.Children = res.Data.filter((j) => e.CategoryID == j.ParentID).sort(
+          comparer
+        );
+      });
+
+      parents = parents.sort(comparer);
+
+      this.rowData = parents;
     },
     getDefaultChildren() {
       return {
-        SortOrder: this.addFormData.Children.length + 1,
+        SortOrder: 1,
         CategoryID: uuid.v4(),
       };
     },
@@ -178,10 +295,11 @@ export default {
 
       console.log(selected);
     },
-    deleteSelected() {},
     showAddForm() {
       this.isShowAddForm = true;
       const newRow = this.getDefaultChildren();
+      newRow.SortOrder = this.addFormData.Children.length + 1;
+
       this.addFormData = {
         CategoryType: 0,
         SortOrder: 1,
@@ -200,14 +318,91 @@ export default {
       this.addFormData.Children = this.addFormData.Children.filter((e) =>
         e.CategoryName?.trim()
       );
-      const res = await this.api.add(this.addFormData);
-      console.log(res);
+
+      await this.api.add(this.addFormData);
+
+      this.isShowAddForm();
+    },
+    async onConfirmEdit() {
+      const me = this;
+
+      const deletingChildren = [];
+
+      const raw = me.rowData.filter((e) => {
+        return e.CategoryID == me.editFormData.CategoryID;
+      })[0];
+
+      const children = me.editFormData.Children.map((e) => e.CategoryID);
+
+      raw.Children?.forEach((e) => {
+        if (!children.includes(e.CategoryID)) {
+          deletingChildren.push(e);
+        }
+      });
+
+      if (deletingChildren.length) {
+        await me.api.deleteMany(deletingChildren.map((e) => e.CategoryID));
+      }
+
+      await me.api.updateByID(me.editFormData.CategoryID, me.editFormData);
+
+      for (
+        let i = 0;
+        me.editFormData.Children && i < me.editFormData.Children.length;
+        i++
+      ) {
+        const e = me.editFormData.Children[i];
+        if (!e.CategoryName) continue;
+
+        e.ParentID = me.editFormData.CategoryID;
+
+        const param = {
+          CategoryID: e.CategoryID,
+        };
+
+        if (await me.api.checkExisted(param)) {
+          await me.api.updateByID(e.CategoryID, e);
+        } else {
+          await me.api.add(e);
+        }
+      }
+
+      me.isShowEditForm = false;
+
+      this.getData();
     },
     onEdit(e) {
-      console.log(e);
+      this.isShowEditForm = true;
+
+      this.editFormData = {};
+
+      if (e.ParentID) {
+        const arr = this.rowData.filter((x) => x.CategoryID == e.ParentID);
+        console.log(arr);
+        if (arr.length) {
+          this.editFormData = arr[0];
+        }
+      } else {
+        this.editFormData = e;
+      }
+
+      this.editFormData = JSON.parse(JSON.stringify(this.editFormData));
     },
     onDelete(e) {
-      console.log(e);
+      this.isShowPopupDelete = true;
+      this.deletingData = e;
+    },
+    async confirmDelete() {
+      const ids = [this.deletingData.CategoryID];
+      this.isShowPopupDelete = false;
+
+      this.deletingData.Children?.forEach((e) => {
+        ids.push(e.CategoryID);
+      });
+
+      await this.api.deleteMany(ids);
+
+      this.getData();
     },
     formAddDeleteChildren(row) {
       this.addFormData.Children = this.addFormData.Children.filter(
@@ -216,7 +411,20 @@ export default {
     },
     formAddChildren() {
       const newRow = this.getDefaultChildren();
+      newRow.SortOrder = this.addFormData.Children.length + 1;
+
       this.addFormData.Children.push(newRow);
+    },
+    formEditDeleteChildren(row) {
+      this.editFormData.Children = this.editFormData.Children.filter(
+        (e) => e.CategoryID != row.CategoryID
+      );
+    },
+    formEditChildren() {
+      const newRow = this.getDefaultChildren();
+      newRow.SortOrder = this.editFormData.Children.length + 1;
+
+      this.editFormData.Children.push(newRow);
     },
   },
 };
@@ -272,6 +480,9 @@ export default {
   &::-webkit-scrollbar-thumb:hover {
     background-color: #aaa;
   }
+}
+.expand-table--cell {
+  width: 30%;
 }
 </style>
     

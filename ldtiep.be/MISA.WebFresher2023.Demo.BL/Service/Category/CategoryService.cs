@@ -40,22 +40,24 @@ namespace ldtiep.be.BL.Service
                         CategoryName = entity.CategoryName,
                         CategoryType = entity.CategoryType,
                         SortOrder = entity.SortOrder,
+                        ParentID = entity.ParentID,
                     }
                 };
 
-                foreach (var item in entity.Children)
-                {
-                    object name = item.GetValueOrDefault("CategoryName") ?? "";
-                    object order = item.GetValueOrDefault("SortOrder") ?? "0";
-
-                    entityDtos.Add(new()
+                if(entity.Children != null)
+                    foreach (var item in entity.Children)
                     {
-                        CategoryID= Guid.NewGuid(),
-                        ParentID = parentID,
-                        CategoryName = name.ToString() ?? "",
-                        SortOrder = int.Parse(order.ToString() ?? "0"),
-                    });
-                }
+                        object name = item.GetValueOrDefault("CategoryName") ?? "";
+                        object order = item.GetValueOrDefault("SortOrder") ?? "0";
+
+                        entityDtos.Add(new()
+                        {
+                            CategoryID= Guid.NewGuid(),
+                            ParentID = parentID,
+                            CategoryName = name.ToString() ?? "",
+                            SortOrder = int.Parse(order.ToString() ?? "0"),
+                        });
+                    }
               
                 foreach (var e in entityDtos)
                 {

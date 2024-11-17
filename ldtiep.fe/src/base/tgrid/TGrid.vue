@@ -175,7 +175,7 @@ export default {
     }
   }
   .content-tr-expand {
-    padding-left: 50px;
+    padding-left: 75px;
     padding-right: 0px;
   }
   .expand-table--cell {
