@@ -126,10 +126,7 @@
       <div class="goi-y-title">
         <div class="left">Gợi ý sản phẩm</div>
         <div class="right">
-          <Popover
-            @open:popover="isShowGoiY = true"
-            @close:popover="isShowGoiY = false"
-          >
+          <TPop @open="isShowGoiY = true" @close="isShowGoiY = false">
             <div class="goi-y-show d-flex">
               <div class="goi-y-right">{{ GoiYs[currGoiYId] }}</div>
 
@@ -177,7 +174,7 @@
                 </div>
               </div>
             </template>
-          </Popover>
+          </TPop>
         </div>
       </div>
       <div class="products-block">
@@ -245,12 +242,12 @@
 <script>
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
-import Popover from "popover-vue";
+import TPop from "/src/base/popover/TPop.vue";
 import ProductSP from "/src/components/cloth/ProductSP.vue";
 export default {
   name: "YodyHome",
   components: {
-    Popover,
+    TPop,
     Swiper,
     SwiperSlide,
     ProductSP,

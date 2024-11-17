@@ -2,7 +2,7 @@
   <div class="yody-container">
     <div class="home-header d-flex">
       <div class="header-left">
-        <span class="logo cursor-pointer"
+        <span class="logo cursor-pointer" @click="toHomePage()"
           ><svg
             width="88"
             viewBox="0 0 68 32"
@@ -30,25 +30,18 @@
         ></span>
 
         <div class="header__menu d-flex">
-          <Popover :arrow="true">
-            <div class="menu-item">BST Thu Đông</div>
-            <template #content>
-              <div class="menu-popover">
-                <div class="menu-item">Nguồn cảm ứng</div>
-                <div class="menu-item">Áo gió 3C</div>
-                <div class="menu-item">Áo phao 4S</div>
-                <div class="menu-item">Quần Jeans</div>
-                <div class="menu-item">Áo giữ nhiệt</div>
-                <div class="menu-item">Áo polo</div>
-                <div class="menu-item">Đồ công sở</div>
-              </div>
-            </template>
-          </Popover>
-          <div class="menu-item">Mới về</div>
-          <div class="menu-item">Bán chạy</div>
+          <div class="menu-item pd-10-20">Sale 50%</div>
+          <div class="menu-item pd-10-20">Mới về</div>
+          <div class="menu-item pd-10-20">Bán chạy</div>
           <TPop>
-            <div class="menu-item" @click="toFilterPage({ CategoryType: 0 })">
-              Nam
+            <div class="menu-item">
+              <vs-button
+                type="line"
+                color="dark"
+                @click="toFilterPage({ CategoryType: 0 })"
+              >
+                Nam
+              </vs-button>
             </div>
             <template #content>
               <div class="cloth-nam-popup">
@@ -94,8 +87,14 @@
             </template>
           </TPop>
           <TPop>
-            <div class="menu-item" @click="toFilterPage({ CategoryType: 1 })">
-              Nữ
+            <div class="menu-item">
+              <vs-button
+                type="line"
+                color="dark"
+                @click="toFilterPage({ CategoryType: 1 })"
+              >
+                Nữ
+              </vs-button>
             </div>
             <template #content>
               <div class="cloth-nam-popup">
@@ -141,8 +140,14 @@
             </template>
           </TPop>
           <TPop>
-            <div class="menu-item" @click="toFilterPage({ CategoryType: 2 })">
-              Trẻ em
+            <div class="menu-item">
+              <vs-button
+                type="line"
+                color="dark"
+                @click="toFilterPage({ CategoryType: 2 })"
+              >
+                Trẻ em
+              </vs-button>
             </div>
             <template #content>
               <div class="cloth-nam-popup">
@@ -191,10 +196,6 @@
               </div>
             </template>
           </TPop>
-          <div class="menu-item">Ưu đãi</div>
-          <div class="menu-item">Bộ sưu tập</div>
-          <div class="menu-item">Đồng phục</div>
-          <div class="menu-item">Tin hot</div>
         </div>
       </div>
 
@@ -587,12 +588,10 @@
 <script>
 import API from "/src/service/api.js";
 import "swiper/css";
-import Popover from "popover-vue";
 import TPop from "/src/base/popover/TPop.vue";
 export default {
   name: "App",
   components: {
-    Popover,
     TPop,
   },
   data() {
@@ -663,6 +662,13 @@ export default {
         query: query,
       });
     },
+    toHomePage() {
+      const p = "/";
+
+      this.$router.push({
+        path: p,
+      });
+    },
   },
 };
 </script>
@@ -702,10 +708,21 @@ export default {
 .header__menu {
   align-items: center;
 
+  .pd-10-20 {
+    padding: 10px 20px;
+  }
+
   .menu-item {
     padding: 5px 10px;
     cursor: pointer;
-    font-size: 20px;
+
+    .vs-button-dark.vs-button-line {
+      border-bottom: 2px solid white;
+    }
+
+    * {
+      font-size: 16px;
+    }
   }
 
   * {

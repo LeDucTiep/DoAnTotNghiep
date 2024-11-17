@@ -23,6 +23,7 @@ export default {
   name: "TPop",
   components: {},
   props: {},
+  emits: ["open", "close"],
   data() {
     return {
       isShow: false,
@@ -33,11 +34,13 @@ export default {
     titleBoyHover() {
       clearTimeout(this.isShowTO);
       this.isShow = true;
+      this.$emit("open");
     },
     titleBoyLeave() {
       clearTimeout(this.isShowTO);
       this.isShowTO = setTimeout(() => {
         this.isShow = false;
+        this.$emit("close");
       }, 300);
     },
   },

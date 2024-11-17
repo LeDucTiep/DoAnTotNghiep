@@ -12,7 +12,6 @@
     "axios": "^1.7.7",
     "core-js": "^3.8.3",
     "material-icons": "^1.13.12",
-    "popover-vue": "^0.0.5",
     "swiper": "^11.1.14",
     "vue": "^3.2.13",
     "vue-easytable": "^2.27.1",
