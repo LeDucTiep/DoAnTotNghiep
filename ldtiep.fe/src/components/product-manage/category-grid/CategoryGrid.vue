@@ -1,6 +1,28 @@
 <template>
   <div class="table-head">
-    <div></div>
+    <div class="filter-radios">
+      <vs-radio
+        color="success"
+        vs-name="radios1"
+        v-model="currentCategoryType"
+        :vs-value="0"
+        >Nam</vs-radio
+      >
+      <vs-radio
+        color="warning"
+        vs-name="radios1"
+        v-model="currentCategoryType"
+        :vs-value="1"
+        >Nữ</vs-radio
+      >
+      <vs-radio
+        color="rgb(87, 251, 187)"
+        vs-name="radios1"
+        v-model="currentCategoryType"
+        :vs-value="2"
+        >Trẻ em</vs-radio
+      >
+    </div>
     <div class="add-button">
       <vs-button @click="showAddForm()" color="primary" type="filled"
         >Thêm mới</vs-button
@@ -43,18 +65,21 @@
           <div class="type-row">
             <vs-radio
               color="success"
+              vs-name="radios2"
               v-model="addFormData.CategoryType"
               :vs-value="0"
               >Nam</vs-radio
             >
             <vs-radio
               color="warning"
+              vs-name="radios2"
               v-model="addFormData.CategoryType"
               :vs-value="1"
               >Nữ</vs-radio
             >
             <vs-radio
               color="rgb(87, 251, 187)"
+              vs-name="radios2"
               v-model="addFormData.CategoryType"
               :vs-value="2"
               >Trẻ em</vs-radio
@@ -135,18 +160,21 @@
               color="success"
               v-model="editFormData.CategoryType"
               :vs-value="0"
+              vs-name="radios3"
               >Nam</vs-radio
             >
             <vs-radio
               color="warning"
               v-model="editFormData.CategoryType"
               :vs-value="1"
+              vs-name="radios3"
               >Nữ</vs-radio
             >
             <vs-radio
               color="rgb(87, 251, 187)"
               v-model="editFormData.CategoryType"
               :vs-value="2"
+              vs-name="radios3"
               >Trẻ em</vs-radio
             >
           </div>
@@ -226,8 +254,18 @@ export default {
   name: "CategoryGrid",
   props: [],
   components: {},
+  watch: {
+    currentCategoryType(val, oldVal) {
+      if (val != oldVal) {
+        setTimeout(() => {
+          this.getData();
+        }, 100);
+      }
+    },
+  },
   data() {
     return {
+      currentCategoryType: 0,
       isShowPopupDelete: false,
       isShowEditForm: false,
       editFormData: {},
@@ -258,6 +296,9 @@ export default {
       const param = {
         PageSize: 500,
         PageNumber: 1,
+        SearchTerm: {
+          CategoryType: this.currentCategoryType,
+        },
       };
 
       const res = await this.api.paging(param);
@@ -302,7 +343,7 @@ export default {
 
       this.addFormData = {
         CategoryType: 0,
-        SortOrder: 1,
+        SortOrder: this.rowData.length + 1,
         Children: [newRow],
       };
     },
@@ -321,7 +362,9 @@ export default {
 
       await this.api.add(this.addFormData);
 
-      this.isShowAddForm();
+      this.isShowAddForm = false;
+
+      this.getData();
     },
     async onConfirmEdit() {
       const me = this;
@@ -483,6 +526,10 @@ export default {
 }
 .expand-table--cell {
   width: 30%;
+}
+.filter-radios {
+  display: flex;
+  gap: 14px;
 }
 </style>
     

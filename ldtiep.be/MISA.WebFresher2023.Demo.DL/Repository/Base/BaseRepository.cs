@@ -447,7 +447,7 @@ namespace ldtiep.be.DL.Repository
                 foreach (var key in basePagingArgument.SearchTerm.Keys)
                 {
                     whereBlocks.Add($"{key} = @v_{key}");
-                    parameters.Add(key, basePagingArgument.SearchTerm.GetValueOrDefault(key));
+                    parameters.Add($"v_{key}", basePagingArgument.SearchTerm.GetValueOrDefault(key)?.ToString());
                 }
             }
             try

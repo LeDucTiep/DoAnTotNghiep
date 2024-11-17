@@ -9,11 +9,10 @@ class API {
             baseURL: this.baseUrl,
             // Add any default headers or interceptors here
         });
-
     }
 
-    async paging(param) {
-        return await this.get("/paging", param);
+    async paging(body) {
+        return await this.post("/paging", body);
     }
     async add(body) {
         return await this.post("", body);

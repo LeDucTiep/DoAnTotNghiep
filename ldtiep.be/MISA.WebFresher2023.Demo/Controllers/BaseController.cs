@@ -123,8 +123,8 @@ namespace ldtiep.be.Controllers
         /// <returns>Trang bản ghi</returns>
         /// Author: LeDucTiep (23/05/2023)
         [Route("paging")]
-        [HttpGet]
-        public virtual async Task<IActionResult> GetPageAsync([FromQuery] BasePagingArgument basePagingArgument)
+        [HttpPost]
+        public virtual async Task<IActionResult> GetPageAsync([FromBody] BasePagingArgument basePagingArgument)
         {
             BasePage<TEntityDto> page = await _baseService.GetPageAsync(basePagingArgument);
 
