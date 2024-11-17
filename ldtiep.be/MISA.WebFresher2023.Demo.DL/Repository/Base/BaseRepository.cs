@@ -383,7 +383,7 @@ namespace ldtiep.be.DL.Repository
 
                 foreach (var item in param.Keys)
                 {
-                    string val = param.GetValueOrDefault(item);
+                    string val = param.GetValueOrDefault(item)?.ToString() ?? "";
 
                     if (!string.IsNullOrEmpty(val))
                     {

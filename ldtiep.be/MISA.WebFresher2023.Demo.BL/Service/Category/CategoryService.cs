@@ -56,6 +56,7 @@ namespace ldtiep.be.BL.Service
                             ParentID = parentID,
                             CategoryName = name.ToString() ?? "",
                             SortOrder = int.Parse(order.ToString() ?? "0"),
+                            CategoryType = entity.CategoryType,
                         });
                     }
               

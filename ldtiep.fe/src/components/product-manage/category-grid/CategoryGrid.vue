@@ -339,10 +339,10 @@ export default {
     showAddForm() {
       this.isShowAddForm = true;
       const newRow = this.getDefaultChildren();
-      newRow.SortOrder = this.addFormData.Children.length + 1;
+      newRow.SortOrder = 1;
 
       this.addFormData = {
-        CategoryType: 0,
+        CategoryType: this.currentCategoryType,
         SortOrder: this.rowData.length + 1,
         Children: [newRow],
       };
@@ -351,6 +351,7 @@ export default {
       const param = {
         CategoryName: this.addFormData.CategoryName,
         ParentID: null,
+        CategoryType: `${this.addFormData.CategoryType}`,
       };
 
       this.isExistsName = await this.api.checkExisted(param);
@@ -359,6 +360,10 @@ export default {
       this.addFormData.Children = this.addFormData.Children.filter((e) =>
         e.CategoryName?.trim()
       );
+
+      this.addFormData.Children.forEach((e) => {
+        e.CategoryType = this.addFormData.CategoryType;
+      });
 
       await this.api.add(this.addFormData);
 
@@ -386,6 +391,10 @@ export default {
       if (deletingChildren.length) {
         await me.api.deleteMany(deletingChildren.map((e) => e.CategoryID));
       }
+
+      this.editFormData.Children.forEach((e) => {
+        e.CategoryType = this.editFormData.CategoryType;
+      });
 
       await me.api.updateByID(me.editFormData.CategoryID, me.editFormData);
 
