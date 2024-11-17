@@ -19,6 +19,9 @@
         <ColorGrid></ColorGrid>
       </div>
       <div v-if="currentTab == 2" class="right">
+        <SizeGrid></SizeGrid>
+      </div>
+      <div v-if="currentTab == 3" class="right">
         <CategoryGrid></CategoryGrid>
       </div>
     </div>
@@ -29,13 +32,14 @@
 import ProductGrid from "./product-grid/ProductGrid.vue";
 import ColorGrid from "./color-grid/ColorGrid.vue";
 import CategoryGrid from "./category-grid/CategoryGrid.vue";
+import SizeGrid from "./size-grid/SizeGrid.vue";
 
 export default {
   name: "ProductManage",
   props: {},
   components: {
     ProductGrid,
-
+    SizeGrid,
     ColorGrid,
     CategoryGrid,
   },
@@ -53,15 +57,23 @@ export default {
         },
         {
           id: 2,
+          name: "Kích thước",
+        },
+        {
+          id: 3,
           name: "Thể loại",
         },
       ],
     };
   },
+  created() {
+    this.currentTab = localStorage.getItem("currentAdminTabId") || 0;
+  },
   methods: {
     onChangeTab(e) {
       const me = this;
       me.currentTab = e;
+      localStorage.setItem("currentAdminTabId", me.currentTab);
     },
   },
 };

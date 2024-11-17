@@ -6,7 +6,7 @@
         @click="deleteSelected()"
         color="danger"
         type="filled"
-        >Xóa màu đã chọn</vs-button
+        >Xóa kích thước đã chọn</vs-button
       >
     </div>
     <div class="add-button">
@@ -33,29 +33,21 @@
     </div>
   </div>
 
-  <vs-popup title="Thêm mới màu sắc" v-model:active="isShowAdd">
+  <vs-popup title="Thêm mới kích thước" v-model:active="isShowAdd">
     <div class="popup-content">
       <div class="add-form">
         <div class="name-row">
           <vs-input
-            :danger="isExistsColor"
-            danger-text="Màu sắc này đã tồn tại"
-            label="Tên màu"
-            placeholder="Hồng cánh sen"
-            v-model="addFormData.ColorName"
+            :danger="isExistsSize"
+            danger-text="Kích thước này đã tồn tại"
+            label="Tên kích thước"
+            placeholder="XL"
+            v-model="addFormData.SizeName"
           />
-        </div>
-        <div class="color-row">
-          <vs-input
-            label="Mã màu"
-            placeholder="#ffffff"
-            v-model="addFormData.ColorCode"
-          />
-          <pick-colors v-model:value="addFormData.ColorCode" />
         </div>
       </div>
       <div class="buttons">
-        <vs-button @click="addColor()" color="primary" type="filled"
+        <vs-button @click="addSize()" color="primary" type="filled"
           >Xác nhận</vs-button
         >
       </div>
@@ -64,7 +56,9 @@
 
   <vs-popup title="Xóa sản phẩm" v-model:active="isShowPopupDelete">
     <div class="popup-content">
-      <div class="content">Bạn có chắc chắn muốn xóa các màu sắc đã chọn?</div>
+      <div class="content">
+        Bạn có chắc chắn muốn xóa các kích thước đã chọn?
+      </div>
       <div class="buttons">
         <vs-button @click="confirmDelete()" color="primary" type="filled"
           >Xác nhận</vs-button
@@ -75,7 +69,7 @@
 
   <vs-popup title="Xóa sản phẩm" v-model:active="isShowPopupDeleteOne">
     <div class="popup-content">
-      <div class="content">Bạn có chắc chắn muốn xóa màu sắc này?</div>
+      <div class="content">Bạn có chắc chắn muốn xóa kích thước này?</div>
       <div class="buttons">
         <vs-button @click="confirmDeleteOne()" color="primary" type="filled"
           >Xác nhận</vs-button
@@ -84,23 +78,15 @@
     </div>
   </vs-popup>
 
-  <vs-popup title="Chỉnh sửa màu sắc" v-model:active="isShowPopupEdit">
+  <vs-popup title="Chỉnh sửa kích thước" v-model:active="isShowPopupEdit">
     <div class="popup-content">
       <div class="add-form">
         <div class="name-row">
           <vs-input
-            label="Tên màu"
-            placeholder="Hồng cánh sen"
-            v-model="itemData.ColorName"
+            label="Tên kích thước"
+            placeholder="XL"
+            v-model="itemData.SizeName"
           />
-        </div>
-        <div class="color-row">
-          <vs-input
-            label="Mã màu"
-            placeholder="#ffffff"
-            v-model="itemData.ColorCode"
-          />
-          <pick-colors v-model:value="itemData.ColorCode" />
         </div>
       </div>
       <div class="buttons">
@@ -115,23 +101,23 @@
 <script>
 import API from "/src/service/api.js";
 export default {
-  name: "ColorGrid",
+  name: "SizeGrid",
   props: [],
   components: {},
   data() {
     return {
-      isExistsColor: false,
-      api: new API("Colors"),
+      isExistsSize: false,
+      api: new API("Sizes"),
       rowData: [],
       columns: [
-        { field: "ColorName", name: "Tên màu" },
+        { field: "SizeName", name: "Tên kích thước" },
         {
-          field: "ColorCode",
-          name: "Mã màu",
+          field: "SizeCode",
+          name: "Mã kích thước",
           type: 2,
         },
         {
-          field: "ColorID",
+          field: "SizeID",
           type: 1,
         },
       ],
@@ -161,38 +147,30 @@ export default {
 
       this.rowSelected = [];
     },
-    async validateColor() {
-      if (!this.isValidHexColor(this.addFormData.ColorCode)) {
-        return false;
-      }
-
+    async validateSize() {
       const param = {
-        ColorName: this.addFormData.ColorName,
+        SizeName: this.addFormData.SizeName,
       };
 
       const res = await this.api.checkExisted(param);
 
-      this.isExistsColor = res;
+      this.isExistsSize = res;
 
       return !res;
     },
-    async validateEditColor() {
-      if (!this.isValidHexColor(this.itemData.ColorCode)) {
-        return false;
-      }
-
+    async validateEditSize() {
       const param = {
-        ColorName: this.itemData.ColorName,
+        SizeName: this.itemData.SizeName,
       };
 
       const res = await this.api.checkExisted(param);
 
-      this.isExistsColor = res;
+      this.isExistsSize = res;
 
       return !res;
     },
-    async addColor() {
-      if (!(await this.validateColor())) {
+    async addSize() {
+      if (!(await this.validateSize())) {
         return;
       }
       this.isShowAdd = false;
@@ -207,7 +185,7 @@ export default {
     async confirmDelete() {
       this.isShowPopupDelete = false;
 
-      const ids = this.rowSelected.map((e) => e.ColorID);
+      const ids = this.rowSelected.map((e) => e.SizeID);
 
       await this.api.deleteMany(ids);
 
@@ -216,11 +194,7 @@ export default {
     showAddForm() {
       this.isShowAdd = true;
       this.addFormData = {};
-      this.isExistsColor = false;
-    },
-    isValidHexColor(hexColor) {
-      const regex = /^#([0-9A-F]{3}|[0-9A-F]{6})$/i;
-      return regex.test(hexColor);
+      this.isExistsSize = false;
     },
     async onEdit(e) {
       this.itemData = { ...e };
@@ -228,7 +202,7 @@ export default {
       this.isShowPopupEdit = true;
     },
     onDelete(e) {
-      this.deletingID = e.ColorID;
+      this.deletingID = e.SizeID;
 
       this.isShowPopupDeleteOne = true;
     },
@@ -240,9 +214,9 @@ export default {
       this.getData();
     },
     async confirmEdit() {
-      if (!this.validateEditColor()) return;
+      if (!this.validateEditSize()) return;
 
-      await this.api.updateByID(this.itemData.ColorID, this.itemData);
+      await this.api.updateByID(this.itemData.SizeID, this.itemData);
 
       this.isShowPopupEdit = false;
 

@@ -69,6 +69,5 @@ namespace ldtiep.be.DL.Repository
         /// Author: LeDucTiep (08/05/2023)
         Task<BasePage<TEntityInPage>> GetPageAsync<TEntityInPage>(BasePagingArgument basePagingArgument);
 
-        Task InsertProduct(Product Product);
     }
 }

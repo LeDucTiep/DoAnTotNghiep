@@ -29,18 +29,6 @@ namespace ldtiep.be.DL.Repository
         #endregion
 
         #region Method
-
-        public async Task InsertProduct(Product product)
-        {
-            // Tạo connection
-            var connection = await _msDatabase.GetOpenConnectionAsync();
-
-            string sql = $"select 0;";
-
-            // Gọi procedure 
-            await connection.QueryAsync<Product>(sql);
-        }
-
         /// <summary>
         /// Hàm xóa một bản ghi
         /// </summary>
