@@ -329,9 +329,6 @@ export default {
 .product-image {
   position: relative;
   width: fit-content;
-  &:hover {
-    opacity: 0.5;
-  }
   .icon-camara {
     position: absolute;
     cursor: pointer;

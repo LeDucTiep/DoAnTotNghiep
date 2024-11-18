@@ -7,6 +7,11 @@ using ldtiep.be.DL.Model;
 
 namespace ldtiep.be.Controllers
 {
+    public class ImageUploadModel
+    {
+        public IFormFile ImageFile { get; set; }
+    }
+
     [ApiController]
     public abstract class BaseController<TEntity, TEntityDto, TEntityCreateDto, TEntityUpdateDto> : ControllerBase
     {
@@ -22,6 +27,24 @@ namespace ldtiep.be.Controllers
         #endregion
 
         #region Method
+        [HttpPost("image")]
+        public async Task<IActionResult> UploadImage(ImageUploadModel model)
+        {
+            if (model.ImageFile == null || model.ImageFile.Length == 0)
+            {
+                return BadRequest("No file uploaded.");
+            }
+
+            var filePath = Path.Combine("d://", "uploads", model.ImageFile.FileName);
+
+            // Save the file to the specified path
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                await model.ImageFile.CopyToAsync(stream);
+            }
+
+            return Ok("File uploaded successfully.");
+        }
         /// <summary>
         /// API thêm một bản ghi
         /// </summary>
