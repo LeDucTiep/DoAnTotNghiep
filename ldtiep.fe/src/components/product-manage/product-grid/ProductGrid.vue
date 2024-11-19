@@ -70,7 +70,7 @@
           />
           <div class="h-10"></div>
           <vs-input-number
-            label="Phần trăm giảm giá: "
+            label="Giảm giá(%): "
             :min="0"
             v-model="itemData.discount"
             :step="1"
@@ -162,7 +162,7 @@
           </vs-col>
           <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="2">
             <vs-input-number
-              label="Phần trăm giảm giá: "
+              label="Giảm giá(%): "
               :min="0"
               v-model="addFormData.discount"
               :step="1"
@@ -266,6 +266,7 @@
             </div>
           </vs-col>
         </vs-row>
+        <div class="h-20"></div>
         <vs-row
           vs-align="flex-end"
           vs-type="flex"
@@ -278,16 +279,84 @@
             vs-align="center"
             vs-w="12"
           >
-            <TColorCheck
-              v-for="(item, index) in Colors"
-              :key="index"
-              :cusclass="'color'"
-              :code="item.ColorCode"
-              :name="item.ColorName"
-              v-model="item.IsChecked"
-              @change="onChangeColors()"
-            >
-            </TColorCheck>
+            <div class="f-b">Màu sắc sản phẩm</div>
+          </vs-col></vs-row
+        >
+        <div class="h-10"></div>
+        <vs-row
+          vs-align="flex-end"
+          vs-type="flex"
+          vs-justify="space-between"
+          vs-w="12"
+        >
+          <vs-col
+            vs-type="flex"
+            vs-justify="center"
+            vs-align="center"
+            vs-w="12"
+          >
+            <div class="flex-wrap g-14">
+              <div
+                v-for="(item, index) in Colors"
+                :key="index"
+                class="color-cell"
+              >
+                <TColorCheck
+                  :cusclass="'color'"
+                  :code="item.ColorCode"
+                  :name="item.ColorName"
+                  v-model="item.IsChecked"
+                  @change="onChangeColors()"
+                >
+                </TColorCheck>
+              </div>
+            </div>
+          </vs-col>
+        </vs-row>
+        <div class="h-20"></div>
+        <vs-row
+          vs-align="flex-end"
+          vs-type="flex"
+          vs-justify="space-between"
+          vs-w="12"
+        >
+          <vs-col
+            vs-type="flex"
+            vs-justify="center"
+            vs-align="center"
+            vs-w="12"
+          >
+            <div class="f-b">Kích thước sản phẩm</div>
+          </vs-col></vs-row
+        >
+        <div class="h-10"></div>
+        <vs-row
+          vs-align="flex-end"
+          vs-type="flex"
+          vs-justify="space-between"
+          vs-w="12"
+        >
+          <vs-col
+            vs-type="flex"
+            vs-justify="center"
+            vs-align="center"
+            vs-w="12"
+          >
+            <div class="flex-wrap g-14">
+              <div
+                v-for="(item, index) in Sizes"
+                :key="index"
+                class="size-cell"
+              >
+                <TSizeCheck
+                  :cusclass="'size'"
+                  v-model="item.IsChecked"
+                  @change="onChangeSize()"
+                >
+                  {{ item.SizeName }}
+                </TSizeCheck>
+              </div>
+            </div>
           </vs-col>
         </vs-row>
       </div>
@@ -302,14 +371,16 @@
     
 <script>
 import API from "/src/service/api.js";
+import TSizeCheck from "/src/base/checkbox/TSizeCheck.vue";
 import TColorCheck from "/src/base/checkbox/TColorCheck.vue";
 export default {
   name: "ProductGrid",
   props: [],
-  components: { TColorCheck },
+  components: { TColorCheck, TSizeCheck },
   data() {
     return {
       ColorApi: new API("Colors"),
+      SizeApi: new API("Sizes"),
       CateApi: new API("Categorys"),
       selectedFiles: null,
       uploadProgress: null,
@@ -331,6 +402,7 @@ export default {
       CategoryData: [],
       currentCategoryType: 0,
       Colors: [],
+      Sizes: [],
     };
   },
   watch: {
@@ -343,8 +415,21 @@ export default {
   beforeMount() {
     this.getCategory(this.currentCategoryType);
     this.getColors();
+    this.getSizes();
   },
   methods: {
+    onChangeSize() {},
+    async getSizes() {
+      const param = {
+        PageSize: 100,
+        PageNumber: 1,
+        Sorter: {
+          ModifiedDate: "desc",
+        },
+      };
+      const res = await this.SizeApi.paging(param);
+      this.Sizes = res.Data;
+    },
     async getColors() {
       const param = {
         PageSize: 100,
@@ -673,6 +758,38 @@ export default {
       padding: 0;
     }
   }
+}
+.flex-wrap {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.color-cell {
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  background: white;
+  overflow: hidden;
+  &:hover {
+    background: #f2f5f8;
+  }
+}
+
+.f-b {
+  font-weight: bold;
+}
+
+.size-cell {
+  height: 40px;
+  width: 58px;
+  border-radius: 10px;
+}
+.tsizecheck {
+  border-radius: 10px;
+}
+.g-14 {
+  gap: 14px;
 }
 </style>
     
