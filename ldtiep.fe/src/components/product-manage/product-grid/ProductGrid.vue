@@ -129,6 +129,8 @@
           </div>
         </div>
         <div class="h-20"></div>
+        <div class="h-20"></div>
+        <div class="h-20"></div>
 
         <vs-row
           vs-align="flex-end"
@@ -136,14 +138,21 @@
           vs-justify="space-between"
           vs-w="12"
         >
-          <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="4">
+          <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="2">
             <vs-input
               label="Tên sản phẩm"
               placeholder="Áo polo"
               v-model="addFormData.name"
             />
           </vs-col>
-          <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="4">
+          <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="2">
+            <vs-input
+              label="Mã sản phẩm"
+              placeholder="SCM6081"
+              v-model="addFormData.name"
+            />
+          </vs-col>
+          <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="2">
             <vs-input-number
               label="Giá gốc: "
               :min="0"
@@ -151,7 +160,7 @@
               :step="1000"
             />
           </vs-col>
-          <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="4">
+          <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="2">
             <vs-input-number
               label="Phần trăm giảm giá: "
               :min="0"
@@ -159,33 +168,128 @@
               :step="1"
             />
           </vs-col>
+          <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="2">
+            <vs-input-number
+              label="Giá giảm giá"
+              :min="0"
+              v-model="addFormData.discount"
+              :step="1000"
+            />
+          </vs-col>
         </vs-row>
 
         <div class="h-20"></div>
+        <vs-row
+          vs-align="flex-end"
+          vs-type="flex"
+          vs-justify="space-between"
+          vs-w="12"
+        >
+          <vs-col
+            vs-type="flex"
+            vs-justify="center"
+            vs-align="center"
+            vs-w="12"
+          >
+            <div class="type-row">
+              <vs-radio
+                color="success"
+                vs-name="radios2"
+                v-model="currentCategoryType"
+                :vs-value="0"
+                >Nam</vs-radio
+              >
+              <vs-radio
+                color="warning"
+                vs-name="radios2"
+                v-model="currentCategoryType"
+                :vs-value="1"
+                >Nữ</vs-radio
+              >
+              <vs-radio
+                color="rgb(87, 251, 187)"
+                vs-name="radios2"
+                v-model="currentCategoryType"
+                :vs-value="2"
+                >Trẻ em</vs-radio
+              >
+            </div>
+          </vs-col>
+        </vs-row>
+        <div class="h-20"></div>
 
-        <div class="type-row">
-          <vs-radio
-            color="success"
-            vs-name="radios2"
-            v-model="addFormData.CategoryType"
-            :vs-value="0"
-            >Nam</vs-radio
+        <vs-row
+          vs-align="flex-end"
+          vs-type="flex"
+          vs-justify="space-between"
+          vs-w="12"
+        >
+          <vs-col
+            vs-type="flex"
+            vs-justify="center"
+            vs-align="center"
+            vs-w="12"
           >
-          <vs-radio
-            color="warning"
-            vs-name="radios2"
-            v-model="addFormData.CategoryType"
-            :vs-value="1"
-            >Nữ</vs-radio
+            <div class="category-block">
+              <div
+                class="col"
+                v-for="(item, index) in CategoryData"
+                :key="index"
+              >
+                <div
+                  class="title"
+                  @click="
+                    onChooseCategory({
+                      CategoryType: item.CategoryType,
+                      CategoryID: item.CategoryID,
+                    })
+                  "
+                >
+                  {{ item.CategoryName }}
+                </div>
+                <div
+                  class="row"
+                  v-for="j in item.Children"
+                  :key="j.CategoryID"
+                  @click="
+                    onChooseCategory({
+                      CategoryType: item.CategoryType,
+                      CategoryID: j.CategoryID,
+                    })
+                  "
+                >
+                  <vs-checkbox v-model="j.IsChecked" :vs-value="j.CategoryID">{{
+                    j.CategoryName
+                  }}</vs-checkbox>
+                </div>
+              </div>
+            </div>
+          </vs-col>
+        </vs-row>
+        <vs-row
+          vs-align="flex-end"
+          vs-type="flex"
+          vs-justify="space-between"
+          vs-w="12"
+        >
+          <vs-col
+            vs-type="flex"
+            vs-justify="center"
+            vs-align="center"
+            vs-w="12"
           >
-          <vs-radio
-            color="rgb(87, 251, 187)"
-            vs-name="radios2"
-            v-model="addFormData.CategoryType"
-            :vs-value="2"
-            >Trẻ em</vs-radio
-          >
-        </div>
+            <TColorCheck
+              v-for="(item, index) in Colors"
+              :key="index"
+              :cusclass="'color'"
+              :code="item.ColorCode"
+              :name="item.ColorName"
+              v-model="item.IsChecked"
+              @change="onChangeColors()"
+            >
+            </TColorCheck>
+          </vs-col>
+        </vs-row>
       </div>
       <div class="buttons-footer">
         <vs-button @click="confirmEdit()" color="primary" type="filled"
@@ -197,12 +301,16 @@
 </template>
     
 <script>
+import API from "/src/service/api.js";
+import TColorCheck from "/src/base/checkbox/TColorCheck.vue";
 export default {
   name: "ProductGrid",
   props: [],
-  components: {},
+  components: { TColorCheck },
   data() {
     return {
+      ColorApi: new API("Colors"),
+      CateApi: new API("Categorys"),
       selectedFiles: null,
       uploadProgress: null,
       rowData: [],
@@ -220,10 +328,72 @@ export default {
       addFormData: {},
       rowSelected: [],
       imageSrcs: [],
+      CategoryData: [],
+      currentCategoryType: 0,
+      Colors: [],
     };
   },
-  beforeMount() {},
+  watch: {
+    currentCategoryType(val, oldVal) {
+      if (val != oldVal) {
+        this.getCategory(val);
+      }
+    },
+  },
+  beforeMount() {
+    this.getCategory(this.currentCategoryType);
+    this.getColors();
+  },
   methods: {
+    async getColors() {
+      const param = {
+        PageSize: 100,
+        PageNumber: 1,
+        Sorter: {
+          ModifiedDate: "desc",
+        },
+      };
+
+      const res = await this.ColorApi.paging(param);
+
+      this.Colors = res.Data;
+    },
+    onChooseCategory(e) {
+      console.log(e);
+    },
+    async getCategory(t) {
+      const param = {
+        PageSize: 500,
+        PageNumber: 1,
+        SearchTerm: {
+          CategoryType: t,
+        },
+      };
+
+      let res = await this.CateApi.paging(param);
+
+      let parents = [];
+
+      res.Data.forEach((e) => {
+        if (!e.ParentID) {
+          parents.push(e);
+        }
+      });
+
+      function comparer(a, b) {
+        return a.SortOrder - b.SortOrder;
+      }
+
+      parents.forEach((e) => {
+        e.Children = res.Data.filter((j) => e.CategoryID == j.ParentID).sort(
+          comparer
+        );
+      });
+
+      parents = parents.sort(comparer);
+
+      this.CategoryData = parents;
+    },
     remove(item) {
       this.imageSrcs.splice(this.imageSrcs.indexOf(item), 1);
     },
@@ -285,6 +455,7 @@ export default {
       this.isShowAdd = true;
       this.addFormData = {};
     },
+    onChangeColors() {},
   },
 };
 </script>
@@ -459,6 +630,49 @@ export default {
 }
 .w-100 {
   width: 100%;
+}
+.category-block {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  flex-wrap: wrap;
+
+  .col {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    min-width: 150px;
+    align-items: start;
+
+    .title {
+      font-weight: bold;
+      padding-bottom: 10px;
+      cursor: pointer;
+    }
+
+    .row {
+      &:hover {
+        font-weight: 600;
+      }
+
+      cursor: pointer;
+    }
+  }
+}
+
+.add-product-form {
+  .vs-checkbox--check {
+    scale: 0.8;
+    padding: 0;
+
+    i.vs-checkbox--icon {
+      width: 13px;
+      height: 17px;
+      margin: 0;
+      padding: 0;
+    }
+  }
 }
 </style>
     

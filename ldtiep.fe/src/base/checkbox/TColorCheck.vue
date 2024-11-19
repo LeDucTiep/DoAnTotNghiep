@@ -4,36 +4,23 @@
       <div
         v-if="model"
         class="checked-box"
-        :style="{ backgroundColor: currentColor }"
-        :class="{ 'other-color': !currentColor }"
+        :style="{ backgroundColor: code }"
+        :class="{ 'other-color': !code }"
       >
-        <svg
-          width="18"
-          height="18"
-          viewBox="0 0 24 24"
-          :fill="currentIconColor"
-          xmlns="http://www.w3.org/2000/svg"
-          id=":ru7:"
-          class="text-white"
-        >
-          <path
-            d="M9.9998 13.6L15.8998 7.70005C16.0831 7.51672 16.3165 7.42505 16.5998 7.42505C16.8831 7.42505 17.1165 7.51672 17.2998 7.70005C17.4831 7.88338 17.5748 8.11671 17.5748 8.40005C17.5748 8.68338 17.4831 8.91672 17.2998 9.10005L10.6998 15.7C10.4998 15.9 10.2665 16 9.9998 16C9.73314 16 9.4998 15.9 9.2998 15.7L6.6998 13.1C6.51647 12.9167 6.4248 12.6834 6.4248 12.4C6.4248 12.1167 6.51647 11.8834 6.6998 11.7C6.88314 11.5167 7.11647 11.425 7.3998 11.425C7.68314 11.425 7.91647 11.5167 8.0998 11.7L9.9998 13.6Z"
-            :fill="currentIconColor"
-          ></path>
-        </svg>
+        <img height="26" src="../../assets/images/check-mark.png" alt="" />
       </div>
 
       <div
         v-else
-        :style="{ backgroundColor: currentColor }"
         class="uncheck-box"
-        :class="{ 'other-color': !currentColor }"
+        :style="{ backgroundColor: code }"
+        :class="{ 'other-color': !code }"
       ></div>
 
       <input ref="inputCB" class="hidden" type="checkbox" v-model="model" />
     </div>
     <span class="cb-label">
-      {{ currentName }}
+      {{ name }}
     </span>
   </div>
 </template>
@@ -45,7 +32,8 @@ export default {
   props: {
     modelValue: { type: [Boolean] },
     cusclass: { type: [String] },
-    id: { type: [Number] },
+    code: { type: [String] },
+    name: { default: "Khác" },
   },
   emits: ["change", "update:modelValue"],
   computed: {
@@ -56,84 +44,6 @@ export default {
       set(val) {
         this.$emit("update:modelValue", val);
         this.$emit("change", val);
-      },
-    },
-    currentColor: {
-      get() {
-        switch (this.id) {
-          case 1:
-            return "#000000";
-          case 2:
-            return "#E7352B";
-          case 3:
-            return "#FED533";
-          case 4:
-            return "#F36B26";
-          case 5:
-            return "#B3B3B3";
-          case 6:
-            return "#F0728F";
-          case 7:
-            return "#8D429F";
-          case 8:
-            return "#825D41";
-          case 9:
-            return "#FFFFFF";
-          default:
-            return null;
-        }
-      },
-    },
-    currentIconColor: {
-      get() {
-        switch (this.id) {
-          case 1:
-            return "#ffffff";
-          case 2:
-            return "#ffffff";
-          case 3:
-            return "#000000";
-          case 4:
-            return "#ffffff";
-          case 5:
-            return "#ffffff";
-          case 6:
-            return "#ffffff";
-          case 7:
-            return "#ffffff";
-          case 8:
-            return "#ffffff";
-          case 9:
-            return "#000000";
-          default:
-            return "#ffffff";
-        }
-      },
-    },
-    currentName: {
-      get() {
-        switch (this.id) {
-          case 1:
-            return "Đen";
-          case 2:
-            return "Đỏ";
-          case 3:
-            return "Vàng";
-          case 4:
-            return "Cam";
-          case 5:
-            return "Xám";
-          case 6:
-            return "Hồng";
-          case 7:
-            return "Tím";
-          case 8:
-            return "Nâu";
-          case 9:
-            return "Trắng";
-          default:
-            return "Khác";
-        }
       },
     },
   },

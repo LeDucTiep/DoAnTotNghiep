@@ -20,12 +20,13 @@
         <div class="title">Màu sắc</div>
         <div class="col">
           <TColorCheck
-            v-for="(item, index) in colorFilters"
+            v-for="(item, index) in Colors"
             :key="index"
             :cusclass="'color'"
-            :id="item.id"
-            v-model="item.value"
-            @change="onChangeFilter()"
+            :code="item.ColorCode"
+            :name="item.ColorName"
+            v-model="item.IsChecked"
+            @change="onChangeColors()"
           >
           </TColorCheck>
         </div>
@@ -75,6 +76,7 @@
 
 <script>
 import ProductSP from "/src/components/cloth/ProductSP.vue";
+import API from "/src/service/api.js";
 import TCheckbox from "/src/base/checkbox/TCheckbox.vue";
 import TColorCheck from "/src/base/checkbox/TColorCheck.vue";
 import TSizeCheck from "/src/base/checkbox/TSizeCheck.vue";
@@ -89,6 +91,7 @@ export default {
   },
   data() {
     return {
+      Colors: [],
       genderFilters: [
         {
           name: "Nữ",
@@ -117,48 +120,7 @@ export default {
           value: false,
         },
       ],
-      colorFilters: [
-        {
-          id: 1,
-          value: false,
-        },
-        {
-          id: 2,
-          value: false,
-        },
-        {
-          id: 3,
-          value: false,
-        },
-        {
-          id: 4,
-          value: false,
-        },
-        {
-          id: 5,
-          value: false,
-        },
-        {
-          id: 6,
-          value: false,
-        },
-        {
-          id: 7,
-          value: false,
-        },
-        {
-          id: 8,
-          value: false,
-        },
-        {
-          id: 9,
-          value: false,
-        },
-        {
-          id: 10,
-          value: false,
-        },
-      ],
+      ColorApi: new API("Colors"),
       sizes: [
         { value: false, name: "S" },
         { value: false, name: "M" },
@@ -261,9 +223,27 @@ export default {
       ],
     };
   },
+  created() {
+    this.getColors();
+  },
   methods: {
     onChangeFilter() {
       console.log("Genders changed");
+    },
+    onChangeColors() {},
+
+    async getColors() {
+      const param = {
+        PageSize: 100,
+        PageNumber: 1,
+        Sorter: {
+          ModifiedDate: "desc",
+        },
+      };
+
+      const res = await this.ColorApi.paging(param);
+
+      this.Colors = res.Data;
     },
   },
 };
