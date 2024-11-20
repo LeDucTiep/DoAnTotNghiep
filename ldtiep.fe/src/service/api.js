@@ -32,6 +32,14 @@ class API {
     async deleteMany(ids) {
         return await this.delete(``, ids);
     }
+    async upFile(file) {
+        const formData = new FormData();
+        formData.append('file', file);
+
+        return await this.post("/image", formData, {
+            'Content-Type': 'multipart/form-data'
+        });
+    }
 
     async get(endpoint, params) {
         try {
@@ -63,9 +71,9 @@ class API {
         }
         return {};
     }
-    async post(endpoint, data) {
+    async post(endpoint, data, headers = null) {
         try {
-            const response = await this.axiosInstance.post(endpoint, data);
+            const response = await this.axiosInstance.post(endpoint, data, { headers });
             return response.data;
         } catch (error) {
             // Handle errors here

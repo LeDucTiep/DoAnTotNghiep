@@ -4,14 +4,11 @@ using ldtiep.be.BL.Service;
 using ldtiep.be.Common;
 using ldtiep.be.DL.Entity;
 using ldtiep.be.DL.Model;
+using DocumentFormat.OpenXml.InkML;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace ldtiep.be.Controllers
 {
-    public class ImageUploadModel
-    {
-        public IFormFile ImageFile { get; set; }
-    }
-
     [ApiController]
     public abstract class BaseController<TEntity, TEntityDto, TEntityCreateDto, TEntityUpdateDto> : ControllerBase
     {
@@ -28,22 +25,26 @@ namespace ldtiep.be.Controllers
 
         #region Method
         [HttpPost("image")]
-        public async Task<IActionResult> UploadImage(ImageUploadModel model)
+        public async Task<IActionResult> UploadImage(IFormFile file)
         {
-            if (model.ImageFile == null || model.ImageFile.Length == 0)
+            if (file == null || file.Length == 0)
             {
                 return BadRequest("No file uploaded.");
             }
 
-            var filePath = Path.Combine("d://", "uploads", model.ImageFile.FileName);
+            using var memoryStream = new MemoryStream();
+            await file.CopyToAsync(memoryStream);
 
-            // Save the file to the specified path
-            using (var stream = new FileStream(filePath, FileMode.Create))
+            var imageData = memoryStream.ToArray();
+
+            var image = new Picture
             {
-                await model.ImageFile.CopyToAsync(stream);
-            }
+                PictureID = Guid.NewGuid(),
+                PictureName = file.FileName,
+                PictureData = imageData
+            };
 
-            return Ok("File uploaded successfully.");
+            return Ok(new { message = "Image uploaded successfully" });
         }
         /// <summary>
         /// API thêm một bản ghi

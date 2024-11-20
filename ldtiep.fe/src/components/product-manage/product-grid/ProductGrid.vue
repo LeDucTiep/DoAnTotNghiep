@@ -122,9 +122,13 @@
               </i>
             </button>
           </div>
-          <div :key="src" v-for="src in imageSrcs" class="img-preview-blog">
-            <vs-chip @click="remove(src)" closable>
-              <img width="160" height="auto" :src="src" />
+          <div
+            :key="img.src"
+            v-for="(img, index) in imageSrcs"
+            class="img-preview-blog"
+          >
+            <vs-chip @click="remove(index)" closable>
+              <img width="160" height="auto" :src="img.src" />
             </vs-chip>
           </div>
         </div>
@@ -142,21 +146,21 @@
             <vs-input
               label="Tên sản phẩm"
               placeholder="Áo polo"
-              v-model="addFormData.name"
+              v-model="addFormData.ProductName"
             />
           </vs-col>
           <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="2">
             <vs-input
               label="Mã sản phẩm"
               placeholder="SCM6081"
-              v-model="addFormData.name"
+              v-model="addFormData.ProductCode"
             />
           </vs-col>
           <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="2">
             <vs-input-number
               label="Giá gốc: "
               :min="0"
-              v-model="addFormData.price"
+              v-model="addFormData.OriginalPrice"
               :step="1000"
             />
           </vs-col>
@@ -164,7 +168,8 @@
             <vs-input-number
               label="Giảm giá(%): "
               :min="0"
-              v-model="addFormData.discount"
+              :max="100"
+              v-model="addFormData.Discount"
               :step="1"
             />
           </vs-col>
@@ -172,7 +177,7 @@
             <vs-input-number
               label="Giá giảm giá"
               :min="0"
-              v-model="addFormData.discount"
+              v-model="addFormData.Price"
               :step="1000"
             />
           </vs-col>
@@ -236,29 +241,11 @@
                 v-for="(item, index) in CategoryData"
                 :key="index"
               >
-                <div
-                  class="title"
-                  @click="
-                    onChooseCategory({
-                      CategoryType: item.CategoryType,
-                      CategoryID: item.CategoryID,
-                    })
-                  "
-                >
+                <div class="title">
                   {{ item.CategoryName }}
                 </div>
-                <div
-                  class="row"
-                  v-for="j in item.Children"
-                  :key="j.CategoryID"
-                  @click="
-                    onChooseCategory({
-                      CategoryType: item.CategoryType,
-                      CategoryID: j.CategoryID,
-                    })
-                  "
-                >
-                  <vs-checkbox v-model="j.IsChecked" :vs-value="j.CategoryID">{{
+                <div class="row" v-for="j in item.Children" :key="j.CategoryID">
+                  <vs-checkbox v-model="CategoryFormAdd[j.CategoryID]">{{
                     j.CategoryName
                   }}</vs-checkbox>
                 </div>
@@ -305,8 +292,7 @@
                   :cusclass="'color'"
                   :code="item.ColorCode"
                   :name="item.ColorName"
-                  v-model="item.IsChecked"
-                  @change="onChangeColors()"
+                  v-model="ColorFormAdd[item.ColorCode]"
                 >
                 </TColorCheck>
               </div>
@@ -350,8 +336,7 @@
               >
                 <TSizeCheck
                   :cusclass="'size'"
-                  v-model="item.IsChecked"
-                  @change="onChangeSize()"
+                  v-model="SizeFormAdd[item.SizeID]"
                 >
                   {{ item.SizeName }}
                 </TSizeCheck>
@@ -361,7 +346,7 @@
         </vs-row>
       </div>
       <div class="buttons-footer">
-        <vs-button @click="confirmEdit()" color="primary" type="filled"
+        <vs-button @click="confirmAddProduct()" color="primary" type="filled"
           >Xác nhận</vs-button
         >
       </div>
@@ -382,7 +367,6 @@ export default {
       ColorApi: new API("Colors"),
       SizeApi: new API("Sizes"),
       CateApi: new API("Categorys"),
-      selectedFiles: null,
       uploadProgress: null,
       rowData: [],
       columns: [
@@ -394,7 +378,7 @@ export default {
       selected: [],
       isShowPopupDelete: false,
       isShowPopupEdit: false,
-      isShowAdd: true,
+      isShowAdd: false,
       itemData: {},
       addFormData: {},
       rowSelected: [],
@@ -403,6 +387,10 @@ export default {
       currentCategoryType: 0,
       Colors: [],
       Sizes: [],
+      // Dữ liệu form thêm mới
+      ColorFormAdd: {},
+      SizeFormAdd: {},
+      CategoryFormAdd: {},
     };
   },
   watch: {
@@ -424,7 +412,7 @@ export default {
         PageSize: 100,
         PageNumber: 1,
         Sorter: {
-          ModifiedDate: "desc",
+          ModifiedDate: "asc",
         },
       };
       const res = await this.SizeApi.paging(param);
@@ -442,9 +430,6 @@ export default {
       const res = await this.ColorApi.paging(param);
 
       this.Colors = res.Data;
-    },
-    onChooseCategory(e) {
-      console.log(e);
     },
     async getCategory(t) {
       const param = {
@@ -479,51 +464,20 @@ export default {
 
       this.CategoryData = parents;
     },
-    remove(item) {
-      this.imageSrcs.splice(this.imageSrcs.indexOf(item), 1);
+    remove(index) {
+      this.imageSrcs.splice(index, 1);
     },
     handleFileUpload(event) {
-      console.log(event.target.files);
-      this.selectedFiles = event.target.files;
+      const files = event.target.files;
 
-      for (let i = 0; i < this.selectedFiles.length; i++) {
-        // const reader = new FileReader();
-
-        //     reader.onload
-        // = (e) => {
-        //       imagePreview.src = e.target.result;
-        //     };
-
-        //     reader.readAsDataURL(file);
-
-        this.imageSrcs.push(URL.createObjectURL(this.selectedFiles[i]));
+      for (let i = 0; i < files.length; i++) {
+        this.imageSrcs.push({
+          src: URL.createObjectURL(files[i]),
+          file: files[i],
+        });
       }
 
       this.$refs.uploadInput.value = null;
-    },
-    async uploadFile() {
-      this.selectedFiles.forEach((file) => {
-        const formData = new FormData();
-        formData.append("file", file);
-        const xhr = new XMLHttpRequest();
-        xhr.open("POST", "https://your-backend-api/upload", true);
-        xhr.upload.onprogress = (event) => {
-          if (event.lengthComputable) {
-            this.uploadProgress = Math.round(
-              (event.loaded / event.total) * 100
-            );
-          }
-        };
-        xhr.onload = () => {
-          if (xhr.status === 200) {
-            console.log("File uploaded successfully");
-            this.uploadProgress = null;
-          } else {
-            console.error("Error uploading file");
-          }
-        };
-        xhr.send(formData);
-      });
     },
     onEdit() {},
     onDelete() {
@@ -538,9 +492,59 @@ export default {
     },
     showAddForm() {
       this.isShowAdd = true;
+      // Thêm dữ liệu mặc định
+      this.ColorFormAdd = {};
       this.addFormData = {};
     },
-    onChangeColors() {},
+    confirmAddProduct() {
+      const colors = this.Colors.filter((e) => {
+        return this.ColorFormAdd[e.ColorCode];
+      });
+
+      this.addFormData.ColorIDs = colors.map((e) => e.ColorID).join(";");
+      this.addFormData.ColorCodes = colors.map((e) => e.ColorCode).join(";");
+      this.addFormData.ColorNames = colors.map((e) => e.ColorName).join(";");
+
+      const sizes = this.Sizes.filter((e) => {
+        return this.SizeFormAdd[e.SizeID];
+      });
+
+      this.addFormData.SizeIDs = sizes.map((e) => e.SizeID).join(";");
+      this.addFormData.SizeNames = sizes.map((e) => e.SizeName).join(";");
+
+      const cateIDs = [];
+      const cateNames = [];
+
+      for (let i = 0; i < this.CategoryData.length; i++) {
+        const children = this.CategoryData[i].Children;
+
+        let hasValue = false;
+
+        for (let j = 0; j < children.length; j++) {
+          const item = children[j];
+
+          if (this.CategoryFormAdd[item.CategoryID]) {
+            hasValue = true;
+            cateIDs.push(item.CategoryID);
+            cateNames.push(item.CategoryName);
+          }
+        }
+
+        if (hasValue) {
+          cateIDs.push(this.CategoryData[i].CategoryID);
+          cateNames.push(this.CategoryData[i].CategoryName);
+        }
+      }
+
+      this.addFormData.CategoryIDs = cateIDs.join(";");
+      this.addFormData.CategoryNames = cateNames.join(";");
+
+      console.log(this.addFormData);
+
+      for (let i = 0; i < this.imageSrcs.length; i++) {
+        this.CateApi.upFile(this.imageSrcs[i].file);
+      }
+    },
   },
 };
 </script>
@@ -705,6 +709,7 @@ export default {
   flex-direction: column;
   justify-content: space-between;
   padding: 0px 20px;
+  background: white;
 }
 .vs-popup--content {
   height: 100%;

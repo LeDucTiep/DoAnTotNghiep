@@ -12,6 +12,7 @@ namespace ldtiep.be.DL.Entity
         public string ProductName { get; set; }
         public string ProductCode { get; set; }
         public string ColorIDs { get; set; }
+        public string ColorCodes { get; set; }
         public string ColorNames { get; set; }
         public double Price { get; set; }
         public double OriginalPrice { get; set; }
@@ -20,5 +21,6 @@ namespace ldtiep.be.DL.Entity
         public string SizeNames { get; set; }
         public string CategoryIDs { get; set; }
         public string CategoryNames { get; set; }
+        public string ImageNames { get; set; }
     }
 }

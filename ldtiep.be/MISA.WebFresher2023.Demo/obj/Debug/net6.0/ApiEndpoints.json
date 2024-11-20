@@ -109,9 +109,9 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "model",
-        "Type": "ldtiep.be.Controllers.ImageUploadModel",
-        "IsRequired": true
+        "Name": "file",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -242,9 +242,9 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "model",
-        "Type": "ldtiep.be.Controllers.ImageUploadModel",
-        "IsRequired": true
+        "Name": "file",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -375,9 +375,9 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "model",
-        "Type": "ldtiep.be.Controllers.ImageUploadModel",
-        "IsRequired": true
+        "Name": "file",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -508,9 +508,9 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "model",
-        "Type": "ldtiep.be.Controllers.ImageUploadModel",
-        "IsRequired": true
+        "Name": "file",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
