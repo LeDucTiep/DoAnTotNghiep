@@ -252,6 +252,36 @@ export default {
         filterIn.SizeIDs = sizeIds;
       }
 
+      const SearchBigger = {};
+      const SearchSmaller = {};
+
+      let min = [];
+      let max = [];
+
+      for (let i = 0; i < 3; i++) {
+        if (this.CostFilter[i]) {
+          switch (i) {
+            case 0:
+              min.push(0);
+              max.push(350000);
+              break;
+            case 1:
+              min.push(350000);
+              max.push(750000);
+              break;
+            case 2:
+              min.push(750000);
+              max.push(9999999999999);
+              break;
+          }
+        }
+      }
+
+      if (min.length) {
+        SearchBigger.Price = Math.min(...min);
+        SearchSmaller.Price = Math.max(...max);
+      }
+
       const param = {
         PageSize: 100,
         PageNumber: 1,
@@ -260,6 +290,8 @@ export default {
         },
         SearchEquals: filter,
         SearchIn: filterIn,
+        SearchBigger: SearchBigger,
+        SearchSmaller: SearchSmaller,
       };
       return param;
     },

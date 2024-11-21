@@ -35,6 +35,8 @@ namespace ldtiep.be.DL.Model
         /// </summary>
         /// Author: LeDucTiep (09/06/2023)
         public Dictionary<string, object>? SearchIn { get; set; }
+        public Dictionary<string, object>? SearchSmaller { get; set; }
+        public Dictionary<string, object>? SearchBigger { get; set; }
         /// <summary>
         /// Tham số sắp xếp
         /// </summary>

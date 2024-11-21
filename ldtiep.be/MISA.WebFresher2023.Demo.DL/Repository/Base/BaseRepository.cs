@@ -451,7 +451,30 @@ namespace ldtiep.be.DL.Repository
                     parameters.Add($"v_{key}", val.ToString());
                 }
             }
+            if (basePagingArgument.SearchSmaller?.Keys != null)
+            {
+                foreach (var key in basePagingArgument.SearchSmaller.Keys)
+                {
+                    var val = basePagingArgument.SearchSmaller.GetValueOrDefault(key);
+                    if (val == null)
+                        continue;
 
+                    whereBlocks.Add($"{key} <= @v_{key}_smaller");
+                    parameters.Add($"v_{key}_smaller", val.ToString());
+                }
+            }
+            if (basePagingArgument.SearchBigger?.Keys != null)
+            {
+                foreach (var key in basePagingArgument.SearchBigger.Keys)
+                {
+                    var val = basePagingArgument.SearchBigger.GetValueOrDefault(key);
+                    if (val == null)
+                        continue;
+
+                    whereBlocks.Add($"{key} >= @v_{key}_bigger");
+                    parameters.Add($"v_{key}_bigger", val.ToString());
+                }
+            }
             if (basePagingArgument.SearchIn?.Keys != null)
             {
                 foreach (var key in basePagingArgument.SearchIn.Keys)
