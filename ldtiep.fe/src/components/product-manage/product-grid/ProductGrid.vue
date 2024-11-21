@@ -56,56 +56,262 @@
     </div>
   </vs-popup>
 
-  <vs-popup title="Chỉnh sửa sản phẩm" v-model:active="isShowPopupEdit">
-    <div class="popup-content">
-      <div class="edit-form">
-        <div class="form-left">
-          <div class="product-image">
-            <img :src="itemData.image" />
-            <div class="icon-camara">
-              <vs-icon color="primary" icon="photo_camera" />
-            </div>
+  <vs-popup
+    fullscreen
+    title="Chỉnh sửa sản phẩm"
+    v-model:active="isShowPopupEdit"
+  >
+    <div class="popup-add-content">
+      <div class="add-product-form">
+        <div class="product-image">
+          <div class="tiep-input-upload">
+            <input
+              ref="uploadInput"
+              multiple
+              accept="image/*"
+              type="file"
+              @change="handleFileUpload"
+            /><span class="text-input">Chọn ảnh sản phẩm</span
+            ><span class="input-progress" style="width: 0%"></span
+            ><button
+              @click="$refs.uploadInput.click()"
+              class="btn-upload-all vs-upload--button-upload"
+            >
+              <i translate="no" class="material-icons notranslate">
+                cloud_upload
+              </i>
+            </button>
+          </div>
+          <div
+            :key="img.src"
+            v-for="(img, index) in imageSrcs"
+            class="img-preview-blog"
+          >
+            <vs-chip @click="remove(index)" closable>
+              <img width="160" height="auto" :src="img.src" />
+            </vs-chip>
           </div>
         </div>
-        <div class="form-right">
-          <vs-input
-            label="Tên sản phẩm"
-            placeholder="Áo polo"
-            v-model="itemData.name"
-          />
-          <div class="h-10"></div>
-          <vs-input-number
-            label="Giá gốc: "
-            :min="0"
-            v-model="itemData.price"
-            :step="1000"
-          />
-          <div class="h-10"></div>
-          <vs-input-number
-            label="Giảm giá(%): "
-            :min="0"
-            v-model="itemData.discount"
-            :step="1"
-          />
-          <div class="h-10"></div>
-          <div class="gender">
-            <div class="title">Giới tính</div>
-            <div class="options">
-              <vs-checkbox v-model="itemData.category" vs-value="Nam"
-                >Nam</vs-checkbox
+        <div class="h-20"></div>
+        <div class="h-20"></div>
+        <div class="h-20"></div>
+
+        <vs-row
+          vs-align="flex-end"
+          vs-type="flex"
+          vs-justify="space-between"
+          vs-w="12"
+        >
+          <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="2">
+            <vs-input
+              label="Tên sản phẩm"
+              class="w-240"
+              placeholder="Áo polo"
+              :danger="IsValidatingFormAdd && !editFormData.ProductName"
+              danger-text="Tên sản phẩm không được để trống"
+              v-model="editFormData.ProductName"
+            />
+          </vs-col>
+          <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="2">
+            <vs-input
+              label="Mã sản phẩm"
+              placeholder="SCM6081"
+              :danger="IsValidatingFormAdd && !editFormData.ProductCode"
+              danger-text="Mã sản phẩm không được để trống"
+              v-model="editFormData.ProductCode"
+            />
+          </vs-col>
+          <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="2">
+            <vs-input-number
+              label="Giá gốc: "
+              :min="0"
+              v-model="editFormData.OriginalPrice"
+              :step="1000"
+            />
+          </vs-col>
+          <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="2">
+            <vs-input-number
+              label="Giảm giá(%): "
+              :min="0"
+              :max="100"
+              v-model="editFormData.Discount"
+              :step="1"
+            />
+          </vs-col>
+          <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="2">
+            <vs-input-number
+              label="Giá giảm giá"
+              :min="0"
+              v-model="editFormData.Price"
+              :step="1000"
+            />
+          </vs-col>
+        </vs-row>
+
+        <div class="h-20"></div>
+        <vs-row
+          vs-align="flex-end"
+          vs-type="flex"
+          vs-justify="space-between"
+          vs-w="12"
+        >
+          <vs-col
+            vs-type="flex"
+            vs-justify="center"
+            vs-align="center"
+            vs-w="12"
+          >
+            <div class="type-row">
+              <vs-radio
+                color="success"
+                vs-name="radios2"
+                v-model="currentCategoryType"
+                :vs-value="0"
+                >Nam</vs-radio
               >
-              <vs-checkbox v-model="itemData.category" vs-value="Nữ"
-                >Nữ</vs-checkbox
+              <vs-radio
+                color="warning"
+                vs-name="radios2"
+                v-model="currentCategoryType"
+                :vs-value="1"
+                >Nữ</vs-radio
               >
-              <vs-checkbox v-model="itemData.category" vs-value="Unisex"
-                >Unisex</vs-checkbox
+              <vs-radio
+                color="rgb(87, 251, 187)"
+                vs-name="radios2"
+                v-model="currentCategoryType"
+                :vs-value="2"
+                >Trẻ em</vs-radio
               >
             </div>
-          </div>
-        </div>
+          </vs-col>
+        </vs-row>
+        <div class="h-20"></div>
+
+        <vs-row
+          vs-align="flex-end"
+          vs-type="flex"
+          vs-justify="space-between"
+          vs-w="12"
+        >
+          <vs-col
+            vs-type="flex"
+            vs-justify="center"
+            vs-align="center"
+            vs-w="12"
+          >
+            <div class="category-block">
+              <div
+                class="col"
+                v-for="(item, index) in CategoryData"
+                :key="index"
+              >
+                <div class="title">
+                  {{ item.CategoryName }}
+                </div>
+                <div class="row" v-for="j in item.Children" :key="j.CategoryID">
+                  <vs-checkbox v-model="CategoryFormEdit[j.CategoryID]">{{
+                    j.CategoryName
+                  }}</vs-checkbox>
+                </div>
+              </div>
+            </div>
+          </vs-col>
+        </vs-row>
+        <div class="h-20"></div>
+        <vs-row
+          vs-align="flex-end"
+          vs-type="flex"
+          vs-justify="space-between"
+          vs-w="12"
+        >
+          <vs-col
+            vs-type="flex"
+            vs-justify="center"
+            vs-align="center"
+            vs-w="12"
+          >
+            <div class="f-b">Màu sắc sản phẩm</div>
+          </vs-col></vs-row
+        >
+        <div class="h-10"></div>
+        <vs-row
+          vs-align="flex-end"
+          vs-type="flex"
+          vs-justify="space-between"
+          vs-w="12"
+        >
+          <vs-col
+            vs-type="flex"
+            vs-justify="center"
+            vs-align="center"
+            vs-w="12"
+          >
+            <div class="flex-wrap g-14">
+              <div
+                v-for="(item, index) in Colors"
+                :key="index"
+                class="color-cell"
+              >
+                <TColorCheck
+                  :cusclass="'color'"
+                  :code="item.ColorCode"
+                  :name="item.ColorName"
+                  v-model="ColorFormEdit[item.ColorCode]"
+                >
+                </TColorCheck>
+              </div>
+            </div>
+          </vs-col>
+        </vs-row>
+        <div class="h-20"></div>
+        <vs-row
+          vs-align="flex-end"
+          vs-type="flex"
+          vs-justify="space-between"
+          vs-w="12"
+        >
+          <vs-col
+            vs-type="flex"
+            vs-justify="center"
+            vs-align="center"
+            vs-w="12"
+          >
+            <div class="f-b">Kích thước sản phẩm</div>
+          </vs-col></vs-row
+        >
+        <div class="h-10"></div>
+        <vs-row
+          vs-align="flex-end"
+          vs-type="flex"
+          vs-justify="space-between"
+          vs-w="12"
+        >
+          <vs-col
+            vs-type="flex"
+            vs-justify="center"
+            vs-align="center"
+            vs-w="12"
+          >
+            <div class="flex-wrap g-14">
+              <div
+                v-for="(item, index) in Sizes"
+                :key="index"
+                class="size-cell"
+              >
+                <TSizeCheck
+                  :cusclass="'size'"
+                  v-model="SizeFormEdit[item.SizeID]"
+                >
+                  {{ item.SizeName }}
+                </TSizeCheck>
+              </div>
+            </div>
+          </vs-col>
+        </vs-row>
       </div>
-      <div class="buttons">
-        <vs-button @click="confirmEdit()" color="primary" type="filled"
+      <div class="buttons-footer">
+        <vs-button @click="confirmEditProduct()" color="primary" type="filled"
           >Xác nhận</vs-button
         >
       </div>
@@ -407,7 +613,7 @@ export default {
       isShowPopupDelete: false,
       isShowPopupEdit: false,
       isShowAdd: false,
-      itemData: {},
+      editFormData: {},
       addFormData: {},
       rowSelected: [],
       imageSrcs: [],
@@ -420,6 +626,11 @@ export default {
       SizeFormAdd: {},
       CategoryFormAdd: {},
       IsValidatingFormAdd: false,
+      // Dữ liệu form sửa
+      ColorFormEdit: {},
+      SizeFormEdit: {},
+      CategoryFormEdit: {},
+      IsValidatingFormEdit: false,
       deletingData: {},
     };
   },
@@ -535,7 +746,10 @@ export default {
 
       this.$refs.uploadInput.value = null;
     },
-    onEdit() {},
+    onEdit(e) {
+      this.isShowPopupEdit = true;
+      this.editFormData = e;
+    },
     onDelete(e) {
       this.deletingData = e;
       this.isShowPopupDelete = true;
@@ -718,6 +932,7 @@ export default {
 
       this.getProducts();
     },
+    confirmEditProduct() {},
   },
 };
 </script>
