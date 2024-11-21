@@ -26,6 +26,8 @@
   }
 
   .products-list {
+    min-width: calc(100% - 215px);
+
     .w-25 {
       width: calc(25% - 14px) !important;
     }

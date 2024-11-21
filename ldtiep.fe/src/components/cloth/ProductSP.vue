@@ -5,15 +5,16 @@
         loading="lazy"
         decoding="async"
         class="object-cover w-full product-card_image__9h71i"
-        src="https://m.yodycdn.com/fit-in/filters:format(webp)/products/akn5042-xth-5.jpg"
+        :src="src"
         style="color: transparent"
       />
+      <div v-if="discount" class="discount-percent">-{{ discount }}%</div>
     </div>
     <div class="name">
       {{ name }}
     </div>
-    <div class="money">
-      {{ money }}
+    <div :style="{ color: discount ? '#DF154B' : 'black' }" class="money">
+      {{ format(price) }}
     </div>
     <div class="colors">
       <div
@@ -27,21 +28,46 @@
 </template>
 
 <script>
+import API from "/src/service/api.js";
 export default {
   name: "ProductSP",
   props: {
     name: {
       default: "Áo khoác gió thông minh nữ trượt trước",
     },
-    money: {
-      default: "599.000 đ",
+    price: {
+      default: 599000,
+    },
+    originalPrice: {
+      default: 480000,
+    },
+    discount: {
+      default: 10,
     },
     colors: {
       default: ["#336DAF", "#3D4D6E", "#FD5C45", "#242E36", "#F5CA49"],
     },
+    pictureIds: {
+      default: "",
+    },
   },
   data() {
-    return {};
+    return {
+      api: new API("Pictures"),
+    };
+  },
+  computed: {
+    src() {
+      return this.api.baseUrl + "/" + this.pictureIds.split(";")[0];
+    },
+  },
+  methods: {
+    format(val) {
+      return val.toLocaleString("vi-VN", {
+        style: "currency",
+        currency: "VND",
+      });
+    },
   },
 };
 </script>
@@ -71,5 +97,20 @@ export default {
   color: #1c2430;
   font-size: 16px;
   font-weight: 600;
+}
+.product-container {
+  .image {
+    position: relative;
+    .discount-percent {
+      background: #e14337;
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      padding: 4px 10px;
+      border-radius: 16px;
+      color: white;
+      font-size: 13px;
+    }
+  }
 }
 </style>

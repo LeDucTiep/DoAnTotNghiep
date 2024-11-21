@@ -1,15 +1,28 @@
 <template>
   <div class="product-view-container d-flex">
     <div class="bo-loc">
-      <div class="total">175 sản phẩm</div>
+      <div class="total">{{ total }} sản phẩm</div>
       <div class="name">Bộ lọc</div>
       <div class="gender">
         <div class="title">Giới tính</div>
         <div class="col">
           <TCheckbox
-            v-for="(item, index) in genderFilters"
+            v-for="(item, index) in [
+              {
+                name: 'Nữ',
+                value: 1,
+              },
+              {
+                name: 'Nam',
+                value: 0,
+              },
+              {
+                name: 'Trẻ em',
+                value: 2,
+              },
+            ]"
             :key="index"
-            v-model="item.value"
+            v-model="CategoryFilter[item.value]"
             @change="onChangeFilter()"
           >
             {{ item.name }}
@@ -25,8 +38,8 @@
             :cusclass="'color'"
             :code="item.ColorCode"
             :name="item.ColorName"
-            v-model="item.IsChecked"
-            @change="onChangeColors()"
+            v-model="ColorFilter[item.ColorID]"
+            @change="onChangeFilter()"
           >
           </TColorCheck>
         </div>
@@ -35,13 +48,13 @@
         <div class="title">Kích thước</div>
         <div class="col">
           <TSizeCheck
-            v-for="(item, index) in sizes"
+            v-for="(item, index) in Sizes"
             :key="index"
             :cusclass="'size'"
-            v-model="item.value"
+            v-model="SizeFilter[item.SizeID]"
             @change="onChangeFilter()"
           >
-            {{ item.name }}
+            {{ item.SizeName }}
           </TSizeCheck>
         </div>
       </div>
@@ -50,9 +63,22 @@
         <div class="title">Theo giá</div>
         <div class="col">
           <TCheckbox
-            v-for="(item, index) in costFilters"
+            v-for="(item, index) in [
+              {
+                name: 'Dưới 350.000đ',
+                value: 0,
+              },
+              {
+                name: 'Từ 350.000đ - 750.000đ',
+                value: 1,
+              },
+              {
+                name: 'Trên 750.000đ',
+                value: 2,
+              },
+            ]"
             :key="index"
-            v-model="item.value"
+            v-model="CostFilter[item.value]"
             @change="onChangeFilter()"
           >
             {{ item.name }}
@@ -62,13 +88,27 @@
     </div>
 
     <div class="products-list">
-      <div class="products f-row f-wrap">
+      <div v-if="productDatas.length" class="products f-row f-wrap">
         <ProductSP
-          v-for="(item, index) in products"
+          v-for="(item, index) in productDatas"
           :key="index"
-          :name="item.name"
+          :name="item.ProductName"
+          :colors="item.ColorCodes.split(';')"
+          :price="item.Price"
+          :originalPrice="item.OriginalPrice"
+          :discount="item.Discount"
+          :pictureIds="item.PictureIDS"
           class="w-25"
         ></ProductSP>
+      </div>
+      <div v-else class="products empty-product-data">
+        <div class="nodata-img flex-center">
+          <img
+            style="height: 500px"
+            src="../../assets/images/nodata.png"
+            alt="Không có dữ liệu"
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -80,6 +120,7 @@ import API from "/src/service/api.js";
 import TCheckbox from "/src/base/checkbox/TCheckbox.vue";
 import TColorCheck from "/src/base/checkbox/TColorCheck.vue";
 import TSizeCheck from "/src/base/checkbox/TSizeCheck.vue";
+import { inject } from "vue";
 export default {
   name: "ProductsView",
   props: {},
@@ -91,147 +132,70 @@ export default {
   },
   data() {
     return {
-      Colors: [],
-      genderFilters: [
-        {
-          name: "Nữ",
-          value: false,
-        },
-        {
-          name: "Nam",
-          value: false,
-        },
-        {
-          name: "Unisex",
-          value: false,
-        },
-      ],
-      costFilters: [
-        {
-          name: "Dưới 350.000đ",
-          value: false,
-        },
-        {
-          name: "Từ 350.000đ - 750.000đ",
-          value: false,
-        },
-        {
-          name: "Trên 750.000đ",
-          value: false,
-        },
-      ],
+      vs: inject("$vs"),
       ColorApi: new API("Colors"),
-      sizes: [
-        { value: false, name: "S" },
-        { value: false, name: "M" },
-        { value: false, name: "L" },
-        { value: false, name: "XL" },
-        { value: false, name: "2XL" },
-        { value: false, name: "3XL" },
-        { value: false, name: "3XL" },
-        { value: false, name: "4XL" },
-        { value: false, name: "5XL" },
-        { value: false, name: "F" },
-        { value: false, name: "XXX" },
-        { value: false, name: "0" },
-        { value: false, name: "1" },
-        { value: false, name: "2" },
-        { value: false, name: "3" },
-        { value: false, name: "4" },
-        { value: false, name: "27" },
-        { value: false, name: "28" },
-        { value: false, name: "29" },
-        { value: false, name: "30" },
-        { value: false, name: "31" },
-        { value: false, name: "32" },
-        { value: false, name: "33" },
-        { value: false, name: "34" },
-        { value: false, name: "35" },
-        { value: false, name: "36" },
-        { value: false, name: "38" },
-        { value: false, name: "39" },
-        { value: false, name: "40" },
-        { value: false, name: "41" },
-        { value: false, name: "42" },
-        { value: false, name: "43" },
-        { value: false, name: "44" },
-        { value: false, name: "110" },
-        { value: false, name: "115" },
-        { value: false, name: "120" },
-        { value: false, name: "125" },
-        { value: false, name: "130" },
-      ],
-      products: [
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-      ],
+      PictureApi: new API("Pictures"),
+      SizeApi: new API("Sizes"),
+      CateApi: new API("Categorys"),
+      ProductApi: new API("Products"),
+      SizeFilter: {},
+      CategoryFilter: {},
+      ColorFilter: {},
+      CostFilter: {},
+      Colors: [],
+      Sizes: [],
+      productDatas: [],
+      total: 0,
     };
   },
   created() {
     this.getColors();
+    this.getSizes();
+    this.getProducts();
+
+    console.log(this.$route);
+
+    this.CategoryFilter[this.$route.query.CategoryType] = true;
+  },
+  watch: {
+    "$route.query.CategoryType": function (val, oldVal) {
+      if (val != oldVal) {
+        this.CategoryFilter = {};
+        this.CategoryFilter[val] = true;
+      }
+    },
+    "$route.query.CategoryID": function (val, oldVal) {
+      if (val != oldVal) {
+        console.log(val);
+      }
+    },
   },
   methods: {
-    onChangeFilter() {
-      console.log("Genders changed");
-    },
-    onChangeColors() {},
+    async getProducts() {
+      const param = {
+        PageSize: 100,
+        PageNumber: 1,
+        Sorter: {
+          ModifiedDate: "asc",
+        },
+      };
 
+      const res = await this.ProductApi.paging(param);
+
+      this.productDatas = res.Data;
+      this.total = res.TotalRecord;
+    },
+    async getSizes() {
+      const param = {
+        PageSize: 100,
+        PageNumber: 1,
+        Sorter: {
+          ModifiedDate: "asc",
+        },
+      };
+      const res = await this.SizeApi.paging(param);
+      this.Sizes = res.Data;
+    },
     async getColors() {
       const param = {
         PageSize: 100,
@@ -244,6 +208,12 @@ export default {
       const res = await this.ColorApi.paging(param);
 
       this.Colors = res.Data;
+    },
+    onChangeFilter() {
+      console.log(this.CategoryFilter);
+      console.log(this.SizeFilter);
+      console.log(this.ColorFilter);
+      console.log(this.CostFilter);
     },
   },
 };
