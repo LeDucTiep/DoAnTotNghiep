@@ -1,113 +1,116 @@
 <template>
-  <div class="product-view-container d-flex">
-    <div class="bo-loc">
-      <div class="total">{{ total }} sản phẩm</div>
-      <div class="name">Bộ lọc</div>
-      <div class="gender">
-        <div class="title">Giới tính</div>
-        <div class="col">
-          <TCheckbox
-            v-for="(item, index) in [
-              {
-                name: 'Nữ',
-                value: 1,
-              },
-              {
-                name: 'Nam',
-                value: 0,
-              },
-              {
-                name: 'Trẻ em',
-                value: 2,
-              },
-            ]"
-            :key="index"
-            v-model="CategoryFilter[item.value]"
-            @change="onChangeFilter()"
-          >
-            {{ item.name }}
-          </TCheckbox>
+  <div class="view-page-container">
+    <div v-if="!isShowCategoryFilter" class="filter-name">{{ filterName }}</div>
+    <div class="product-view-container d-flex">
+      <div class="bo-loc">
+        <div class="total">{{ total }} sản phẩm</div>
+        <div class="name">Bộ lọc</div>
+        <div v-if="isShowCategoryFilter" class="gender">
+          <div class="title">Thể loại</div>
+          <div class="col">
+            <TCheckbox
+              v-for="(item, index) in [
+                {
+                  name: 'Nữ',
+                  value: 1,
+                },
+                {
+                  name: 'Nam',
+                  value: 0,
+                },
+                {
+                  name: 'Trẻ em',
+                  value: 2,
+                },
+              ]"
+              :key="index"
+              v-model="CategoryFilter[item.value]"
+              @change="onChangeFilter()"
+            >
+              {{ item.name }}
+            </TCheckbox>
+          </div>
         </div>
-      </div>
-      <div class="colors">
-        <div class="title">Màu sắc</div>
-        <div class="col">
-          <TColorCheck
-            v-for="(item, index) in Colors"
-            :key="index"
-            :cusclass="'color'"
-            :code="item.ColorCode"
-            :name="item.ColorName"
-            v-model="ColorFilter[item.ColorID]"
-            @change="onChangeFilter()"
-          >
-          </TColorCheck>
+        <div class="colors">
+          <div class="title">Màu sắc</div>
+          <div class="col">
+            <TColorCheck
+              v-for="(item, index) in Colors"
+              :key="index"
+              :cusclass="'color'"
+              :code="item.ColorCode"
+              :name="item.ColorName"
+              v-model="ColorFilter[item.ColorID]"
+              @change="onChangeFilter()"
+            >
+            </TColorCheck>
+          </div>
         </div>
-      </div>
-      <div class="sizes">
-        <div class="title">Kích thước</div>
-        <div class="col">
-          <TSizeCheck
-            v-for="(item, index) in Sizes"
-            :key="index"
-            :cusclass="'size'"
-            v-model="SizeFilter[item.SizeID]"
-            @change="onChangeFilter()"
-          >
-            {{ item.SizeName }}
-          </TSizeCheck>
+        <div class="sizes">
+          <div class="title">Kích thước</div>
+          <div class="col">
+            <TSizeCheck
+              v-for="(item, index) in Sizes"
+              :key="index"
+              :cusclass="'size'"
+              v-model="SizeFilter[item.SizeID]"
+              @change="onChangeFilter()"
+            >
+              {{ item.SizeName }}
+            </TSizeCheck>
+          </div>
+        </div>
+
+        <div class="by-cost">
+          <div class="title">Theo giá</div>
+          <div class="col">
+            <TCheckbox
+              v-for="(item, index) in [
+                {
+                  name: 'Dưới 350.000đ',
+                  value: 0,
+                },
+                {
+                  name: 'Từ 350.000đ - 750.000đ',
+                  value: 1,
+                },
+                {
+                  name: 'Trên 750.000đ',
+                  value: 2,
+                },
+              ]"
+              :key="index"
+              v-model="CostFilter[item.value]"
+              @change="onChangeFilter()"
+            >
+              {{ item.name }}
+            </TCheckbox>
+          </div>
         </div>
       </div>
 
-      <div class="by-cost">
-        <div class="title">Theo giá</div>
-        <div class="col">
-          <TCheckbox
-            v-for="(item, index) in [
-              {
-                name: 'Dưới 350.000đ',
-                value: 0,
-              },
-              {
-                name: 'Từ 350.000đ - 750.000đ',
-                value: 1,
-              },
-              {
-                name: 'Trên 750.000đ',
-                value: 2,
-              },
-            ]"
+      <div class="products-list">
+        <div v-if="productDatas.length" class="products f-row f-wrap">
+          <ProductSP
+            v-for="(item, index) in productDatas"
             :key="index"
-            v-model="CostFilter[item.value]"
-            @change="onChangeFilter()"
-          >
-            {{ item.name }}
-          </TCheckbox>
+            :name="item.ProductName"
+            :colors="item.ColorCodes.split(';')"
+            :price="item.Price"
+            :originalPrice="item.OriginalPrice"
+            :discount="item.Discount"
+            :pictureIds="item.PictureIDS"
+            class="w-25"
+          ></ProductSP>
         </div>
-      </div>
-    </div>
-
-    <div class="products-list">
-      <div v-if="productDatas.length" class="products f-row f-wrap">
-        <ProductSP
-          v-for="(item, index) in productDatas"
-          :key="index"
-          :name="item.ProductName"
-          :colors="item.ColorCodes.split(';')"
-          :price="item.Price"
-          :originalPrice="item.OriginalPrice"
-          :discount="item.Discount"
-          :pictureIds="item.PictureIDS"
-          class="w-25"
-        ></ProductSP>
-      </div>
-      <div v-else class="products empty-product-data">
-        <div class="nodata-img flex-center">
-          <img
-            style="height: 500px"
-            src="../../assets/images/nodata.png"
-            alt="Không có dữ liệu"
-          />
+        <div v-else class="products empty-product-data">
+          <div class="nodata-img flex-center">
+            <img
+              style="height: 500px"
+              src="../../assets/images/nodata.png"
+              alt="Không có dữ liệu"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -146,15 +149,15 @@ export default {
       Sizes: [],
       productDatas: [],
       total: 0,
+      filterName: "",
+      isShowCategoryFilter: true,
     };
   },
   created() {
     this.getColors();
     this.getSizes();
     this.getProducts();
-
-    console.log(this.$route);
-
+    this.mapFilterName();
     this.CategoryFilter[this.$route.query.CategoryType] = true;
   },
   watch: {
@@ -162,15 +165,38 @@ export default {
       if (val != oldVal) {
         this.CategoryFilter = {};
         this.CategoryFilter[val] = true;
+        this.mapFilterName();
       }
     },
     "$route.query.CategoryID": function (val, oldVal) {
       if (val != oldVal) {
-        console.log(val);
+        this.mapFilterName();
       }
     },
   },
   methods: {
+    async mapFilterName() {
+      if (this.$route.query.CategoryID) {
+        const cate = await this.CateApi.byID(this.$route.query.CategoryID);
+
+        this.filterName = cate.CategoryName;
+
+        this.isShowCategoryFilter = false;
+      } else {
+        switch (this.$route.query.CategoryType) {
+          case 0:
+            this.filterName = "Nam";
+            break;
+          case 1:
+            this.filterName = "Nữ";
+            break;
+          default:
+            this.filterName = "Trẻ em";
+            break;
+        }
+        this.isShowCategoryFilter = true;
+      }
+    },
     async getProducts() {
       const param = {
         PageSize: 100,
@@ -210,10 +236,10 @@ export default {
       this.Colors = res.Data;
     },
     onChangeFilter() {
-      console.log(this.CategoryFilter);
-      console.log(this.SizeFilter);
-      console.log(this.ColorFilter);
-      console.log(this.CostFilter);
+      // console.log(this.CategoryFilter);
+      // console.log(this.SizeFilter);
+      // console.log(this.ColorFilter);
+      // console.log(this.CostFilter);
     },
   },
 };
