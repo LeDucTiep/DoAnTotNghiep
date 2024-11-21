@@ -147,18 +147,20 @@ export default {
       CostFilter: {},
       Colors: [],
       Sizes: [],
+      Categorys: [],
       productDatas: [],
       total: 0,
       filterName: "",
       isShowCategoryFilter: true,
     };
   },
-  created() {
-    this.getColors();
-    this.getSizes();
-    this.getProducts();
-    this.mapFilterName();
+  async created() {
     this.CategoryFilter[this.$route.query.CategoryType] = true;
+    await this.getColors();
+    await this.getCategorys();
+    await this.getSizes();
+    await this.getProducts();
+    await this.mapFilterName();
   },
   watch: {
     "$route.query.CategoryType": function (val, oldVal) {
@@ -166,11 +168,13 @@ export default {
         this.CategoryFilter = {};
         this.CategoryFilter[val] = true;
         this.mapFilterName();
+        this.getProducts();
       }
     },
     "$route.query.CategoryID": function (val, oldVal) {
       if (val != oldVal) {
         this.mapFilterName();
+        this.getProducts();
       }
     },
   },
@@ -197,14 +201,100 @@ export default {
         this.isShowCategoryFilter = true;
       }
     },
-    async getProducts() {
+    buildProductParam() {
+      const filter = {};
+      const filterIn = {};
+
+      if (this.$route.query.CategoryID)
+        filterIn.CategoryIDs = [this.$route.query.CategoryID];
+      else {
+        const ca = [];
+
+        for (let i = 0; i < this.Categorys.length; i++) {
+          const e = this.Categorys[i];
+
+          if (this.CategoryFilter[e.CategoryType]) {
+            ca.push(e.CategoryID);
+          }
+
+          for (let j = 0; j < e.Children.length; j++) {
+            const element = e.Children[j];
+
+            if (this.CategoryFilter[element.CategoryType]) {
+              ca.push(element.CategoryID);
+            }
+          }
+        }
+        filterIn.CategoryIDs = ca;
+      }
+
+      const colorIds = [];
+
+      for (const key of Object.keys(this.ColorFilter)) {
+        if (this.ColorFilter[key]) {
+          colorIds.push(key);
+        }
+      }
+
+      if (colorIds.length) {
+        filterIn.ColorIDs = colorIds;
+      }
+
+      const sizeIds = [];
+
+      for (const key of Object.keys(this.SizeFilter)) {
+        if (this.SizeFilter[key]) {
+          sizeIds.push(key);
+        }
+      }
+
+      if (sizeIds.length) {
+        filterIn.SizeIDs = sizeIds;
+      }
+
       const param = {
         PageSize: 100,
         PageNumber: 1,
         Sorter: {
           ModifiedDate: "asc",
         },
+        SearchEquals: filter,
+        SearchIn: filterIn,
       };
+      return param;
+    },
+    async getCategorys() {
+      const param = {
+        PageSize: 100,
+        PageNumber: 1,
+      };
+
+      const res = await this.CateApi.paging(param);
+
+      let parents = [];
+
+      res.Data.forEach((e) => {
+        if (!e.ParentID) {
+          parents.push(e);
+        }
+      });
+
+      function comparer(a, b) {
+        return a.SortOrder - b.SortOrder;
+      }
+
+      parents.forEach((e) => {
+        e.Children = res.Data.filter((j) => e.CategoryID == j.ParentID).sort(
+          comparer
+        );
+      });
+
+      parents = parents.sort(comparer);
+
+      this.Categorys = parents;
+    },
+    async getProducts() {
+      const param = this.buildProductParam();
 
       const res = await this.ProductApi.paging(param);
 
@@ -236,10 +326,12 @@ export default {
       this.Colors = res.Data;
     },
     onChangeFilter() {
-      // console.log(this.CategoryFilter);
-      // console.log(this.SizeFilter);
-      // console.log(this.ColorFilter);
-      // console.log(this.CostFilter);
+      console.log(this.CategoryFilter);
+      console.log(this.SizeFilter);
+      console.log(this.ColorFilter);
+      console.log(this.CostFilter);
+
+      this.getProducts();
     },
   },
 };

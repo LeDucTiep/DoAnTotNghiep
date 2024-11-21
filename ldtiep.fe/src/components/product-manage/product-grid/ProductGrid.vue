@@ -491,7 +491,7 @@ export default {
       const param = {
         PageSize: 500,
         PageNumber: 1,
-        SearchTerm: {
+        SearchEquals: {
           CategoryType: t,
         },
       };

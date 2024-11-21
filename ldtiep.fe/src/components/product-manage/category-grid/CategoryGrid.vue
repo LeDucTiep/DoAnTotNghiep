@@ -308,7 +308,7 @@ export default {
       const param = {
         PageSize: 100,
         PageNumber: this.pageIndex,
-        SearchTerm: {
+        SearchEquals: {
           CategoryType: this.currentCategoryType,
         },
         Sorter: this.currentSort,

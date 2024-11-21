@@ -8,6 +8,7 @@ using System;
 using System.Data;
 using System.Linq;
 using System.Net;
+using System.Text.Json;
 
 namespace ldtiep.be.DL.Repository
 {
@@ -95,7 +96,7 @@ namespace ldtiep.be.DL.Repository
                 // Còn thở thì còn xóa
                 while (listId.Count > 0)
                 {
-                    var whereBlock = new List<string>() { "true"};
+                    var whereBlock = new List<string>() { "true" };
                     var ids = new List<string>();
 
                     // Xóa mỗi lần 10 bản ghi
@@ -258,7 +259,7 @@ namespace ldtiep.be.DL.Repository
             // Tên bảng 
             var table = typeof(TEntity).Name;
 
-           
+
             string tableName = $"ldt_{table.ToLower()}";
 
 
@@ -372,7 +373,7 @@ namespace ldtiep.be.DL.Repository
 
             try
             {
-                var whereBlock = new List<string>() { "1 = 1"};
+                var whereBlock = new List<string>() { "1 = 1" };
                 var dynamicParams = new DynamicParameters();
 
                 foreach (var item in param.Keys)
@@ -437,14 +438,51 @@ namespace ldtiep.be.DL.Repository
             parameters.Add("v_offset", offset);
             parameters.Add("v_limit", basePagingArgument.PageSize);
 
-            if(basePagingArgument.SearchTerm?.Keys != null)
+            if (basePagingArgument.SearchEquals?.Keys != null)
             {
-                foreach (var key in basePagingArgument.SearchTerm.Keys)
+                foreach (var key in basePagingArgument.SearchEquals.Keys)
                 {
+                    var val = basePagingArgument.SearchEquals.GetValueOrDefault(key);
+                    if (val == null)
+                        continue;
+
+
                     whereBlocks.Add($"{key} = @v_{key}");
-                    parameters.Add($"v_{key}", basePagingArgument.SearchTerm.GetValueOrDefault(key)?.ToString());
+                    parameters.Add($"v_{key}", val.ToString());
                 }
             }
+
+            if (basePagingArgument.SearchIn?.Keys != null)
+            {
+                foreach (var key in basePagingArgument.SearchIn.Keys)
+                {
+                    var val = basePagingArgument.SearchIn.GetValueOrDefault(key);
+                    if (val == null)
+                        continue;
+
+                    if (((System.Text.Json.JsonElement)val).ValueKind.ToString() == "Array")
+                    {
+                        List<string> arr = JsonSerializer.Deserialize<List<string>>(((JsonElement)val).GetRawText());
+
+                        if (arr == null || arr.Count == 0)
+                            continue;
+
+                        List<string> temp = new();
+
+                        for (int i = 0; i < arr.Count; i++)
+                        {
+                            var item = arr[i];
+
+                            temp.Add($"(FIND_IN_SET(@v_{key}_{i}, REPLACE({key}, ';', ',')) > 0)");
+
+                            parameters.Add($"v_{key}_{i}", item.ToString());
+                        }
+
+                        whereBlocks.Add($"({string.Join(" or ", temp)})");
+                    }
+                }
+            }
+
             string orderby = "";
             if (basePagingArgument.Sorter?.Keys != null)
             {
@@ -454,7 +492,7 @@ namespace ldtiep.be.DL.Repository
                     orderbyBlocks.Add($"{key} {type}");
                 }
 
-                if(orderbyBlocks.Count > 0)
+                if (orderbyBlocks.Count > 0)
                 {
                     orderby = $"order by {string.Join(" , ", orderbyBlocks)}";
                 }

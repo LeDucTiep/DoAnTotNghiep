@@ -26,10 +26,15 @@ namespace ldtiep.be.DL.Model
         public int PageNumber { get => pageNumber; set => pageNumber = value; }
 
         /// <summary>
-        /// Từ khóa cần tìm kiếm
+        /// Tìm kiếm theo toán tử =
         /// </summary>
         /// Author: LeDucTiep (09/06/2023)
-        public Dictionary<string, object>? SearchTerm { get; set; }
+        public Dictionary<string, object>? SearchEquals { get; set; }
+        /// <summary>
+        /// Tìm kiếm theo toán tử in
+        /// </summary>
+        /// Author: LeDucTiep (09/06/2023)
+        public Dictionary<string, object>? SearchIn { get; set; }
         /// <summary>
         /// Tham số sắp xếp
         /// </summary>

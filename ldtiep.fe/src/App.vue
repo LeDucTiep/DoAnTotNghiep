@@ -33,12 +33,15 @@
           <div class="menu-item pd-10-20">Sale 50%</div>
           <div class="menu-item pd-10-20">Mới về</div>
           <div class="menu-item pd-10-20">Bán chạy</div>
-          <TPop>
+          <TPop ref="namMenu">
             <div class="menu-item">
               <vs-button
                 type="line"
                 color="dark"
-                @click="toFilterPage({ CategoryType: 0 })"
+                @click="
+                  toFilterPage({ CategoryType: 0 });
+                  $refs.namMenu.hide();
+                "
               >
                 Nam
               </vs-button>
@@ -57,7 +60,8 @@
                         toFilterPage({
                           CategoryType: item.CategoryType,
                           CategoryID: item.CategoryID,
-                        })
+                        });
+                        $refs.namMenu.hide();
                       "
                     >
                       {{ item.CategoryName }}
@@ -70,7 +74,8 @@
                         toFilterPage({
                           CategoryType: item.CategoryType,
                           CategoryID: j.CategoryID,
-                        })
+                        });
+                        $refs.namMenu.hide();
                       "
                     >
                       {{ j.CategoryName }}
@@ -86,12 +91,15 @@
               </div>
             </template>
           </TPop>
-          <TPop>
+          <TPop ref="nuMenu">
             <div class="menu-item">
               <vs-button
                 type="line"
                 color="dark"
-                @click="toFilterPage({ CategoryType: 1 })"
+                @click="
+                  toFilterPage({ CategoryType: 1 });
+                  $refs.nuMenu.hide();
+                "
               >
                 Nữ
               </vs-button>
@@ -110,7 +118,8 @@
                         toFilterPage({
                           CategoryType: item.CategoryType,
                           CategoryID: item.CategoryID,
-                        })
+                        });
+                        $refs.nuMenu.hide();
                       "
                     >
                       {{ item.CategoryName }}
@@ -123,7 +132,8 @@
                         toFilterPage({
                           CategoryType: item.CategoryType,
                           CategoryID: j.CategoryID,
-                        })
+                        });
+                        $refs.nuMenu.hide();
                       "
                     >
                       {{ j.CategoryName }}
@@ -139,12 +149,15 @@
               </div>
             </template>
           </TPop>
-          <TPop>
+          <TPop ref="emMenu">
             <div class="menu-item">
               <vs-button
                 type="line"
                 color="dark"
-                @click="toFilterPage({ CategoryType: 2 })"
+                @click="
+                  toFilterPage({ CategoryType: 2 });
+                  $refs.emMenu.hide();
+                "
               >
                 Trẻ em
               </vs-button>
@@ -163,7 +176,8 @@
                         toFilterPage({
                           CategoryType: item.CategoryType,
                           CategoryID: item.CategoryID,
-                        })
+                        });
+                        $refs.emMenu.hide();
                       "
                     >
                       {{ item.CategoryName }}
@@ -176,7 +190,8 @@
                         toFilterPage({
                           CategoryType: item.CategoryType,
                           CategoryID: j.CategoryID,
-                        })
+                        });
+                        $refs.emMenu.hide();
                       "
                     >
                       {{ j.CategoryName }}
@@ -613,7 +628,7 @@ export default {
       const param = {
         PageSize: 500,
         PageNumber: 1,
-        SearchTerm: {
+        SearchEquals: {
           CategoryType: t,
         },
       };
