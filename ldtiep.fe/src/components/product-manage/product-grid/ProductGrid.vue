@@ -22,7 +22,8 @@
       :dataSource="rowData"
       @edit="onEdit($event)"
       @delete="onDelete($event)"
-      v-model="selected"
+      :total="total"
+      v-model="rowSelected"
     ></TGrid>
     <div v-else class="nodata-img flex-center">
       <img
@@ -38,6 +39,17 @@
       <div class="content">Bạn có chắc chắn muốn xóa sản phẩm này?</div>
       <div class="buttons">
         <vs-button @click="confirmDelete()" color="primary" type="filled"
+          >Xác nhận</vs-button
+        >
+      </div>
+    </div>
+  </vs-popup>
+
+  <vs-popup title="Xóa sản phẩm" v-model:active="isShowPopupDeleteMany">
+    <div class="popup-content">
+      <div class="content">Bạn có chắc chắn muốn xóa sản phẩm đã chọn?</div>
+      <div class="buttons">
+        <vs-button @click="confirmDeleteMany()" color="primary" type="filled"
           >Xác nhận</vs-button
         >
       </div>
@@ -378,13 +390,20 @@ export default {
       ProductApi: new API("Products"),
       uploadProgress: null,
       rowData: [],
+      total: 0,
       columns: [
-        { field: "name", width: 420 },
-        { field: "price" },
-        { field: "original_price" },
-        { field: "discount" },
+        { field: "ProductName", name: "Tên sản phẩm" },
+        { field: "ProductCode", name: "Mã sản phẩm" },
+        { field: "PictureIDS", name: "Ảnh", type: 10 },
+        { field: "OriginalPrice", name: "Giá gốc" },
+        { field: "Discount", name: "Giảm giá(%)" },
+        { field: "Price", name: "Giá giảm giá" },
+        {
+          field: "ProductID",
+          type: 1,
+        },
       ],
-      selected: [],
+      isShowPopupDeleteMany: false,
       isShowPopupDelete: false,
       isShowPopupEdit: false,
       isShowAdd: false,
@@ -401,6 +420,7 @@ export default {
       SizeFormAdd: {},
       CategoryFormAdd: {},
       IsValidatingFormAdd: false,
+      deletingData: {},
     };
   },
   watch: {
@@ -426,9 +446,23 @@ export default {
     this.getCategory(this.currentCategoryType);
     this.getColors();
     this.getSizes();
+    this.getProducts();
   },
   methods: {
-    onChangeSize() {},
+    async getProducts() {
+      const param = {
+        PageSize: 100,
+        PageNumber: 1,
+        Sorter: {
+          ModifiedDate: "asc",
+        },
+      };
+
+      const res = await this.ProductApi.paging(param);
+
+      this.rowData = res.Data;
+      this.total = res.TotalRecord;
+    },
     async getSizes() {
       const param = {
         PageSize: 100,
@@ -502,15 +536,28 @@ export default {
       this.$refs.uploadInput.value = null;
     },
     onEdit() {},
-    onDelete() {
+    onDelete(e) {
+      this.deletingData = e;
       this.isShowPopupDelete = true;
     },
-    confirmDelete() {
+    async confirmDelete() {
       this.isShowPopupDelete = false;
+
+      await this.ProductApi.deleteByID(this.deletingData.ProductID);
+
+      this.getProducts();
+    },
+    async confirmDeleteMany() {
+      this.isShowPopupDeleteMany = false;
+
+      const ids = this.rowSelected.map((e) => e.ProductID);
+      await this.ProductApi.deleteMany(ids);
+
+      this.getProducts();
     },
     confirmEdit() {},
     deleteSelected() {
-      this.isShowPopupDelete = true;
+      this.isShowPopupDeleteMany = true;
     },
     async showAddForm() {
       const code = await this.ProductApi.genNewKey();
@@ -665,9 +712,11 @@ export default {
 
       this.addFormData.PictureIDS = images.map((e) => e.PictureID).join(";");
 
-      this.ProductApi.add(this.addFormData);
+      await this.ProductApi.add(this.addFormData);
 
       this.isShowAdd = false;
+
+      this.getProducts();
     },
   },
 };
