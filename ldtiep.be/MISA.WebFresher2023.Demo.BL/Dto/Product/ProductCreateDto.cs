@@ -20,6 +20,6 @@ namespace ldtiep.be.BL.Dto
         public string SizeNames { get; set; }
         public string CategoryIDs { get; set; }
         public string CategoryNames { get; set; }
-        public string ImageNames { get; set; }
+        public string PictureIDS { get; set; }
     }
 }

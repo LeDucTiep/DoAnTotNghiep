@@ -32,6 +32,9 @@ class API {
     async deleteMany(ids) {
         return await this.delete(``, ids);
     }
+    async genNewKey() {
+        return await this.get(`/gen-new-key`);
+    }
     async upFile(file) {
         const formData = new FormData();
         formData.append('file', file);

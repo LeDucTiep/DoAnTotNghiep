@@ -15,7 +15,14 @@ namespace ldtiep.be.BL
         {
             CreateMap<Product, ProductDto>();
             CreateMap<ProductDto, Product>();
+            CreateMap<Product, ProductCreateDto>();
+            CreateMap<ProductCreateDto, ProductDto>();
+            CreateMap<ProductCreateDto, Product>();
+            CreateMap<ProductDto, ProductCreateDto>();
             CreateMap<ProductUpdateDto, Product>();
+            CreateMap<ProductUpdateDto, ProductDto>();
+            CreateMap<ProductDto, ProductUpdateDto>();
+            CreateMap<Product, ProductUpdateDto>();
             CreateMap<BasePage<Product>, BasePage<ProductDto>>();
         }
     }

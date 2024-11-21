@@ -217,6 +217,9 @@ namespace ldtiep.be.DL.Repository
                     }
                 }
 
+                if (name == "CreatedDate")
+                    value = DateTime.Now;
+
                 // Thêm tham số 
                 dynamicParams.Add($"v_{name}", value);
                 valueBlocks.Add($"@v_{name}");
@@ -292,6 +295,9 @@ namespace ldtiep.be.DL.Repository
                 {
                     value = null;
                 }
+
+                if (name == "ModifiedDate")
+                    value = DateTime.Now;
 
                 // Thêm tham số
                 dynamicParams.Add($"v_{name}", value);

@@ -145,7 +145,10 @@
           <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="2">
             <vs-input
               label="Tên sản phẩm"
+              class="w-240"
               placeholder="Áo polo"
+              :danger="IsValidatingFormAdd && !addFormData.ProductName"
+              danger-text="Tên sản phẩm không được để trống"
               v-model="addFormData.ProductName"
             />
           </vs-col>
@@ -153,6 +156,8 @@
             <vs-input
               label="Mã sản phẩm"
               placeholder="SCM6081"
+              :danger="IsValidatingFormAdd && !addFormData.ProductCode"
+              danger-text="Mã sản phẩm không được để trống"
               v-model="addFormData.ProductCode"
             />
           </vs-col>
@@ -358,15 +363,19 @@
 import API from "/src/service/api.js";
 import TSizeCheck from "/src/base/checkbox/TSizeCheck.vue";
 import TColorCheck from "/src/base/checkbox/TColorCheck.vue";
+import { inject } from "vue";
 export default {
   name: "ProductGrid",
   props: [],
   components: { TColorCheck, TSizeCheck },
   data() {
     return {
+      vs: inject("$vs"),
       ColorApi: new API("Colors"),
+      PictureApi: new API("Pictures"),
       SizeApi: new API("Sizes"),
       CateApi: new API("Categorys"),
+      ProductApi: new API("Products"),
       uploadProgress: null,
       rowData: [],
       columns: [
@@ -391,12 +400,25 @@ export default {
       ColorFormAdd: {},
       SizeFormAdd: {},
       CategoryFormAdd: {},
+      IsValidatingFormAdd: false,
     };
   },
   watch: {
     currentCategoryType(val, oldVal) {
       if (val != oldVal) {
         this.getCategory(val);
+      }
+    },
+    "addFormData.OriginalPrice": function (val, oldVal) {
+      if (val != oldVal) {
+        this.addFormData.Price = val - (val * this.addFormData.Discount) / 100;
+      }
+    },
+    "addFormData.Discount": function (val, oldVal) {
+      if (val != oldVal) {
+        this.addFormData.Price =
+          this.addFormData.OriginalPrice -
+          (this.addFormData.OriginalPrice * val) / 100;
       }
     },
   },
@@ -490,13 +512,102 @@ export default {
     deleteSelected() {
       this.isShowPopupDelete = true;
     },
-    showAddForm() {
-      this.isShowAdd = true;
+    async showAddForm() {
+      const code = await this.ProductApi.genNewKey();
+
       // Thêm dữ liệu mặc định
+      this.IsValidatingFormAdd = false;
+      this.SizeFormAdd = {};
+      this.CategoryFormAdd = {};
       this.ColorFormAdd = {};
-      this.addFormData = {};
+      this.imageSrcs = [];
+      this.addFormData = {
+        ProductCode: code,
+        OriginalPrice: 0,
+        Discount: 0,
+        Price: 0,
+      };
+
+      this.isShowAdd = true;
     },
-    confirmAddProduct() {
+    validateAddForm() {
+      this.IsValidatingFormAdd = true;
+
+      if (!this.addFormData.ProductName) {
+        this.vs.notify({
+          title: "Có lỗi xảy ra",
+          text: "Tên sản phẩm không được để trống",
+          color: "danger",
+        });
+        return false;
+      }
+
+      if (!this.addFormData.ProductCode) {
+        this.vs.notify({
+          title: "Có lỗi xảy ra",
+          text: "Mã sản phẩm không được để trống",
+          color: "danger",
+        });
+        return false;
+      }
+
+      if (this.imageSrcs.length == 0) {
+        this.vs.notify({
+          title: "Có lỗi xảy ra",
+          text: "Hình ảnh sản phẩm không được để trống",
+          color: "danger",
+        });
+        return false;
+      }
+
+      const colors = this.Colors.filter((e) => {
+        return this.ColorFormAdd[e.ColorCode];
+      });
+
+      if (colors.length == 0) {
+        this.vs.notify({
+          title: "Có lỗi xảy ra",
+          text: "Màu sắc sản phẩm không được để trống",
+          color: "danger",
+        });
+        return false;
+      }
+
+      const sizes = this.Sizes.filter((e) => {
+        return this.SizeFormAdd[e.SizeID];
+      });
+
+      if (sizes.length == 0) {
+        this.vs.notify({
+          title: "Có lỗi xảy ra",
+          text: "Kích thước sản phẩm không được để trống",
+          color: "danger",
+        });
+        return false;
+      }
+
+      let hasData = false;
+      let keys = Object.keys(this.CategoryFormAdd);
+      for (let i = 0; i < keys.length; i++) {
+        if (this.CategoryFormAdd[keys[i]]) {
+          hasData = true;
+        }
+      }
+
+      if (!hasData) {
+        this.vs.notify({
+          title: "Có lỗi xảy ra",
+          text: "Thể loại sản phẩm không được để trống",
+          color: "danger",
+        });
+        return false;
+      }
+
+      return true;
+    },
+    async confirmAddProduct() {
+      if (!this.validateAddForm()) return;
+
       const colors = this.Colors.filter((e) => {
         return this.ColorFormAdd[e.ColorCode];
       });
@@ -539,17 +650,36 @@ export default {
       this.addFormData.CategoryIDs = cateIDs.join(";");
       this.addFormData.CategoryNames = cateNames.join(";");
 
-      console.log(this.addFormData);
+      const tasks = [];
 
       for (let i = 0; i < this.imageSrcs.length; i++) {
-        this.CateApi.upFile(this.imageSrcs[i].file);
+        const task = this.PictureApi.upFile(this.imageSrcs[i].file);
+        tasks.push(task);
       }
+
+      const images = [];
+
+      for (let i = 0; i < this.imageSrcs.length; i++) {
+        images.push(await tasks[i]);
+      }
+
+      this.addFormData.PictureIDS = images.map((e) => e.PictureID).join(";");
+
+      this.ProductApi.add(this.addFormData);
+
+      this.isShowAdd = false;
     },
   },
 };
 </script>
     
     <style  lang="scss">
+.vs-input-primary.w-240 {
+  .vs-con-input {
+    width: 240px;
+  }
+  width: 240px;
+}
 .menu-table-buttons {
   display: flex;
   gap: 10px;

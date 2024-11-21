@@ -24,28 +24,6 @@ namespace ldtiep.be.Controllers
         #endregion
 
         #region Method
-        [HttpPost("image")]
-        public async Task<IActionResult> UploadImage(IFormFile file)
-        {
-            if (file == null || file.Length == 0)
-            {
-                return BadRequest("No file uploaded.");
-            }
-
-            using var memoryStream = new MemoryStream();
-            await file.CopyToAsync(memoryStream);
-
-            var imageData = memoryStream.ToArray();
-
-            var image = new Picture
-            {
-                PictureID = Guid.NewGuid(),
-                PictureName = file.FileName,
-                PictureData = imageData
-            };
-
-            return Ok(new { message = "Image uploaded successfully" });
-        }
         /// <summary>
         /// API thêm một bản ghi
         /// </summary>

@@ -15,5 +15,33 @@ namespace ldtiep.be.api.Controllers
         {
             _productService = productService;
         }
+
+        [HttpGet("gen-new-key")]
+        public async Task<IActionResult> GenNewKeyAsync(Guid id)
+        {
+
+            Random random = new();
+
+
+            bool isExists = false;
+            string newCode = "";
+
+            do
+            {
+                string str = new(Enumerable.Repeat("ABCDEFGHIJKLMNOPQRSTUVWXYZ", 3).Select(s => s[random.Next(s.Length)]).ToArray());
+                string num = new(Enumerable.Repeat("0123456789", 4).Select(s => s[random.Next(s.Length)]).ToArray());
+
+                newCode = $"{str}{num}";
+
+                isExists = await _baseService.CheckExistedAsync(new Dictionary<string, string>() {
+                    { "ProductCode", newCode }
+                });
+            }
+            while (isExists);
+
+            return StatusCode(200, newCode);
+        }
     }
+
+
 }

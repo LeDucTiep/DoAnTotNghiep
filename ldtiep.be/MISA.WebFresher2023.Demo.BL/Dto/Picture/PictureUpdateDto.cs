@@ -9,7 +9,7 @@ namespace ldtiep.be.BL.Dto
     public class PictureUpdateDto
     {
         public Guid PictureID { get; set; }
-        public string PictureName { get; set; }
+        public string PictureType { get; set; }
         public byte[]? PictureData { get; set; }
     }
 }
