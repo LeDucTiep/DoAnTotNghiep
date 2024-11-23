@@ -34,7 +34,6 @@ export default {
   methods: {
     hide() {
       this.isClickHide = true;
-      console.log(this.isClickHide);
     },
     titleBoyHover() {
       clearTimeout(this.isShowTO);

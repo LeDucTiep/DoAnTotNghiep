@@ -753,6 +753,10 @@ export default {
       if (this.$refs.uploadInputEdit) this.$refs.uploadInputEdit.files = null;
     },
     async onEdit(e) {
+      this.ColorFormEdit = {};
+      this.SizeFormEdit = {};
+      this.CategoryFormEdit = {};
+      this.IsValidatingFormEdit = false;
       this.$refs.uploadInputEdit.files = null;
       this.$refs.uploadInputEdit.dispatchEvent(new Event("change"));
       this.imageSrcs = [];

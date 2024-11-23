@@ -7,7 +7,9 @@ class Cart {
 
     add(p) {
         try {
-            localStorage.setItem("product-cart-storage", JSON.stringify(p));
+            const res = this.get();
+            res.unshift(p);
+            localStorage.setItem("product-cart-storage", JSON.stringify(res));
             this.showSuccessToast();
         } catch (e) {
             this.showErrorToast();

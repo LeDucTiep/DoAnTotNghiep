@@ -53,7 +53,9 @@
         <div class="org-price">
           {{ format(Product.OriginalPrice) }}
         </div>
-        <div class="discount">-30%</div>
+        <div v-if="Product.Discount" class="discount">
+          -{{ Product.Discount }}%
+        </div>
       </div>
       <div class="h-20"></div>
 
@@ -79,7 +81,7 @@
           </svg>
         </div>
         <div class="viewing-num">
-          <div class="b">54</div>
+          <div class="b">{{ viewingCount }}</div>
           <div>người đang xem sản phẩm này</div>
         </div>
       </div>
@@ -90,7 +92,7 @@
             Màu sắc: {{ item.ColorName }}
           </div>
         </template>
-        <div class="color">
+        <div class="flex-wrap color">
           <div v-for="(item, index) in Colors" :key="index" class="color-cell">
             <TColorCheck
               :cusclass="'color'"
@@ -106,16 +108,20 @@
       <div class="h-20"></div>
 
       <div class="sizes">
-        <div class="title">Kích thước: M</div>
-        <div class="col d-flex">
+        <template v-for="(item, index) in Sizes" :key="index">
+          <div v-if="SizeSelected[item.SizeID]" class="title">
+            Kích thước: {{ item.SizeName }}
+          </div>
+        </template>
+        <div class="flex-wrap col d-flex">
           <TSizeCheck
-            v-for="(item, index) in sizes"
+            v-for="(item, index) in Sizes"
             :key="index"
             :cusclass="'size'"
-            v-model="item.value"
-            @change="onChangeFilter()"
+            v-model="SizeSelected[item.SizeID]"
+            @change="onChangeSize(item.SizeID)"
           >
-            {{ item.name }}
+            {{ item.SizeName }}
           </TSizeCheck>
         </div>
       </div>
@@ -123,7 +129,7 @@
       <div class="counter">
         <div class="title">Số lượng:</div>
         <div class="row">
-          <InputCounter v-model="count"></InputCounter>
+          <InputCounter v-model="ProductCartCount"></InputCounter>
           <div @click="addToCart()" class="add-gio-hang">Thêm vào giỏ hàng</div>
         </div>
       </div>
@@ -418,19 +424,15 @@ export default {
       PictureApi: new API("Pictures"),
       ProductApi: new API("Products"),
       Colors: [],
-      sizes: [
-        { value: false, name: "S" },
-        { value: false, name: "M" },
-        { value: false, name: "L" },
-        { value: false, name: "XL" },
-        { value: false, name: "2XL" },
-      ],
+      Sizes: [],
       ColorFormView: {},
       Product: {},
       PictureIDs: [],
       CurrentPic: 0,
       swiper: null,
-      count: 1,
+      ProductCartCount: 1,
+      SizeSelected: {},
+      viewingCount: 1,
     };
   },
   computed: {
@@ -445,6 +447,8 @@ export default {
     },
   },
   async created() {
+    this.viewingCount = Math.floor(Math.random() * 200) + 1;
+
     const productID = this.$route.query.a;
 
     this.Product = await this.ProductApi.byID(productID);
@@ -463,11 +467,52 @@ export default {
       });
     }
 
+    const SizeIDs = this.Product.SizeIDs.split(";");
+    const SizeNames = this.Product.SizeNames.split(";");
+
+    for (let i = 0; i < SizeIDs.length; i++) {
+      this.Sizes.push({
+        SizeID: SizeIDs[i],
+        SizeName: SizeNames[i],
+      });
+    }
+
     this.ColorFormView[ColorIDs[0]] = true;
+    this.SizeSelected[SizeIDs[0]] = true;
   },
   methods: {
     addToCart() {
-      this.Cart.add(this.Product);
+      const cart = {
+        ProductID: this.Product.ProductID,
+      };
+
+      let keys = Object.keys(this.ColorFormView);
+      for (let i = 0; i < keys.length; i++) {
+        if (this.ColorFormView[keys[i]]) {
+          cart.ColorID = keys[i];
+          break;
+        }
+      }
+
+      cart.ColorName = this.Colors.filter(
+        (e) => e.ColorID == cart.ColorID
+      )[0].ColorName;
+
+      keys = Object.keys(this.SizeSelected);
+      for (let i = 0; i < keys.length; i++) {
+        if (this.SizeSelected[keys[i]]) {
+          cart.SizeID = keys[i];
+          break;
+        }
+      }
+
+      cart.SizeName = this.Sizes.filter(
+        (e) => e.SizeID == cart.SizeID
+      )[0].SizeName;
+
+      cart.ProductCartCount = this.ProductCartCount;
+
+      this.Cart.add(cart);
     },
     copyText(text) {
       navigator.clipboard
@@ -506,12 +551,13 @@ export default {
 
       this.swiper.slideTo(to);
     },
-    onChangeFilter() {
-      console.log("debugger");
-    },
     onChangeColor(id) {
       this.ColorFormView = {};
       this.ColorFormView[id] = true;
+    },
+    onChangeSize(id) {
+      this.SizeSelected = {};
+      this.SizeSelected[id] = true;
     },
   },
 };
