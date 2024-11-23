@@ -243,7 +243,7 @@
 
           <input v-model="searchValue" placeholder="Tìm kiếm" />
         </div>
-        <div class="m-l-10 store-items">
+        <div @click="toCartPage()" class="m-l-10 store-items">
           <svg
             width="24"
             height="24"
@@ -679,6 +679,13 @@ export default {
     },
     toHomePage() {
       const p = "/";
+
+      this.$router.push({
+        path: p,
+      });
+    },
+    toCartPage() {
+      const p = "/gio-hang";
 
       this.$router.push({
         path: p,

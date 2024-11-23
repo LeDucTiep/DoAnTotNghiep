@@ -124,7 +124,7 @@
         <div class="title">Số lượng:</div>
         <div class="row">
           <InputCounter v-model="count"></InputCounter>
-          <div class="add-gio-hang">Thêm vào giỏ hàng</div>
+          <div @click="addToCart()" class="add-gio-hang">Thêm vào giỏ hàng</div>
         </div>
       </div>
 
@@ -399,6 +399,7 @@ import TColorCheck from "/src/base/checkbox/TColorCheck.vue";
 import TSizeCheck from "/src/base/checkbox/TSizeCheck.vue";
 import InputCounter from "/src/base/input/InputCounter.vue";
 import API from "/src/service/api.js";
+import Cart from "/src/service/cart.js";
 import { inject } from "vue";
 export default {
   name: "ProductDetail",
@@ -413,6 +414,7 @@ export default {
   data() {
     return {
       vs: inject("$vs"),
+      Cart: new Cart(),
       PictureApi: new API("Pictures"),
       ProductApi: new API("Products"),
       Colors: [],
@@ -464,6 +466,9 @@ export default {
     this.ColorFormView[ColorIDs[0]] = true;
   },
   methods: {
+    addToCart() {
+      this.Cart.add(this.Product);
+    },
     copyText(text) {
       navigator.clipboard
         .writeText(text)
