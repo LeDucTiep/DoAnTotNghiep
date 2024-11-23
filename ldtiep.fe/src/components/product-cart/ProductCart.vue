@@ -9,7 +9,9 @@
             <TCheckbox v-model="SelectedAll" @change="onSelectAll()">
             </TCheckbox>
           </div>
-          <div class="select-all-name">Đã chọn 0 sản phẩm</div>
+          <div class="select-all-name">
+            Đã chọn {{ SelectedProducts.length }} sản phẩm
+          </div>
         </div>
         <div class="product-list">
           <div
@@ -17,7 +19,7 @@
             :key="index"
             class="product-container-cart"
           >
-            <TCheckbox v-model="SelecteCell[index]" @change="onSelectChange()">
+            <TCheckbox v-model="SelectedCell[index]" @change="onSelectChange()">
             </TCheckbox>
 
             <div class="product-container-cart--right d-flex">
@@ -174,8 +176,9 @@ export default {
       PictureIDs: [],
       CurrentPic: 0,
       SelectedAll: false,
-      SelecteCell: {},
+      SelectedCell: {},
       Products: [],
+      SelectedProducts: [],
     };
   },
   computed: {},
@@ -192,8 +195,6 @@ export default {
       e.OriginalPrice = p.OriginalPrice;
       e.PictureID = p.PictureIDS.split(";")[0];
     }
-
-    console.log(this.Products);
   },
   methods: {
     format(val) {
@@ -205,8 +206,41 @@ export default {
         })
         .replace("₫", "đ");
     },
-    onSelectAll() {},
-    onSelectChange() {},
+    onSelectAll() {
+      this.SelectedCell = {};
+      if (this.SelectedAll) {
+        for (let i = 0; i < this.Products.length; i++) {
+          this.SelectedCell[i] = true;
+        }
+      }
+      this.calculateSelected();
+    },
+    onSelectChange() {
+      let isNotAll = false;
+      for (let i = 0; i < this.Products.length; i++) {
+        if (!this.SelectedCell[i]) {
+          isNotAll = true;
+          break;
+        }
+      }
+
+      this.SelectedAll = !isNotAll;
+
+      this.calculateSelected();
+    },
+    calculateSelected() {
+      const arr = [];
+
+      for (let i = 0; i < this.Products.length; i++) {
+        if (this.SelectedCell[i]) {
+          arr.push(this.Products[i]);
+        }
+      }
+
+      this.SelectedProducts = arr;
+
+      console.log(arr);
+    },
   },
 };
 </script>
