@@ -217,7 +217,7 @@ export default {
     },
     async confirmDeleteOne() {
       this.isShowPopupDeleteOne = false;
-      console.log(this.deletingID);
+
       await this.api.deleteByID(this.deletingID);
 
       this.getData();

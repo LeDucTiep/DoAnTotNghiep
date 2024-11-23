@@ -5,6 +5,10 @@ class Cart {
         this.vs = inject('$vs')
     }
 
+    save(arr) {
+        localStorage.setItem("product-cart-storage", JSON.stringify(arr));
+    }
+
     add(p) {
         try {
             const res = this.get();

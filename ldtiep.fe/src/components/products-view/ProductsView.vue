@@ -359,11 +359,6 @@ export default {
       this.Colors = res.Data;
     },
     onChangeFilter() {
-      console.log(this.CategoryFilter);
-      console.log(this.SizeFilter);
-      console.log(this.ColorFilter);
-      console.log(this.CostFilter);
-
       this.getProducts();
     },
   },

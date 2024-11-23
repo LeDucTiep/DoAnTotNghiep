@@ -11,6 +11,11 @@
         font-size: 24px;
     }
 
+    .product-list {
+        max-height: 1000px;
+        overflow-y: scroll;
+    }
+
     .product-list-header {
         display: flex;
         flex-direction: row;

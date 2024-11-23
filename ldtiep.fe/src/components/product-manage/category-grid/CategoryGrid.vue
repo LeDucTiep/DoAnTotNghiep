@@ -344,11 +344,6 @@ export default {
         CategoryID: uuid.v4(),
       };
     },
-    onSelectionChanged(e) {
-      const selected = e.api.getSelectedNodes();
-
-      console.log(selected);
-    },
     showAddForm() {
       this.isShowAddForm = true;
       const newRow = this.getDefaultChildren();
@@ -443,7 +438,7 @@ export default {
 
       if (e.ParentID) {
         const arr = this.rowData.filter((x) => x.CategoryID == e.ParentID);
-        console.log(arr);
+
         if (arr.length) {
           this.editFormData = arr[0];
         }

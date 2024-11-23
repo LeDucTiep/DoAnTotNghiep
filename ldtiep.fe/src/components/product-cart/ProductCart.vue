@@ -13,7 +13,7 @@
             Đã chọn {{ SelectedProducts.length }} sản phẩm
           </div>
         </div>
-        <div class="product-list">
+        <div class="product-list scroll">
           <div
             v-for="(item, index) in Products"
             :key="index"
@@ -116,7 +116,11 @@
                   <div class="color-and-size">
                     {{ item.ColorName }}, {{ item.SizeName }}
                   </div>
-                  <InputCounter v-model="item.ProductCartCount"></InputCounter>
+                  <InputCounter
+                    v-model="item.ProductCartCount"
+                    :min="0"
+                    @change="reduceProductNumber(index, $event)"
+                  ></InputCounter>
                 </div>
               </div>
             </div>
@@ -128,24 +132,26 @@
         <div class="infor-cart">
           <div class="row d-flex">
             <div class="name">Tổng giá trị sản phẩm</div>
-            <div class="value">160 d</div>
+            <div class="value">{{ format(TotalPrice) }}</div>
           </div>
           <div class="row d-flex">
             <div class="name">Vận chuyển</div>
-            <div class="value">160 d</div>
+            <div class="value">{{ format(TransCost) }}</div>
           </div>
-          <div v-if="true" class="row d-flex">
+          <div v-if="TransCostDiscount" class="row d-flex">
             <div class="name">Giảm giá vận chuyển</div>
-            <div class="value tran-cost">-160 d</div>
+            <div class="value tran-cost">- {{ format(TransCostDiscount) }}</div>
           </div>
           <div class="row-hr"></div>
           <div class="row d-flex total-cost-row">
             <div class="name">Tổng thanh toán</div>
-            <div class="value">160 d</div>
+            <div class="value">{{ format(TotalPay) }}</div>
           </div>
 
-          <div class="row d-flex total-extra-row">
-            <div class="name">Bạn đã tiết kiệm được 300.000 đ</div>
+          <div v-if="TotalMoneySaved" class="row d-flex total-extra-row">
+            <div class="name">
+              Bạn đã tiết kiệm được {{ format(TotalMoneySaved) }}
+            </div>
           </div>
         </div>
 
@@ -155,6 +161,22 @@
       </div>
     </div>
   </div>
+
+  <vs-popup
+    title="Xóa sản phẩm khỏi giỏ hàng"
+    v-model:active="isShowDeleteProduct"
+  >
+    <div class="popup-content">
+      <div class="content">
+        Bạn có chắc chắn muốn xóa sản phẩm này khỏi giỏ hàng?
+      </div>
+      <div class="buttons">
+        <vs-button @click="confirmDelete()" color="primary" type="filled"
+          >Xác nhận</vs-button
+        >
+      </div>
+    </div>
+  </vs-popup>
 </template>
 
 <script>
@@ -179,9 +201,22 @@ export default {
       SelectedCell: {},
       Products: [],
       SelectedProducts: [],
+      TotalPrice: 0,
+      TotalOriginalPrice: 0,
+      TransCost: 20000,
+      TransCostDiscount: 0,
+      isShowDeleteProduct: false,
+      indexDeleteProduct: 0,
     };
   },
-  computed: {},
+  computed: {
+    TotalPay() {
+      return this.TotalPrice + this.TransCost - this.TransCostDiscount;
+    },
+    TotalMoneySaved() {
+      return this.TotalOriginalPrice - this.TotalPrice + this.TransCostDiscount;
+    },
+  },
   async created() {
     this.Products = this.Cart.get();
 
@@ -198,7 +233,7 @@ export default {
   },
   methods: {
     format(val) {
-      if (!val) return "";
+      if (!val) return "0 đ";
       return val
         .toLocaleString("vi-VN", {
           style: "currency",
@@ -231,15 +266,38 @@ export default {
     calculateSelected() {
       const arr = [];
 
+      this.TotalPrice = 0;
+      this.TotalOriginalPrice = 0;
+
       for (let i = 0; i < this.Products.length; i++) {
         if (this.SelectedCell[i]) {
-          arr.push(this.Products[i]);
+          const p = this.Products[i];
+          arr.push(p);
+
+          this.TotalPrice += p.Price * p.ProductCartCount;
+          this.TotalOriginalPrice += p.OriginalPrice * p.ProductCartCount;
         }
       }
 
       this.SelectedProducts = arr;
-
-      console.log(arr);
+    },
+    reduceProductNumber(i, val) {
+      if (val === 0) {
+        this.showDeleteProduct(i);
+      }
+      this.saveProductsConfig();
+    },
+    showDeleteProduct(index) {
+      this.indexDeleteProduct = index;
+      this.isShowDeleteProduct = true;
+    },
+    confirmDelete() {
+      this.Products.splice(this.indexDeleteProduct, 1);
+      this.isShowDeleteProduct = false;
+      this.saveProductsConfig();
+    },
+    saveProductsConfig() {
+      this.Cart.save(this.Products);
     },
   },
 };
