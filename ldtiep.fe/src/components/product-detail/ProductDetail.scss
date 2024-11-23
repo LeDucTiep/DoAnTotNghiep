@@ -1,6 +1,7 @@
 .t-product-detail {
     padding: 20px 200px;
     width: 100%;
+    gap: 20px;
 
     .detail-image {
         width: 50%;
@@ -157,4 +158,79 @@
             gap: 10px;
         }
     }
+
+    .product-code {
+        gap: 6px;
+        color: #1c2430;
+
+        margin-right: 16px;
+
+    }
+
+    .saled {
+        display: flex;
+        gap: 6px;
+        color: #1c2430;
+
+        .saled--right {
+            color: black;
+        }
+    }
+
+    .pri {
+        display: flex;
+        gap: 10px;
+        flex-direction: row;
+        align-items: center;
+
+        .price {
+            color: #e14337;
+            font-weight: 600;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+        }
+
+        .org-price {
+            text-decoration-line: line-through;
+            color: #6e87aa;
+            font-weight: 400;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+        }
+
+        .discount {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 9999px;
+            background-color: #fceceb;
+            padding: .25rem .5rem;
+            color: #e14337;
+            height: 24px;
+            font-size: 12px;
+        }
+    }
+
+    .viewing {
+        display: flex;
+        flex-direction: row;
+        gap: 5px;
+        align-items: center;
+
+        .eye,
+        .viewing-num {
+            display: flex;
+            align-items: center;
+        }
+
+        .viewing-num {
+            gap: 4px;
+        }
+    }
+}
+
+.b {
+    font-weight: 600;
 }

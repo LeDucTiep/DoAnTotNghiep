@@ -66,10 +66,13 @@ export default {
   },
   methods: {
     format(val) {
-      return val.toLocaleString("vi-VN", {
-        style: "currency",
-        currency: "VND",
-      });
+      if (!val) return "";
+      return val
+        .toLocaleString("vi-VN", {
+          style: "currency",
+          currency: "VND",
+        })
+        .replace("₫", "đ");
     },
     openDetailProduct() {
       const p = "/thong-tin-chi-tiet";

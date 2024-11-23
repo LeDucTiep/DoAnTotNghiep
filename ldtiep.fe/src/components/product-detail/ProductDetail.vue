@@ -23,20 +23,39 @@
     </div>
     <div class="right-block">
       <div class="name">{{ Product.ProductName }}</div>
-      <div class="h-10"></div>
+      <div class="h-20"></div>
       <div class="row d-flex">
-        <div class="product-code">SCM6081-DEN-M</div>
+        <div class="product-code d-flex">
+          <div class="code">{{ Product.ProductCode }}</div>
+          <img
+            alt="copy image"
+            loading="lazy"
+            width="16"
+            height="16"
+            decoding="async"
+            class="cursor"
+            src="../../assets/images/copy_icon.png"
+            @click="copyText(Product.ProductCode)"
+          />
+        </div>
 
-        <div class="saled">Đã bán 85</div>
+        <div class="saled">
+          <div class="saled--left">Đã bán</div>
+          <div class="saled--right b">85</div>
+        </div>
       </div>
-      <div class="h-10"></div>
+      <div class="h-20"></div>
 
       <div class="pri d-flex">
-        <div class="price">349.300 đ</div>
-        <div class="org-price">499.000 đ</div>
+        <div class="price">
+          {{ format(Product.Price) }}
+        </div>
+        <div class="org-price">
+          {{ format(Product.OriginalPrice) }}
+        </div>
         <div class="discount">-30%</div>
       </div>
-      <div class="h-10"></div>
+      <div class="h-20"></div>
 
       <div class="viewing d-flex">
         <div class="eye">
@@ -59,7 +78,10 @@
             ></path>
           </svg>
         </div>
-        <div class="viewing-num">54 người đang xem sản phẩm này</div>
+        <div class="viewing-num">
+          <div class="b">54</div>
+          <div>người đang xem sản phẩm này</div>
+        </div>
       </div>
 
       <div class="colors">
@@ -81,7 +103,7 @@
           </div>
         </div>
       </div>
-      <div class="h-10"></div>
+      <div class="h-20"></div>
 
       <div class="sizes">
         <div class="title">Kích thước: M</div>
@@ -377,6 +399,7 @@ import TColorCheck from "/src/base/checkbox/TColorCheck.vue";
 import TSizeCheck from "/src/base/checkbox/TSizeCheck.vue";
 import InputCounter from "/src/base/input/InputCounter.vue";
 import API from "/src/service/api.js";
+import { inject } from "vue";
 export default {
   name: "ProductDetail",
   props: {},
@@ -389,6 +412,7 @@ export default {
   },
   data() {
     return {
+      vs: inject("$vs"),
       PictureApi: new API("Pictures"),
       ProductApi: new API("Products"),
       Colors: [],
@@ -440,6 +464,33 @@ export default {
     this.ColorFormView[ColorIDs[0]] = true;
   },
   methods: {
+    copyText(text) {
+      navigator.clipboard
+        .writeText(text)
+        .then(() => {
+          this.vs.notify({
+            title: "Thành công",
+            text: "Sao chép thành công",
+            color: "success",
+          });
+        })
+        .catch(() => {
+          this.vs.notify({
+            title: "Có lỗi xảy ra",
+            text: "Không thể sao chép",
+            color: "danger",
+          });
+        });
+    },
+    format(val) {
+      if (!val) return "";
+      return val
+        .toLocaleString("vi-VN", {
+          style: "currency",
+          currency: "VND",
+        })
+        .replace("₫", "đ");
+    },
     onSwiper(swiper) {
       this.swiper = swiper;
     },
