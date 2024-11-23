@@ -19,6 +19,8 @@
         margin-top: 20px;
         align-items: center;
         gap: 25px;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
     }
 
     .product-container-cart {
@@ -156,5 +158,87 @@
 
     .w-fit {
         width: fit-content;
+    }
+}
+
+.product-cart-body {
+    display: flex;
+    gap: 14px;
+    width: 100%;
+
+    .product-cart--right {
+        margin-top: 20px;
+        padding: 20px;
+        background: white;
+        width: 380px;
+        height: fit-content;
+        border-radius: 8px;
+
+        .title {
+            color: #1c2430;
+            font-weight: 600;
+            font-size: 20px;
+            margin-bottom: 16px;
+        }
+
+        .infor-cart {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            font-size: 16px;
+            color: #616161;
+
+            .tran-cost {
+                color: #e14337 !important;
+            }
+
+            .row {
+                justify-content: space-between;
+            }
+
+            .row-hr {
+                height: 1px;
+                background-color: #eceff4;
+                width: 100%;
+            }
+
+            .total-cost-row {
+                color: #1c2430;
+                font-size: 20px;
+                font-weight: 600;
+            }
+
+            .total-extra-row {
+                justify-content: end;
+                color: #e14337;
+                font-size: 14px;
+            }
+        }
+
+        .by-product-button {
+            background-color: #FCAF17;
+            color: #2a2a86;
+            cursor: pointer;
+            margin-top: 20px;
+            border-color: #1c2430;
+            font-size: 16px;
+            padding: 14px;
+            border-radius: 10px;
+            user-select: none;
+            width: 100%;
+            display: flex;
+            border-bottom: 3px solid;
+            border-color: #ca8c12;
+            justify-content: center;
+            font-weight: bold;
+
+            &:hover {
+                background-color: #fdc75d;
+            }
+        }
+    }
+
+    .product-cart--left {
+        width: calc(100% - 380px);
     }
 }
