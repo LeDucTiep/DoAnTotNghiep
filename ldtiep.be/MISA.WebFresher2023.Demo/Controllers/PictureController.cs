@@ -33,6 +33,7 @@ namespace ldtiep.be.api.Controllers
             var image = new PictureCreateDto
             {
                 PictureType = file.ContentType,
+                PictureName = file.Name,
                 PictureData = imageData
             };
 
@@ -48,7 +49,10 @@ namespace ldtiep.be.api.Controllers
             if (entityDto == null || entityDto.PictureData == null)
                 return NoContent();
 
-            return File(entityDto.PictureData, entityDto.PictureType);
+            Response.Headers.Add("content-name", entityDto.PictureName);
+            Response.Headers.Add("Access-Control-Expose-Headers", "*");
+
+            return File(entityDto.PictureData, entityDto.PictureType, entityDto.PictureName);
         }
     }
 }

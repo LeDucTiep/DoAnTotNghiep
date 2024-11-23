@@ -5,6 +5,7 @@ namespace ldtiep.be.BL.Dto
     {
         public Guid PictureID { get; set; }
         public string PictureType { get; set; }
+        public string PictureName { get; set; }
         public byte[]? PictureData { get; set; }
     }
 }

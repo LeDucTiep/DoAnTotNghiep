@@ -44,6 +44,12 @@ class API {
         });
     }
 
+    async blobImage(id) {
+        const response = await this.axiosInstance.get(`/${id}`, { responseType: 'blob' });
+        const blob = response.data;
+        return new File([blob], response.headers['content-name'], { type: blob.type });
+    }
+
     async get(endpoint, params) {
         try {
             const response = await this.axiosInstance.get(endpoint, { params });

@@ -66,7 +66,7 @@
         <div class="product-image">
           <div class="tiep-input-upload">
             <input
-              ref="uploadInput"
+              ref="uploadInputEdit"
               multiple
               accept="image/*"
               type="file"
@@ -74,7 +74,7 @@
             /><span class="text-input">Chọn ảnh sản phẩm</span
             ><span class="input-progress" style="width: 0%"></span
             ><button
-              @click="$refs.uploadInput.click()"
+              @click="$refs.uploadInputEdit.click()"
               class="btn-upload-all vs-upload--button-upload"
             >
               <i translate="no" class="material-icons notranslate">
@@ -164,22 +164,22 @@
             <div class="type-row">
               <vs-radio
                 color="success"
-                vs-name="radios2"
-                v-model="currentCategoryType"
+                vs-name="radios3"
+                v-model="currentCategoryTypeEdit"
                 :vs-value="0"
                 >Nam</vs-radio
               >
               <vs-radio
                 color="warning"
-                vs-name="radios2"
-                v-model="currentCategoryType"
+                vs-name="radios3"
+                v-model="currentCategoryTypeEdit"
                 :vs-value="1"
                 >Nữ</vs-radio
               >
               <vs-radio
                 color="rgb(87, 251, 187)"
-                vs-name="radios2"
-                v-model="currentCategoryType"
+                vs-name="radios3"
+                v-model="currentCategoryTypeEdit"
                 :vs-value="2"
                 >Trẻ em</vs-radio
               >
@@ -619,6 +619,7 @@ export default {
       imageSrcs: [],
       CategoryData: [],
       currentCategoryType: 0,
+      currentCategoryTypeEdit: 0,
       Colors: [],
       Sizes: [],
       // Dữ liệu form thêm mới
@@ -640,6 +641,11 @@ export default {
         this.getCategory(val);
       }
     },
+    currentCategoryTypeEdit(val, oldVal) {
+      if (val != oldVal) {
+        this.getCategory(val);
+      }
+    },
     "addFormData.OriginalPrice": function (val, oldVal) {
       if (val != oldVal) {
         this.addFormData.Price = val - (val * this.addFormData.Discount) / 100;
@@ -653,7 +659,7 @@ export default {
       }
     },
   },
-  beforeMount() {
+  async beforeMount() {
     this.getCategory(this.currentCategoryType);
     this.getColors();
     this.getSizes();
@@ -743,12 +749,63 @@ export default {
           file: files[i],
         });
       }
-
-      this.$refs.uploadInput.value = null;
+      if (this.$refs.uploadInput) this.$refs.uploadInput.value = null;
+      if (this.$refs.uploadInputEdit) this.$refs.uploadInputEdit.files = null;
     },
-    onEdit(e) {
+    async onEdit(e) {
+      this.$refs.uploadInputEdit.files = null;
+      this.$refs.uploadInputEdit.dispatchEvent(new Event("change"));
+      this.imageSrcs = [];
+
       this.isShowPopupEdit = true;
       this.editFormData = e;
+
+      const arrCates = e.CategoryIDs.split(";");
+      for (let i = 0; i < arrCates.length; i++) {
+        const element = arrCates[i];
+        this.CategoryFormEdit[element] = true;
+      }
+
+      this.currentCategoryTypeEdit = null;
+
+      for (let j = 0; j < 3 && !this.currentCategoryTypeEdit; j++) {
+        await this.getCategory(j);
+
+        for (
+          let i = 0;
+          i < this.CategoryData.length && !this.currentCategoryTypeEdit;
+          i++
+        ) {
+          if (arrCates.includes(this.CategoryData[i].CategoryID)) {
+            this.currentCategoryTypeEdit = j;
+          }
+        }
+      }
+
+      const arrColors = e.ColorCodes.split(";");
+      for (let i = 0; i < arrColors.length; i++) {
+        const element = arrColors[i];
+        this.ColorFormEdit[element] = true;
+      }
+      const arrSizes = e.SizeIDs.split(";");
+      for (let i = 0; i < arrSizes.length; i++) {
+        const element = arrSizes[i];
+        this.SizeFormEdit[element] = true;
+      }
+
+      const dataTransfer = new DataTransfer();
+      const picIDs = e.PictureIDS.split(";");
+
+      for (let i = 0; i < picIDs.length; i++) {
+        const id = picIDs[i];
+
+        const file = await this.PictureApi.blobImage(id);
+
+        dataTransfer.items.add(file);
+      }
+
+      this.$refs.uploadInputEdit.files = dataTransfer.files;
+      this.$refs.uploadInputEdit.dispatchEvent(new Event("change"));
     },
     onDelete(e) {
       this.deletingData = e;
@@ -932,7 +989,150 @@ export default {
 
       this.getProducts();
     },
-    confirmEditProduct() {},
+    validateEditForm() {
+      this.IsValidatingFormEdit = true;
+
+      if (!this.editFormData.ProductName) {
+        this.vs.notify({
+          title: "Có lỗi xảy ra",
+          text: "Tên sản phẩm không được để trống",
+          color: "danger",
+        });
+        return false;
+      }
+
+      if (!this.editFormData.ProductCode) {
+        this.vs.notify({
+          title: "Có lỗi xảy ra",
+          text: "Mã sản phẩm không được để trống",
+          color: "danger",
+        });
+        return false;
+      }
+
+      if (this.imageSrcs.length == 0) {
+        this.vs.notify({
+          title: "Có lỗi xảy ra",
+          text: "Hình ảnh sản phẩm không được để trống",
+          color: "danger",
+        });
+        return false;
+      }
+
+      const colors = this.Colors.filter((e) => {
+        return this.ColorFormEdit[e.ColorCode];
+      });
+
+      if (colors.length == 0) {
+        this.vs.notify({
+          title: "Có lỗi xảy ra",
+          text: "Màu sắc sản phẩm không được để trống",
+          color: "danger",
+        });
+        return false;
+      }
+
+      const sizes = this.Sizes.filter((e) => {
+        return this.SizeFormEdit[e.SizeID];
+      });
+
+      if (sizes.length == 0) {
+        this.vs.notify({
+          title: "Có lỗi xảy ra",
+          text: "Kích thước sản phẩm không được để trống",
+          color: "danger",
+        });
+        return false;
+      }
+
+      let hasData = false;
+      let keys = Object.keys(this.CategoryFormEdit);
+      for (let i = 0; i < keys.length; i++) {
+        if (this.CategoryFormEdit[keys[i]]) {
+          hasData = true;
+        }
+      }
+
+      if (!hasData) {
+        this.vs.notify({
+          title: "Có lỗi xảy ra",
+          text: "Thể loại sản phẩm không được để trống",
+          color: "danger",
+        });
+        return false;
+      }
+
+      return true;
+    },
+    async confirmEditProduct() {
+      if (!this.validateEditForm()) return;
+
+      const colors = this.Colors.filter((e) => {
+        return this.ColorFormEdit[e.ColorCode];
+      });
+
+      this.editFormData.ColorIDs = colors.map((e) => e.ColorID).join(";");
+      this.editFormData.ColorCodes = colors.map((e) => e.ColorCode).join(";");
+      this.editFormData.ColorNames = colors.map((e) => e.ColorName).join(";");
+
+      const sizes = this.Sizes.filter((e) => {
+        return this.SizeFormEdit[e.SizeID];
+      });
+
+      this.editFormData.SizeIDs = sizes.map((e) => e.SizeID).join(";");
+      this.editFormData.SizeNames = sizes.map((e) => e.SizeName).join(";");
+
+      const cateIDs = [];
+      const cateNames = [];
+
+      for (let i = 0; i < this.CategoryData.length; i++) {
+        const children = this.CategoryData[i].Children;
+
+        let hasValue = false;
+
+        for (let j = 0; j < children.length; j++) {
+          const item = children[j];
+
+          if (this.CategoryFormEdit[item.CategoryID]) {
+            hasValue = true;
+            cateIDs.push(item.CategoryID);
+            cateNames.push(item.CategoryName);
+          }
+        }
+
+        if (hasValue) {
+          cateIDs.push(this.CategoryData[i].CategoryID);
+          cateNames.push(this.CategoryData[i].CategoryName);
+        }
+      }
+
+      this.editFormData.CategoryIDs = cateIDs.join(";");
+      this.editFormData.CategoryNames = cateNames.join(";");
+
+      const tasks = [];
+
+      for (let i = 0; i < this.imageSrcs.length; i++) {
+        const task = this.PictureApi.upFile(this.imageSrcs[i].file);
+        tasks.push(task);
+      }
+
+      const images = [];
+
+      for (let i = 0; i < this.imageSrcs.length; i++) {
+        images.push(await tasks[i]);
+      }
+
+      this.editFormData.PictureIDS = images.map((e) => e.PictureID).join(";");
+
+      await this.ProductApi.updateByID(
+        this.editFormData.ProductID,
+        this.editFormData
+      );
+
+      this.isShowPopupEdit = false;
+
+      this.getProducts();
+    },
   },
 };
 </script>
