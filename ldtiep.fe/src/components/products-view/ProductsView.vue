@@ -94,6 +94,7 @@
           <ProductSP
             v-for="(item, index) in productDatas"
             :key="index"
+            :productID="item.ProductID"
             :name="item.ProductName"
             :colors="item.ColorCodes.split(';')"
             :price="item.Price"

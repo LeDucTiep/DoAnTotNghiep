@@ -3,12 +3,42 @@
     width: 100%;
 
     .detail-image {
-        width: 40%;
+        width: 50%;
+        display: flex;
+        gap: 10px;
+
+        .small-imgs {
+            display: flex;
+            flex-direction: column;
+            width: 15%;
+            gap: 10px;
+            cursor: pointer;
+
+            img {
+                &.img--active {
+                    border: 1px solid #333;
+                }
+
+                &:hover {
+                    opacity: 0.8;
+                }
+            }
+        }
+
+        .big-img {
+            width: 85%;
+        }
     }
 
     .right-block {
-        width: 60%;
+        width: 50%;
         padding: 10px 20px;
+
+        .name {
+            color: #1c2430;
+            font-size: 14px;
+            font-weight: bold;
+        }
     }
 
     .colors {
@@ -17,6 +47,7 @@
         .title {
             margin-top: 14px;
             font-size: 14px;
+
         }
 
         .color {

@@ -1,6 +1,6 @@
 <template>
   <div class="product-container">
-    <div class="image">
+    <div @click="openDetailProduct()" class="image cursor">
       <img
         loading="lazy"
         decoding="async"
@@ -32,6 +32,9 @@ import API from "/src/service/api.js";
 export default {
   name: "ProductSP",
   props: {
+    productID: {
+      default: "",
+    },
     name: {
       default: "Áo khoác gió thông minh nữ trượt trước",
     },
@@ -66,6 +69,16 @@ export default {
       return val.toLocaleString("vi-VN", {
         style: "currency",
         currency: "VND",
+      });
+    },
+    openDetailProduct() {
+      const p = "/thong-tin-chi-tiet";
+      const query = {
+        a: this.productID,
+      };
+      this.$router.push({
+        path: p,
+        query: query,
       });
     },
   },

@@ -3,6 +3,7 @@ import YodyHome from './components/YodyHome.vue'
 import ProductsView from './components/products-view/ProductsView.vue'
 import ProductDetail from './components/product-detail/ProductDetail.vue'
 import ProductManage from '/src/components/product-manage/ProductManage.vue'
+
 const routes = [
   {
     path: '/',
@@ -15,7 +16,7 @@ const routes = [
     component: ProductsView
   },
   {
-    path: '/detail',
+    path: '/thong-tin-chi-tiet',
     name: 'ProductDetail',
     component: ProductDetail
   },
@@ -24,7 +25,6 @@ const routes = [
     name: 'ProductManage',
     component: ProductManage
   },
-
 ]
 
 const router = createRouter({

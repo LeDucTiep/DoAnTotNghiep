@@ -1,46 +1,43 @@
 <template>
   <div class="t-product-detail d-flex">
     <div class="detail-image">
-      <img
-        src="https://m.yodycdn.com/fit-in/filters:format(webp)/100/438/408/products/ao-so-mi-nam-scm6081-den-6.jpg?v=1690163522797"
-        loading="lazy"
-        class="w-full h-full"
-        alt="yody image"
-      />
+      <div class="small-imgs">
+        <img
+          v-for="(item, index) in imgSrcs"
+          :key="index"
+          :src="item"
+          loading="lazy"
+          class="w-full"
+          :class="{ 'img--active': CurrentPic == index }"
+          alt="Ảnh minh họa"
+          @click="swipeTo(index)"
+        />
+      </div>
+      <div class="big-img">
+        <swiper ref="mySwiper" :slides-per-view="1" @swiper="onSwiper">
+          <swiper-slide v-for="(item, index) in imgSrcs" :key="index">
+            <img loading="lazy" class="w-full" alt="Ảnh minh họa" :src="item" />
+          </swiper-slide>
+        </swiper>
+      </div>
     </div>
     <div class="right-block">
-      <div class="name">Sơ mi cộc tay nam bambo họa tiết</div>
+      <div class="name">{{ Product.ProductName }}</div>
+      <div class="h-10"></div>
       <div class="row d-flex">
         <div class="product-code">SCM6081-DEN-M</div>
-        <div class="stars d-flex">
-          <div v-for="i in [1, 2, 3, 4, 5]" :key="i" class="star">
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="#FCAF17"
-              xmlns="http://www.w3.org/2000/svg"
-              id=":Rac5h5daqqlmta:"
-              class="product-social-proof_star-active__9ucGG"
-            >
-              <path
-                d="M13.7299 3.51001L15.4899 7.03001C15.7299 7.52001 16.3699 7.99001 16.9099 8.08001L20.0999 8.61001C22.1399 8.95001 22.6199 10.43 21.1499 11.89L18.6699 14.37C18.2499 14.79 18.0199 15.6 18.1499 16.18L18.8599 19.25C19.4199 21.68 18.1299 22.62 15.9799 21.35L12.9899 19.58C12.4499 19.26 11.5599 19.26 11.0099 19.58L8.01991 21.35C5.87991 22.62 4.57991 21.67 5.13991 19.25L5.84991 16.18C5.97991 15.6 5.74991 14.79 5.32991 14.37L2.84991 11.89C1.38991 10.43 1.85991 8.95001 3.89991 8.61001L7.08991 8.08001C7.61991 7.99001 8.25991 7.52001 8.49991 7.03001L10.2599 3.51001C11.2199 1.60001 12.7799 1.60001 13.7299 3.51001Z"
-                fill="#FCAF17"
-                stroke="#FCAF17"
-                stroke-width="0"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              ></path>
-            </svg>
-          </div>
-        </div>
+
         <div class="saled">Đã bán 85</div>
       </div>
+      <div class="h-10"></div>
+
       <div class="pri d-flex">
         <div class="price">349.300 đ</div>
         <div class="org-price">499.000 đ</div>
         <div class="discount">-30%</div>
       </div>
+      <div class="h-10"></div>
+
       <div class="viewing d-flex">
         <div class="eye">
           <svg
@@ -66,17 +63,25 @@
       </div>
 
       <div class="colors">
-        <div class="title">Màu sắc: Đen</div>
+        <template v-for="(item, index) in Colors" :key="index">
+          <div v-if="ColorFormView[item.ColorID]" class="title">
+            Màu sắc: {{ item.ColorName }}
+          </div>
+        </template>
         <div class="color">
-          <div v-for="(item, index) in colors" :key="index" class="color-cell">
+          <div v-for="(item, index) in Colors" :key="index" class="color-cell">
             <TColorCheck
-              :id="item.id"
-              v-model="item.value"
-              @change="onChangeFilter()"
-            ></TColorCheck>
+              :cusclass="'color'"
+              :code="item.ColorCode"
+              :name="item.ColorName"
+              v-model="ColorFormView[item.ColorID]"
+              @change="onChangeColor(item.ColorID)"
+            >
+            </TColorCheck>
           </div>
         </div>
       </div>
+      <div class="h-10"></div>
 
       <div class="sizes">
         <div class="title">Kích thước: M</div>
@@ -367,9 +372,11 @@
 </template>
 
 <script>
+import { Swiper, SwiperSlide } from "swiper/vue";
 import TColorCheck from "/src/base/checkbox/TColorCheck.vue";
 import TSizeCheck from "/src/base/checkbox/TSizeCheck.vue";
 import InputCounter from "/src/base/input/InputCounter.vue";
+import API from "/src/service/api.js";
 export default {
   name: "ProductDetail",
   props: {},
@@ -377,23 +384,14 @@ export default {
     TColorCheck,
     InputCounter,
     TSizeCheck,
+    Swiper,
+    SwiperSlide,
   },
   data() {
     return {
-      colors: [
-        {
-          value: false,
-          id: 1,
-        },
-        {
-          value: false,
-          id: 2,
-        },
-        {
-          value: false,
-          id: 3,
-        },
-      ],
+      PictureApi: new API("Pictures"),
+      ProductApi: new API("Products"),
+      Colors: [],
       sizes: [
         { value: false, name: "S" },
         { value: false, name: "M" },
@@ -401,12 +399,63 @@ export default {
         { value: false, name: "XL" },
         { value: false, name: "2XL" },
       ],
+      ColorFormView: {},
+      Product: {},
+      PictureIDs: [],
+      CurrentPic: 0,
+      swiper: null,
       count: 1,
     };
   },
+  computed: {
+    imgSrcs() {
+      const me = this;
+      if (me.PictureIDs && me.PictureIDs.length > 0) {
+        return me.PictureIDs.map((e) => {
+          return me.PictureApi.baseUrl + "/" + e;
+        });
+      }
+      return [];
+    },
+  },
+  async created() {
+    const productID = this.$route.query.a;
+
+    this.Product = await this.ProductApi.byID(productID);
+
+    this.PictureIDs = this.Product.PictureIDS.split(";");
+
+    const ColorIDs = this.Product.ColorIDs.split(";");
+    const ColorCodes = this.Product.ColorCodes.split(";");
+    const ColorNames = this.Product.ColorNames.split(";");
+
+    for (let i = 0; i < ColorIDs.length; i++) {
+      this.Colors.push({
+        ColorID: ColorIDs[i],
+        ColorCode: ColorCodes[i],
+        ColorName: ColorNames[i],
+      });
+    }
+
+    this.ColorFormView[ColorIDs[0]] = true;
+  },
   methods: {
+    onSwiper(swiper) {
+      this.swiper = swiper;
+    },
+    swipeTo(to) {
+      if (!this.swiper) return;
+
+      this.CurrentPic = to;
+
+      this.swiper.slideTo(to);
+    },
     onChangeFilter() {
       console.log("debugger");
+    },
+    onChangeColor(id) {
+      this.ColorFormView = {};
+      this.ColorFormView[id] = true;
     },
   },
 };

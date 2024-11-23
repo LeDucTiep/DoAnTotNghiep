@@ -2,12 +2,7 @@
   <div class="home-body">
     <div class="ontop-swiper">
       <div class="swiper-container">
-        <swiper
-          ref="mySwiper"
-          :slides-per-view="1"
-          @swiper="onSwiper"
-          :space-between="50"
-        >
+        <swiper ref="mySwiper" :slides-per-view="1" @swiper="onSwiper">
           <swiper-slide>
             <img
               loading="lazy"
