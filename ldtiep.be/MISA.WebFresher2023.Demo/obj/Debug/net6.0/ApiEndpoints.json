@@ -117,6 +117,123 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "ldtiep.be.Controllers.BaseController\u00604[[ldtiep.be.DL.Entity.City, ldtiep.be.DL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.CityDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.CityCreateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.CityUpdateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "PostAsync",
+    "RelativePath": "api/v1/Citys",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "entityCreateDto",
+        "Type": "ldtiep.be.BL.Dto.CityCreateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ldtiep.be.Controllers.BaseController\u00604[[ldtiep.be.DL.Entity.City, ldtiep.be.DL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.CityDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.CityCreateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.CityUpdateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "DeleteManyAsync",
+    "RelativePath": "api/v1/Citys",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "arrayId",
+        "Type": "System.Guid[]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ldtiep.be.Controllers.BaseController\u00604[[ldtiep.be.DL.Entity.City, ldtiep.be.DL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.CityDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.CityCreateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.CityUpdateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "GetAsync",
+    "RelativePath": "api/v1/Citys/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ldtiep.be.Controllers.BaseController\u00604[[ldtiep.be.DL.Entity.City, ldtiep.be.DL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.CityDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.CityCreateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.CityUpdateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "DeleteAsync",
+    "RelativePath": "api/v1/Citys/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ldtiep.be.Controllers.BaseController\u00604[[ldtiep.be.DL.Entity.City, ldtiep.be.DL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.CityDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.CityCreateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.CityUpdateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "PutAsync",
+    "RelativePath": "api/v1/Citys/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "entityUpdateDto",
+        "Type": "ldtiep.be.BL.Dto.CityUpdateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ldtiep.be.Controllers.BaseController\u00604[[ldtiep.be.DL.Entity.City, ldtiep.be.DL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.CityDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.CityCreateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.CityUpdateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "CheckExistedAsync",
+    "RelativePath": "api/v1/Citys/checkExisted",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "param",
+        "Type": "System.Collections.Generic.Dictionary\u00602[[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ldtiep.be.Controllers.BaseController\u00604[[ldtiep.be.DL.Entity.City, ldtiep.be.DL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.CityDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.CityCreateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.CityUpdateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "GetPageAsync",
+    "RelativePath": "api/v1/Citys/paging",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "basePagingArgument",
+        "Type": "ldtiep.be.DL.Model.BasePagingArgument",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "ldtiep.be.Controllers.BaseController\u00604[[ldtiep.be.DL.Entity.Color, ldtiep.be.DL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.ColorDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.ColorCreateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.ColorUpdateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
     "Method": "PostAsync",
     "RelativePath": "api/v1/Colors",
@@ -221,6 +338,240 @@
     "ContainingType": "ldtiep.be.Controllers.BaseController\u00604[[ldtiep.be.DL.Entity.Color, ldtiep.be.DL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.ColorDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.ColorCreateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.ColorUpdateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
     "Method": "GetPageAsync",
     "RelativePath": "api/v1/Colors/paging",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "basePagingArgument",
+        "Type": "ldtiep.be.DL.Model.BasePagingArgument",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ldtiep.be.Controllers.BaseController\u00604[[ldtiep.be.DL.Entity.Commune, ldtiep.be.DL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.CommuneDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.CommuneCreateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.CommuneUpdateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "PostAsync",
+    "RelativePath": "api/v1/Communes",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "entityCreateDto",
+        "Type": "ldtiep.be.BL.Dto.CommuneCreateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ldtiep.be.Controllers.BaseController\u00604[[ldtiep.be.DL.Entity.Commune, ldtiep.be.DL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.CommuneDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.CommuneCreateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.CommuneUpdateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "DeleteManyAsync",
+    "RelativePath": "api/v1/Communes",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "arrayId",
+        "Type": "System.Guid[]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ldtiep.be.Controllers.BaseController\u00604[[ldtiep.be.DL.Entity.Commune, ldtiep.be.DL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.CommuneDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.CommuneCreateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.CommuneUpdateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "GetAsync",
+    "RelativePath": "api/v1/Communes/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ldtiep.be.Controllers.BaseController\u00604[[ldtiep.be.DL.Entity.Commune, ldtiep.be.DL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.CommuneDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.CommuneCreateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.CommuneUpdateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "DeleteAsync",
+    "RelativePath": "api/v1/Communes/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ldtiep.be.Controllers.BaseController\u00604[[ldtiep.be.DL.Entity.Commune, ldtiep.be.DL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.CommuneDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.CommuneCreateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.CommuneUpdateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "PutAsync",
+    "RelativePath": "api/v1/Communes/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "entityUpdateDto",
+        "Type": "ldtiep.be.BL.Dto.CommuneUpdateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ldtiep.be.Controllers.BaseController\u00604[[ldtiep.be.DL.Entity.Commune, ldtiep.be.DL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.CommuneDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.CommuneCreateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.CommuneUpdateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "CheckExistedAsync",
+    "RelativePath": "api/v1/Communes/checkExisted",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "param",
+        "Type": "System.Collections.Generic.Dictionary\u00602[[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ldtiep.be.Controllers.BaseController\u00604[[ldtiep.be.DL.Entity.Commune, ldtiep.be.DL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.CommuneDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.CommuneCreateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.CommuneUpdateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "GetPageAsync",
+    "RelativePath": "api/v1/Communes/paging",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "basePagingArgument",
+        "Type": "ldtiep.be.DL.Model.BasePagingArgument",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ldtiep.be.Controllers.BaseController\u00604[[ldtiep.be.DL.Entity.District, ldtiep.be.DL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.DistrictDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.DistrictCreateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.DistrictUpdateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "PostAsync",
+    "RelativePath": "api/v1/Districts",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "entityCreateDto",
+        "Type": "ldtiep.be.BL.Dto.DistrictCreateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ldtiep.be.Controllers.BaseController\u00604[[ldtiep.be.DL.Entity.District, ldtiep.be.DL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.DistrictDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.DistrictCreateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.DistrictUpdateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "DeleteManyAsync",
+    "RelativePath": "api/v1/Districts",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "arrayId",
+        "Type": "System.Guid[]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ldtiep.be.Controllers.BaseController\u00604[[ldtiep.be.DL.Entity.District, ldtiep.be.DL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.DistrictDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.DistrictCreateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.DistrictUpdateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "GetAsync",
+    "RelativePath": "api/v1/Districts/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ldtiep.be.Controllers.BaseController\u00604[[ldtiep.be.DL.Entity.District, ldtiep.be.DL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.DistrictDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.DistrictCreateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.DistrictUpdateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "DeleteAsync",
+    "RelativePath": "api/v1/Districts/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ldtiep.be.Controllers.BaseController\u00604[[ldtiep.be.DL.Entity.District, ldtiep.be.DL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.DistrictDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.DistrictCreateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.DistrictUpdateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "PutAsync",
+    "RelativePath": "api/v1/Districts/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "entityUpdateDto",
+        "Type": "ldtiep.be.BL.Dto.DistrictUpdateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ldtiep.be.Controllers.BaseController\u00604[[ldtiep.be.DL.Entity.District, ldtiep.be.DL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.DistrictDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.DistrictCreateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.DistrictUpdateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "CheckExistedAsync",
+    "RelativePath": "api/v1/Districts/checkExisted",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "param",
+        "Type": "System.Collections.Generic.Dictionary\u00602[[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ldtiep.be.Controllers.BaseController\u00604[[ldtiep.be.DL.Entity.District, ldtiep.be.DL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.DistrictDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.DistrictCreateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.DistrictUpdateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "GetPageAsync",
+    "RelativePath": "api/v1/Districts/paging",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,

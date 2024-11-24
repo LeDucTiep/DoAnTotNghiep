@@ -1,0 +1,221 @@
+<template>
+  <div class="product-buy-container">
+    <div class="product-buy-container--left">
+      <div class="h-20"></div>
+      <div class="block-1">
+        <div class="title">Người nhận</div>
+        <div class="h-10"></div>
+        <vs-input
+          icon-no-border
+          icon="person"
+          label="Tên khách hàng"
+          v-model="ProductBuyInfor.CustomerName"
+          size="large"
+        />
+        <div class="h-10"></div>
+        <vs-input
+          icon-no-border
+          icon="call"
+          label="Số điện thoại"
+          v-model="ProductBuyInfor.PhoneNumber"
+          size="large"
+        />
+        <div class="h-10"></div>
+        <vs-input
+          icon-no-border
+          icon="mail"
+          label="Địa chỉ email (Không bắt buộc)"
+          v-model="ProductBuyInfor.Email"
+          size="large"
+        />
+      </div>
+      <div class="h-20"></div>
+      <div class="h-20"></div>
+      <div class="block-1">
+        <div class="title">Địa chỉ của bạn</div>
+        <div class="h-10"></div>
+        <vs-select
+          class="city-combo"
+          label="Tỉnh/Thành phố"
+          autocomplete
+          :disabled="!Citys.length"
+          v-model="ProductBuyInfor.CityID"
+        >
+          <vs-select-item :modelValue="undefined" :text="''" />
+          <vs-select-item
+            :key="index"
+            :modelValue="item.CityID"
+            :text="item.Name"
+            v-for="(item, index) in Citys"
+          />
+        </vs-select>
+        <div class="h-10"></div>
+
+        <vs-select
+          class="district-combo"
+          label="Quận/Huyện"
+          autocomplete
+          :disabled="!Districts.length"
+          v-model="ProductBuyInfor.DistrictID"
+        >
+          <vs-select-item :modelValue="undefined" :text="''" />
+          <vs-select-item
+            :key="index"
+            :modelValue="item.DistrictID"
+            :text="item.Name"
+            v-for="(item, index) in Districts"
+          />
+        </vs-select>
+        <div class="h-10"></div>
+
+        <vs-select
+          class="commune-combo"
+          autocomplete
+          label="Phường/Xã"
+          :disabled="!Communes.length"
+          v-model="ProductBuyInfor.CommuneID"
+        >
+          <vs-select-item :modelValue="undefined" :text="''" />
+          <vs-select-item
+            :key="index"
+            :modelValue="item.CommuneID"
+            :text="item.Name"
+            v-for="(item, index) in Communes"
+          />
+        </vs-select>
+        <div class="h-10"></div>
+        <vs-input
+          icon-no-border
+          icon="home"
+          label="Nhập địa chỉ (ví dụ 90 Nguyễn Tuân)"
+          v-model="ProductBuyInfor.EmployeeAddress"
+          size="large"
+        />
+        <div class="h-10"></div>
+        <vs-input
+          icon-no-border
+          icon="edit"
+          label="Nhập ghi chú (Không bắt buộc)"
+          v-model="ProductBuyInfor.EmployeeNote"
+          size="large"
+        />
+      </div>
+    </div>
+    <div class="product-buy-container--right"></div>
+  </div>
+</template>
+
+<script>
+import API from "/src/service/api.js";
+import Cart from "/src/service/cart.js";
+import { inject } from "vue";
+export default {
+  name: "ProductBuy",
+  props: {},
+  components: {},
+  data() {
+    return {
+      vs: inject("$vs"),
+      Cart: new Cart(),
+      PictureApi: new API("Pictures"),
+      ProductApi: new API("Products"),
+      CityApi: new API("Citys"),
+      DistrictApi: new API("Districts"),
+      CommuneApi: new API("Communes"),
+      ProductBuyInfor: {},
+      Citys: [],
+      Districts: [],
+      Communes: [],
+    };
+  },
+  computed: {},
+  watch: {
+    "ProductBuyInfor.CityID": function (val, oldVal) {
+      if (val != oldVal) {
+        this.onCityChange();
+      }
+    },
+    "ProductBuyInfor.DistrictID": function (val, oldVal) {
+      if (val != oldVal) {
+        this.onDistrictChange();
+      }
+    },
+    "ProductBuyInfor.CommuneID": function (val, oldVal) {
+      if (val != oldVal) {
+        this.onCommuneChange();
+      }
+    },
+  },
+  created() {
+    this.getCity();
+  },
+  methods: {
+    format(val) {
+      if (!val) return "0 đ";
+      return val
+        .toLocaleString("vi-VN", {
+          style: "currency",
+          currency: "VND",
+        })
+        .replace("₫", "đ");
+    },
+    async getCity() {
+      const param = {
+        PageSize: 1000,
+        PageNumber: 1,
+        Sorter: {
+          Name: "asc",
+        },
+      };
+      const res = await this.CityApi.paging(param);
+
+      this.Citys = res.Data;
+    },
+    async getDistrict(CityID) {
+      const param = {
+        PageSize: 1000,
+        PageNumber: 1,
+        Sorter: {
+          Name: "asc",
+        },
+        SearchEquals: {
+          CityID: CityID,
+        },
+      };
+      const res = await this.DistrictApi.paging(param);
+
+      this.Districts = res.Data;
+    },
+    async getCommune(districtID) {
+      const param = {
+        PageSize: 1000,
+        PageNumber: 1,
+        Sorter: {
+          Name: "asc",
+        },
+        SearchEquals: {
+          DistrictID: districtID,
+        },
+      };
+      const res = await this.CommuneApi.paging(param);
+
+      this.Communes = res.Data;
+    },
+    onCityChange() {
+      if (this.ProductBuyInfor.CityID) {
+        this.getDistrict(this.ProductBuyInfor.CityID);
+      }
+    },
+    onDistrictChange() {
+      if (this.ProductBuyInfor.DistrictID) {
+        this.getCommune(this.ProductBuyInfor.DistrictID);
+      }
+    },
+    onCommuneChange() {},
+  },
+};
+</script>
+
+<style lang="scss">
+@import url(./ProductBuy.scss);
+</style>
