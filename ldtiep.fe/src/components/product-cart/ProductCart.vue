@@ -1,5 +1,15 @@
 <template>
-  <div class="product-cart">
+  <div v-if="!Products.length" class="product-cart-empty">
+    <div class="product-cart-header">Giỏ hàng</div>
+    <div class="empty-note">
+      Vui lòng chọn các sản phẩm trong giỏ hàng trước khi thanh toán.
+    </div>
+    <img height="220" width="220" src="../../assets/images/cart_empty.png" />
+    <div @click="toHomePage()" class="w-350 by-product-button">
+      <div class="by-product">Mua sắm ngay</div>
+    </div>
+  </div>
+  <div v-else class="product-cart">
     <div class="product-cart-header">Giỏ hàng</div>
 
     <div class="product-cart-body">
@@ -129,7 +139,17 @@
       </div>
       <div class="product-cart--right">
         <div class="title">Chi tiết đơn hàng</div>
-        <div class="infor-cart">
+
+        <div
+          v-if="!SelectedProducts.length"
+          class="cart-empty flex-center flex-col"
+        >
+          <img src="../../assets/images/cart_empty.png" />
+          <div class="empty-note">
+            Vui lòng chọn các sản phẩm trong giỏ hàng trước khi thanh toán.
+          </div>
+        </div>
+        <div v-else class="infor-cart">
           <div class="row d-flex">
             <div class="name">Tổng giá trị sản phẩm</div>
             <div class="value">{{ format(TotalPrice) }}</div>
@@ -155,7 +175,7 @@
           </div>
         </div>
 
-        <div class="by-product-button">
+        <div v-if="SelectedProducts.length" class="by-product-button">
           <div class="by-product">Mua hàng</div>
         </div>
       </div>
@@ -233,6 +253,13 @@ export default {
     }
   },
   methods: {
+    toHomePage() {
+      const p = "/";
+
+      this.$router.push({
+        path: p,
+      });
+    },
     updateCart() {
       EventBus.emit("updateCart", "");
     },
@@ -288,8 +315,10 @@ export default {
     reduceProductNumber(i, val) {
       if (val === 0) {
         this.showDeleteProduct(i);
+        this.Products[i].ProductCartCount = 1;
       }
       this.saveProductsConfig();
+      this.calculateSelected();
     },
     showDeleteProduct(index) {
       this.indexDeleteProduct = index;
