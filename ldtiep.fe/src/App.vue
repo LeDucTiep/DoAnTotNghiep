@@ -244,6 +244,7 @@
           <input v-model="searchValue" placeholder="Tìm kiếm" />
         </div>
         <div @click="toCartPage()" class="m-l-10 store-items">
+          <div v-if="CartCount" class="store-count">{{ CartCount }}</div>
           <svg
             width="24"
             height="24"
@@ -603,7 +604,10 @@
 <script>
 import API from "/src/service/api.js";
 import "swiper/css";
+import Cart from "/src/service/cart.js";
 import TPop from "/src/base/popover/TPop.vue";
+import EventBus from "./service/EventBus";
+
 export default {
   name: "App",
   components: {
@@ -611,19 +615,36 @@ export default {
   },
   data() {
     return {
+      Cart: new Cart(),
       CateApi: new API("Categorys"),
       CateMan: [],
       CateWomen: [],
       CateKids: [],
       searchValue: "",
+      CartCount: "",
     };
   },
   created() {
     this.getCategory(0);
     this.getCategory(1);
     this.getCategory(2);
+    this.updateCart();
+
+    EventBus.on("updateCart", () => {
+      this.updateCart();
+    });
   },
   methods: {
+    updateCart() {
+      const count = this.Cart.get().length;
+      if (count == 0) {
+        this.CartCount = "";
+      } else if (count < 100) {
+        this.CartCount = count;
+      } else {
+        this.CartCount = "+99";
+      }
+    },
     async getCategory(t) {
       const param = {
         PageSize: 500,
@@ -1313,6 +1334,25 @@ export default {
 
   .col {
     margin-bottom: 20px;
+  }
+}
+
+.store-items {
+  position: relative;
+  .store-count {
+    position: absolute;
+    right: -5px;
+    top: -5px;
+    background-color: #e14337;
+    font-size: 10px;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    border-radius: 10px;
+    opacity: 0.9;
   }
 }
 </style>

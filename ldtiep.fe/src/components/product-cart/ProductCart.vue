@@ -185,6 +185,7 @@ import Cart from "/src/service/cart.js";
 import TCheckbox from "/src/base/checkbox/TCheckbox.vue";
 import InputCounter from "/src/base/input/InputCounter.vue";
 import { inject } from "vue";
+import EventBus from "../../service/EventBus";
 export default {
   name: "ProductCart",
   props: {},
@@ -232,6 +233,9 @@ export default {
     }
   },
   methods: {
+    updateCart() {
+      EventBus.emit("updateCart", "");
+    },
     format(val) {
       if (!val) return "0 đ";
       return val
@@ -295,6 +299,7 @@ export default {
       this.Products.splice(this.indexDeleteProduct, 1);
       this.isShowDeleteProduct = false;
       this.saveProductsConfig();
+      this.updateCart();
     },
     saveProductsConfig() {
       this.Cart.save(this.Products);

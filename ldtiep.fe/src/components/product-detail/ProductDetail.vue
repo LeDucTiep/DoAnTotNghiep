@@ -406,6 +406,7 @@ import TSizeCheck from "/src/base/checkbox/TSizeCheck.vue";
 import InputCounter from "/src/base/input/InputCounter.vue";
 import API from "/src/service/api.js";
 import Cart from "/src/service/cart.js";
+import EventBus from "../../service/EventBus";
 import { inject } from "vue";
 export default {
   name: "ProductDetail",
@@ -513,6 +514,11 @@ export default {
       cart.ProductCartCount = this.ProductCartCount;
 
       this.Cart.add(cart);
+
+      this.updateCart();
+    },
+    updateCart() {
+      EventBus.emit("updateCart", "");
     },
     copyText(text) {
       navigator.clipboard
