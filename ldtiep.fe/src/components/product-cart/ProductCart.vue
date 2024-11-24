@@ -175,7 +175,11 @@
           </div>
         </div>
 
-        <div v-if="SelectedProducts.length" class="by-product-button">
+        <div
+          v-if="SelectedProducts.length"
+          @click="onBuySelectedProduct()"
+          class="by-product-button"
+        >
           <div class="by-product">Mua hàng</div>
         </div>
       </div>
@@ -239,6 +243,8 @@ export default {
     },
   },
   async created() {
+    const productID = this.$route.query.selected;
+
     this.Products = this.Cart.get();
 
     for (let i = 0; i < this.Products.length; i++) {
@@ -250,6 +256,17 @@ export default {
       e.Discount = p.Discount;
       e.OriginalPrice = p.OriginalPrice;
       e.PictureID = p.PictureIDS.split(";")[0];
+    }
+
+    this.SelectedCell = {};
+
+    if (productID) {
+      for (let i = 0; i < this.Products.length; i++) {
+        if (this.Products[i].ProductID == productID)
+          this.SelectedCell[i] = true;
+      }
+
+      this.onSelectChange();
     }
   },
   methods: {
@@ -310,6 +327,12 @@ export default {
         }
       }
 
+      if (this.TotalPrice >= 500000) {
+        this.TransCostDiscount = 20000;
+      } else {
+        this.TransCostDiscount = 0;
+      }
+
       this.SelectedProducts = arr;
     },
     reduceProductNumber(i, val) {
@@ -332,6 +355,18 @@ export default {
     },
     saveProductsConfig() {
       this.Cart.save(this.Products);
+    },
+    onBuySelectedProduct() {
+      const p = "/mua-hang";
+
+      console.log(JSON.stringify(this.SelectedCell));
+
+      this.$router.push({
+        path: p,
+        query: {
+          q: btoa(JSON.stringify(this.SelectedCell)),
+        },
+      });
     },
   },
 };

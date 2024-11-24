@@ -2,8 +2,9 @@
   <div class="product-buy-container">
     <div class="product-buy-container--left">
       <div class="h-20"></div>
+      <div class="h-10"></div>
       <div class="block-1">
-        <div class="title">Người nhận</div>
+        <div class="title-employee-recieve">Người nhận</div>
         <div class="h-10"></div>
         <vs-input
           icon-no-border
@@ -34,55 +35,55 @@
       <div class="block-1">
         <div class="title">Địa chỉ của bạn</div>
         <div class="h-10"></div>
-        <vs-select
-          class="city-combo"
-          label="Tỉnh/Thành phố"
-          autocomplete
-          :disabled="!Citys.length"
-          v-model="ProductBuyInfor.CityID"
-        >
-          <vs-select-item :modelValue="undefined" :text="''" />
-          <vs-select-item
-            :key="index"
-            :modelValue="item.CityID"
-            :text="item.Name"
-            v-for="(item, index) in Citys"
-          />
-        </vs-select>
-        <div class="h-10"></div>
+        <div class="flex-row gap-14">
+          <vs-select
+            class="city-combo"
+            label="Tỉnh/Thành phố"
+            autocomplete
+            :disabled="!Citys.length"
+            v-model="ProductBuyInfor.CityID"
+          >
+            <vs-select-item :modelValue="undefined" :text="''" />
+            <vs-select-item
+              :key="index"
+              :modelValue="item.CityID"
+              :text="item.Name"
+              v-for="(item, index) in Citys"
+            />
+          </vs-select>
 
-        <vs-select
-          class="district-combo"
-          label="Quận/Huyện"
-          autocomplete
-          :disabled="!Districts.length"
-          v-model="ProductBuyInfor.DistrictID"
-        >
-          <vs-select-item :modelValue="undefined" :text="''" />
-          <vs-select-item
-            :key="index"
-            :modelValue="item.DistrictID"
-            :text="item.Name"
-            v-for="(item, index) in Districts"
-          />
-        </vs-select>
-        <div class="h-10"></div>
+          <vs-select
+            class="district-combo"
+            label="Quận/Huyện"
+            autocomplete
+            :disabled="!Districts.length"
+            v-model="ProductBuyInfor.DistrictID"
+          >
+            <vs-select-item :modelValue="undefined" :text="''" />
+            <vs-select-item
+              :key="index"
+              :modelValue="item.DistrictID"
+              :text="item.Name"
+              v-for="(item, index) in Districts"
+            />
+          </vs-select>
 
-        <vs-select
-          class="commune-combo"
-          autocomplete
-          label="Phường/Xã"
-          :disabled="!Communes.length"
-          v-model="ProductBuyInfor.CommuneID"
-        >
-          <vs-select-item :modelValue="undefined" :text="''" />
-          <vs-select-item
-            :key="index"
-            :modelValue="item.CommuneID"
-            :text="item.Name"
-            v-for="(item, index) in Communes"
-          />
-        </vs-select>
+          <vs-select
+            class="commune-combo"
+            autocomplete
+            label="Phường/Xã"
+            :disabled="!Communes.length"
+            v-model="ProductBuyInfor.CommuneID"
+          >
+            <vs-select-item :modelValue="undefined" :text="''" />
+            <vs-select-item
+              :key="index"
+              :modelValue="item.CommuneID"
+              :text="item.Name"
+              v-for="(item, index) in Communes"
+            />
+          </vs-select>
+        </div>
         <div class="h-10"></div>
         <vs-input
           icon-no-border
@@ -101,7 +102,75 @@
         />
       </div>
     </div>
-    <div class="product-buy-container--right"></div>
+    <div class="product-buy-container--right">
+      <div class="product-infors">
+        <div class="title">Thông tin sản phẩm</div>
+        <div class="product-infors--body scroll gap-10 flex-col">
+          <div
+            class="product-infor"
+            v-for="(item, index) in Products"
+            :key="index"
+          >
+            <div class="product-infor--left">
+              <img
+                width="90"
+                :src="PictureApi.baseUrl + '/' + item.PictureID"
+              />
+            </div>
+            <div class="product-infor--right">
+              <div class="product-infor--right--top">
+                <div class="title-product">
+                  {{ item.ProductName }}
+                </div>
+                <div class="size-and-color">
+                  {{ item.ColorName }}, {{ item.SizeName }}
+                </div>
+              </div>
+              <div class="product-infor--right--bottom flex-row">
+                <div class="flex-row gap-10">
+                  <div class="price">{{ format(item.Price) }}</div>
+                  <div class="org-price">{{ format(item.OriginalPrice) }}</div>
+                </div>
+                <div class="product-count">x{{ item.ProductCartCount }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="summary-infor">
+          <div class="row d-flex">
+            <div class="name">Tổng giá trị sản phẩm</div>
+            <div class="value">{{ format(TotalPrice) }}</div>
+          </div>
+          <div class="row d-flex">
+            <div class="name">Vận chuyển</div>
+            <div class="value">{{ format(TransCost) }}</div>
+          </div>
+          <div v-if="TransCostDiscount" class="row d-flex">
+            <div class="name">Giảm giá vận chuyển</div>
+            <div class="value tran-cost">- {{ format(TransCostDiscount) }}</div>
+          </div>
+          <div class="row-hr"></div>
+          <div class="row d-flex total-cost-row">
+            <div class="name">Tổng thanh toán</div>
+            <div class="value">{{ format(TotalPay) }}</div>
+          </div>
+
+          <div v-if="TotalMoneySaved" class="row d-flex total-extra-row">
+            <div class="name">
+              Bạn đã tiết kiệm được {{ format(TotalMoneySaved) }}
+            </div>
+          </div>
+        </div>
+
+        <div class="h-20"></div>
+
+        <div @click="onBuyProduct()" class="by-product-button">
+          <div class="by-product">Đặt hàng</div>
+        </div>
+
+        <div class="h-20"></div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -126,9 +195,21 @@ export default {
       Citys: [],
       Districts: [],
       Communes: [],
+      TotalPrice: 0,
+      TotalOriginalPrice: 0,
+      TransCost: 20000,
+      TransCostDiscount: 0,
+      Products: [],
     };
   },
-  computed: {},
+  computed: {
+    TotalPay() {
+      return this.TotalPrice + this.TransCost - this.TransCostDiscount;
+    },
+    TotalMoneySaved() {
+      return this.TotalOriginalPrice - this.TotalPrice + this.TransCostDiscount;
+    },
+  },
   watch: {
     "ProductBuyInfor.CityID": function (val, oldVal) {
       if (val != oldVal) {
@@ -146,10 +227,50 @@ export default {
       }
     },
   },
-  created() {
+  async created() {
+    const selected = JSON.parse(atob(this.$route.query.q));
+
+    const arr = this.Cart.get();
+
+    this.Products = [];
+
+    for (let i = 0; i < arr.length; i++) {
+      const e = arr[i];
+
+      if (selected[i]) {
+        const p = await this.ProductApi.byID(e.ProductID);
+        e.ProductName = p.ProductName;
+        e.ProductCode = p.ProductCode;
+        e.Price = p.Price;
+        e.Discount = p.Discount;
+        e.OriginalPrice = p.OriginalPrice;
+        e.PictureID = p.PictureIDS.split(";")[0];
+
+        this.Products.push(e);
+      }
+    }
+
     this.getCity();
+
+    this.calculateSelected();
   },
   methods: {
+    calculateSelected() {
+      this.TotalPrice = 0;
+      this.TotalOriginalPrice = 0;
+
+      for (let i = 0; i < this.Products.length; i++) {
+        const p = this.Products[i];
+        this.TotalPrice += p.Price * p.ProductCartCount;
+        this.TotalOriginalPrice += p.OriginalPrice * p.ProductCartCount;
+      }
+
+      if (this.TotalPrice >= 500000) {
+        this.TransCostDiscount = 20000;
+      } else {
+        this.TransCostDiscount = 0;
+      }
+    },
     format(val) {
       if (!val) return "0 đ";
       return val
@@ -212,6 +333,9 @@ export default {
       }
     },
     onCommuneChange() {},
+    onBuyProduct() {
+      console.log(this.ProductBuyInfor);
+    },
   },
 };
 </script>

@@ -134,7 +134,7 @@
         </div>
       </div>
 
-      <div class="by-now-block">
+      <div @click="byThisProduct()" class="by-now-block">
         <div class="by-now">Mua ngay</div>
       </div>
 
@@ -564,6 +564,18 @@ export default {
     onChangeSize(id) {
       this.SizeSelected = {};
       this.SizeSelected[id] = true;
+    },
+    byThisProduct() {
+      this.addToCart();
+
+      const p = "/gio-hang";
+
+      this.$router.push({
+        path: p,
+        query: {
+          selected: this.Product.ProductID,
+        },
+      });
     },
   },
 };
