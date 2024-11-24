@@ -10,6 +10,8 @@
           icon-no-border
           icon="person"
           label="Tên khách hàng"
+          :danger="!ProductBuyInfor.CustomerName && isValidating"
+          danger-text="Không được để trống"
           v-model="ProductBuyInfor.CustomerName"
           size="large"
         />
@@ -18,6 +20,8 @@
           icon-no-border
           icon="call"
           label="Số điện thoại"
+          :danger="!ProductBuyInfor.PhoneNumber && isValidating"
+          danger-text="Không được để trống"
           v-model="ProductBuyInfor.PhoneNumber"
           size="large"
         />
@@ -31,7 +35,6 @@
         />
       </div>
       <div class="h-20"></div>
-      <div class="h-20"></div>
       <div class="block-1">
         <div class="title">Địa chỉ của bạn</div>
         <div class="h-10"></div>
@@ -39,6 +42,8 @@
           <vs-select
             class="city-combo"
             label="Tỉnh/Thành phố"
+            :danger="!ProductBuyInfor.CityID && isValidating"
+            danger-text="Không được để trống"
             autocomplete
             :disabled="!Citys.length"
             v-model="ProductBuyInfor.CityID"
@@ -55,6 +60,8 @@
           <vs-select
             class="district-combo"
             label="Quận/Huyện"
+            :danger="!ProductBuyInfor.DistrictID && isValidating"
+            danger-text="Không được để trống"
             autocomplete
             :disabled="!Districts.length"
             v-model="ProductBuyInfor.DistrictID"
@@ -72,6 +79,8 @@
             class="commune-combo"
             autocomplete
             label="Phường/Xã"
+            :danger="!ProductBuyInfor.CommuneID && isValidating"
+            danger-text="Không được để trống"
             :disabled="!Communes.length"
             v-model="ProductBuyInfor.CommuneID"
           >
@@ -89,7 +98,9 @@
           icon-no-border
           icon="home"
           label="Nhập địa chỉ (ví dụ 90 Nguyễn Tuân)"
-          v-model="ProductBuyInfor.EmployeeAddress"
+          :danger="!ProductBuyInfor.EmployeeExtraAddress && isValidating"
+          danger-text="Không được để trống"
+          v-model="ProductBuyInfor.EmployeeExtraAddress"
           size="large"
         />
         <div class="h-10"></div>
@@ -191,6 +202,7 @@ export default {
       CityApi: new API("Citys"),
       DistrictApi: new API("Districts"),
       CommuneApi: new API("Communes"),
+      OrderApi: new API("Orders"),
       ProductBuyInfor: {},
       Citys: [],
       Districts: [],
@@ -200,6 +212,7 @@ export default {
       TransCost: 20000,
       TransCostDiscount: 0,
       Products: [],
+      isValidating: false,
     };
   },
   computed: {
@@ -333,8 +346,89 @@ export default {
       }
     },
     onCommuneChange() {},
+    validateOrder() {
+      this.isValidating = true;
+
+      if (!this.ProductBuyInfor.CustomerName) {
+        return false;
+      }
+
+      if (!this.ProductBuyInfor.PhoneNumber) {
+        return false;
+      }
+
+      if (!this.ProductBuyInfor.CityID) {
+        return false;
+      }
+
+      if (!this.ProductBuyInfor.DistrictID) {
+        return false;
+      }
+
+      if (!this.ProductBuyInfor.CommuneID) {
+        return false;
+      }
+
+      if (!this.ProductBuyInfor.EmployeeExtraAddress) {
+        return false;
+      }
+
+      return true;
+    },
     onBuyProduct() {
-      console.log(this.ProductBuyInfor);
+      if (this.validateOrder()) {
+        let address = [];
+
+        const citySelected = this.Citys.filter((e) => {
+          return e.CityID == this.ProductBuyInfor.CityID;
+        });
+        address.push(citySelected[0].Name.trim());
+
+        const districtSelected = this.Districts.filter((e) => {
+          return e.DistrictID == this.ProductBuyInfor.DistrictID;
+        });
+        address.push(districtSelected[0].Name.trim());
+
+        const communeSelected = this.Communes.filter((e) => {
+          return e.CommuneID == this.ProductBuyInfor.CommuneID;
+        });
+        address.push(communeSelected[0].Name.trim());
+
+        address = address.filter((e) => e);
+
+        this.ProductBuyInfor.EmployeeAddress = address.join(", ");
+
+        this.ProductBuyInfor.TotalPrice = this.TotalPrice;
+        this.ProductBuyInfor.TransCost = this.TransCost;
+        this.ProductBuyInfor.TransCostDiscount = this.TransCostDiscount;
+        this.ProductBuyInfor.TotalPay = this.TotalPay;
+
+        this.ProductBuyInfor.Products = JSON.stringify(this.Products);
+
+        try {
+          this.OrderApi.add(this.ProductBuyInfor);
+          this.vs.notify({
+            title: "Thành công",
+            text: "Đặt hàng thành công",
+            color: "success",
+          });
+
+          this.toHomePage();
+        } catch (e) {
+          this.vs.notify({
+            title: "Có lỗi xảy ra",
+            text: "Vui lòng kiểm tra kết nối mạng của bạn",
+            color: "danger",
+          });
+        }
+      }
+    },
+    toHomePage() {
+      const p = "/";
+
+      this.$router.push({
+        path: p,
+      });
     },
   },
 };
