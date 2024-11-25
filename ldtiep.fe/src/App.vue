@@ -30,9 +30,24 @@
         ></span>
 
         <div class="header__menu d-flex">
-          <div class="menu-item pd-10-20">Sale 50%</div>
-          <div class="menu-item pd-10-20">Mới về</div>
-          <div class="menu-item pd-10-20">Bán chạy</div>
+          <div
+            @click="toFilterPage({ q: 'sale-50%' })"
+            class="menu-item pd-10-20"
+          >
+            Sale 50%
+          </div>
+          <div
+            @click="toFilterPage({ q: 'moi-ve' })"
+            class="menu-item pd-10-20"
+          >
+            Mới về
+          </div>
+          <div
+            @click="toFilterPage({ q: 'ban-chay' })"
+            class="menu-item pd-10-20"
+          >
+            Bán chạy
+          </div>
           <TPop ref="namMenu">
             <div class="menu-item">
               <vs-button

@@ -178,6 +178,12 @@ export default {
         this.getProducts();
       }
     },
+    "$route.query.q": function (val, oldVal) {
+      if (val != oldVal) {
+        this.mapFilterName();
+        this.getProducts();
+      }
+    },
   },
   methods: {
     async mapFilterName() {
@@ -205,6 +211,21 @@ export default {
     buildProductParam() {
       const filter = {};
       const filterIn = {};
+      const sortBuilder = {};
+      const SearchBigger = {};
+      const SearchSmaller = {};
+
+      switch (this.$route.query.q) {
+        case "sale-50%":
+          SearchBigger.Discount = 50;
+          break;
+        case "moi-ve":
+          sortBuilder.CreatedDate = "asc";
+          break;
+        case "ban-chay":
+          sortBuilder.SoldCount = "desc";
+          break;
+      }
 
       if (this.$route.query.CategoryID)
         filterIn.CategoryIDs = [this.$route.query.CategoryID];
@@ -253,9 +274,6 @@ export default {
         filterIn.SizeIDs = sizeIds;
       }
 
-      const SearchBigger = {};
-      const SearchSmaller = {};
-
       let min = [];
       let max = [];
 
@@ -283,12 +301,12 @@ export default {
         SearchSmaller.Price = Math.max(...max);
       }
 
+      sortBuilder.ModifiedDate = "asc";
+
       const param = {
         PageSize: 100,
         PageNumber: 1,
-        Sorter: {
-          ModifiedDate: "asc",
-        },
+        Sorter: sortBuilder,
         SearchEquals: filter,
         SearchIn: filterIn,
         SearchBigger: SearchBigger,
