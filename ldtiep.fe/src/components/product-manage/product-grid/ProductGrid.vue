@@ -671,6 +671,7 @@ export default {
         PageSize: 100,
         PageNumber: 1,
         Sorter: {
+          CreatedDate: "desc",
           ModifiedDate: "asc",
         },
       };

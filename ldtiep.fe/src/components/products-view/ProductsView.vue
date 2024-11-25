@@ -220,7 +220,7 @@ export default {
           SearchBigger.Discount = 50;
           break;
         case "moi-ve":
-          sortBuilder.CreatedDate = "asc";
+          sortBuilder.CreatedDate = "desc";
           break;
         case "ban-chay":
           sortBuilder.SoldCount = "desc";

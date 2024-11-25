@@ -45,7 +45,7 @@
               >
             </div>
           </div>
-          <div v-if="col.type == 15" class="cell">
+          <div v-else-if="col.type == 15" class="cell">
             <div class="menu-table-buttons">
               <vs-button
                 @click.stop="onView($event, tr)"
