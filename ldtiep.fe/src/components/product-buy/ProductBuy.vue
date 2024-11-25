@@ -376,7 +376,7 @@ export default {
 
       return true;
     },
-    onBuyProduct() {
+    async onBuyProduct() {
       if (this.validateOrder()) {
         let address = [];
 
@@ -407,12 +407,22 @@ export default {
         this.ProductBuyInfor.Products = JSON.stringify(this.Products);
 
         try {
-          this.OrderApi.add(this.ProductBuyInfor);
+          await this.OrderApi.add(this.ProductBuyInfor);
           this.vs.notify({
             title: "Thành công",
             text: "Đặt hàng thành công",
             color: "success",
           });
+
+          for (let i = 0; i < this.Products.length; i++) {
+            const id = this.Products[i].ProductID;
+
+            const p = await this.ProductApi.byID(id);
+
+            p.SoldCount = (p.SoldCount || 0) + 1;
+
+            await this.ProductApi.updateByID(id, p);
+          }
 
           this.toHomePage();
         } catch (e) {

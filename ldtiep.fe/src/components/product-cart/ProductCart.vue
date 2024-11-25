@@ -359,8 +359,6 @@ export default {
     onBuySelectedProduct() {
       const p = "/mua-hang";
 
-      console.log(JSON.stringify(this.SelectedCell));
-
       this.$router.push({
         path: p,
         query: {

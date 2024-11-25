@@ -17,5 +17,6 @@ namespace ldtiep.be.BL.Dto
         public string CategoryIDs { get; set; }
         public string CategoryNames { get; set; }
         public string PictureIDS { get; set; }
+        public int? SoldCount { get; set; }
     }
 }

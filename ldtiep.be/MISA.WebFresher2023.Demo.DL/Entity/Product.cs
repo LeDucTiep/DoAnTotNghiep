@@ -22,5 +22,6 @@ namespace ldtiep.be.DL.Entity
         public string CategoryIDs { get; set; }
         public string CategoryNames { get; set; }
         public string PictureIDS { get; set; }
+        public int? SoldCount { get; set; }
     }
 }
