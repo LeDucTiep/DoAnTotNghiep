@@ -55,6 +55,7 @@
       :dataSource="rowData"
       @view="onView($event)"
       @delete="onDelete($event)"
+      @status="changeStatus($event)"
       @sort="onSort($event)"
       @changePage="onChangePage($event)"
       v-model="rowSelected"
@@ -201,8 +202,8 @@
         </div>
       </div>
       <div class="view-order-buttons p-absolute">
-        <vs-button @click="saveOrder()" color="primary" type="filled"
-          >Lưu</vs-button
+        <vs-button @click="isShowView = false" color="primary" type="filled"
+          >Đóng</vs-button
         >
       </div>
     </div>
@@ -224,6 +225,53 @@
       <div class="content">Bạn có chắc chắn muốn xóa đơn hàng này?</div>
       <div class="buttons">
         <vs-button @click="confirmDeleteOne()" color="primary" type="filled"
+          >Xác nhận</vs-button
+        >
+      </div>
+    </div>
+  </vs-popup>
+
+  <vs-popup title="Sửa đổi trạng thái" v-model:active="isShowPopupStatus">
+    <div class="popup-content">
+      <div class="h-10"></div>
+
+      <div class="content d-flex gap-10">
+        <vs-radio
+          v-model="orderChangeStatus.OrderStatus"
+          color="dark"
+          :vs-value="0"
+          >Chờ xác nhận</vs-radio
+        >
+        <vs-radio
+          v-model="orderChangeStatus.OrderStatus"
+          color="warning"
+          :vs-value="1"
+          >Đã xác nhận</vs-radio
+        >
+        <vs-radio
+          v-model="orderChangeStatus.OrderStatus"
+          color="primary"
+          :vs-value="2"
+          >Đang giao hàng</vs-radio
+        >
+        <vs-radio
+          v-model="orderChangeStatus.OrderStatus"
+          color="success"
+          :vs-value="3"
+          >Hoàn thành</vs-radio
+        >
+        <vs-radio
+          v-model="orderChangeStatus.OrderStatus"
+          color="danger"
+          :vs-value="4"
+          >Đã xóa</vs-radio
+        >
+      </div>
+
+      <div class="h-10"></div>
+      <div class="h-10"></div>
+      <div class="buttons">
+        <vs-button @click="confirmStatus()" color="primary" type="filled"
           >Xác nhận</vs-button
         >
       </div>
@@ -291,6 +339,8 @@ export default {
       },
       pageIndex: 1,
       switchArray: [0, 1, 2, 3],
+      isShowPopupStatus: false,
+      orderChangeStatus: {},
     };
   },
   watch: {
@@ -348,6 +398,10 @@ export default {
       this.isShowPopupDeleteOne = true;
       this.deletingID = [e.OrderID];
     },
+    async changeStatus(e) {
+      this.isShowPopupStatus = true;
+      this.orderChangeStatus = await this.api.byID(e.OrderID);
+    },
     async confirmDelete() {
       this.isShowPopupDelete = false;
 
@@ -374,7 +428,12 @@ export default {
 
       this.deletingID = this.rowSelected.map((e) => e.OrderID);
     },
-    saveOrder() {},
+    async confirmStatus() {
+      this.isShowPopupStatus = false;
+      const id = this.orderChangeStatus.OrderID;
+      await this.api.updateByID(id, this.orderChangeStatus);
+      this.getData();
+    },
   },
 };
 </script>

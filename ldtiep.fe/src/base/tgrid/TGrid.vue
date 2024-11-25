@@ -71,36 +71,44 @@
             {{ format(tr[col.field]) }}
           </div>
           <div v-else-if="col.type == 54" class="cell">
-            <div
+            <vs-button
+              @click.stop="changeStatus($event, tr)"
               v-if="tr[col.field] == 0"
-              :class="`status-cell val-${tr[col.field]}`"
+              color="dark"
+              type="border"
+              >Chờ xác nhận</vs-button
             >
-              Chờ xác nhận
-            </div>
-            <div
+            <vs-button
+              @click.stop="changeStatus($event, tr)"
               v-if="tr[col.field] == 1"
-              :class="`status-cell val-${tr[col.field]}`"
+              color="warning"
+              type="border"
+              >Đã xác nhận</vs-button
             >
-              Đã xác nhận
-            </div>
-            <div
+            <vs-button
+              @click.stop="changeStatus($event, tr)"
               v-if="tr[col.field] == 2"
-              :class="`status-cell val-${tr[col.field]}`"
+              color="primary"
+              type="border"
             >
               Đang giao hàng
-            </div>
-            <div
+            </vs-button>
+            <vs-button
+              @click.stop="changeStatus($event, tr)"
               v-if="tr[col.field] == 3"
-              :class="`status-cell val-${tr[col.field]}`"
+              color="success"
+              type="border"
             >
               Hoàn thành
-            </div>
-            <div
+            </vs-button>
+            <vs-button
+              @click.stop="changeStatus($event, tr)"
               v-if="tr[col.field] == 4"
-              :class="`status-cell val-${tr[col.field]}`"
+              color="danger"
+              type="border"
             >
               Đã xóa
-            </div>
+            </vs-button>
           </div>
           <div v-else-if="col.type == 67" class="cell type-67">
             <div class="cell--value">
@@ -202,7 +210,14 @@ export default {
       default: 0,
     },
   },
-  emits: ["update:modelValue", "edit", "delete", "sort", "changePage"],
+  emits: [
+    "update:modelValue",
+    "edit",
+    "delete",
+    "sort",
+    "changePage",
+    "status",
+  ],
   components: { ColorComponent, PictureComponent },
   computed: {
     selected: {
@@ -237,6 +252,10 @@ export default {
     onDelete(e, row) {
       e.preventDefault();
       this.$emit("delete", row);
+    },
+    changeStatus(e, row) {
+      e.preventDefault();
+      this.$emit("status", row);
     },
     onView(e, row) {
       e.preventDefault();
@@ -361,30 +380,6 @@ export default {
   align-content: center;
   gap: 2px;
   cursor: pointer;
-}
-
-.status-cell {
-  padding: 8px;
-  border-radius: 6px;
-  border: 1px solid;
-  width: fit-content;
-
-  &.val-1 {
-    color: #ffba00;
-    border-color: #ffba00;
-  }
-  &.val-2 {
-    color: #1f74ff;
-    border-color: #1f74ff;
-  }
-  &.val-3 {
-    color: #46c93a;
-    border-color: #46c93a;
-  }
-  &.val-4 {
-    color: #ff4757;
-    border-color: #ff4757;
-  }
 }
 </style>
     
