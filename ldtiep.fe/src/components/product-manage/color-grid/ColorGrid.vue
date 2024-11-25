@@ -64,7 +64,7 @@
     </div>
   </vs-popup>
 
-  <vs-popup title="Xóa sản phẩm" v-model:active="isShowPopupDelete">
+  <vs-popup title="Xóa màu sắc" v-model:active="isShowPopupDelete">
     <div class="popup-content">
       <div class="content">Bạn có chắc chắn muốn xóa các màu sắc đã chọn?</div>
       <div class="buttons">
@@ -75,7 +75,7 @@
     </div>
   </vs-popup>
 
-  <vs-popup title="Xóa sản phẩm" v-model:active="isShowPopupDeleteOne">
+  <vs-popup title="Xóa màu sắc" v-model:active="isShowPopupDeleteOne">
     <div class="popup-content">
       <div class="content">Bạn có chắc chắn muốn xóa màu sắc này?</div>
       <div class="buttons">

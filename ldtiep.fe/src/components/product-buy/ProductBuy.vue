@@ -29,6 +29,7 @@
         <vs-input
           icon-no-border
           icon="mail"
+          type="email"
           label="Địa chỉ email (Không bắt buộc)"
           v-model="ProductBuyInfor.Email"
           size="large"

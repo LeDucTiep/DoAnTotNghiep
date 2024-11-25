@@ -24,6 +24,9 @@
       <div v-if="currentTab == 3" class="right">
         <CategoryGrid></CategoryGrid>
       </div>
+      <div v-if="currentTab == 4" class="right">
+        <OrderGrid></OrderGrid>
+      </div>
     </div>
   </div>
 </template>
@@ -32,6 +35,7 @@
 import ProductGrid from "./product-grid/ProductGrid.vue";
 import ColorGrid from "./color-grid/ColorGrid.vue";
 import CategoryGrid from "./category-grid/CategoryGrid.vue";
+import OrderGrid from "./order-grid/OrderGrid.vue";
 import SizeGrid from "./size-grid/SizeGrid.vue";
 
 export default {
@@ -42,6 +46,7 @@ export default {
     SizeGrid,
     ColorGrid,
     CategoryGrid,
+    OrderGrid,
   },
   data() {
     return {
@@ -62,6 +67,10 @@ export default {
         {
           id: 3,
           name: "Thể loại",
+        },
+        {
+          id: 4,
+          name: "Đơn hàng",
         },
       ],
     };

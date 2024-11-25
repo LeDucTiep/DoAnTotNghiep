@@ -1,7 +1,6 @@
 <template>
   <vs-table
     :multiple="multiple"
-    :sst="true"
     :search="search"
     v-model="selected"
     :pagination="!!pageSize"
@@ -46,11 +45,83 @@
               >
             </div>
           </div>
+          <div v-if="col.type == 15" class="cell">
+            <div class="menu-table-buttons">
+              <vs-button
+                @click.stop="onView($event, tr)"
+                color="primary"
+                type="border"
+                >Xem</vs-button
+              >
+              <vs-button
+                @click.stop="onDelete($event, tr)"
+                color="danger"
+                type="border"
+                >Xóa</vs-button
+              >
+            </div>
+          </div>
           <div v-else-if="col.type == 2" class="cell">
             <ColorComponent :colorCode="tr[col.field]"></ColorComponent>
           </div>
           <div v-else-if="col.type == 10" class="cell">
             <PictureComponent :ids="tr[col.field]"></PictureComponent>
+          </div>
+          <div v-else-if="col.type == 45" class="cell">
+            {{ format(tr[col.field]) }}
+          </div>
+          <div v-else-if="col.type == 54" class="cell">
+            <div
+              v-if="tr[col.field] == 0"
+              :class="`status-cell val-${tr[col.field]}`"
+            >
+              Chờ xác nhận
+            </div>
+            <div
+              v-if="tr[col.field] == 1"
+              :class="`status-cell val-${tr[col.field]}`"
+            >
+              Đã xác nhận
+            </div>
+            <div
+              v-if="tr[col.field] == 2"
+              :class="`status-cell val-${tr[col.field]}`"
+            >
+              Đang giao hàng
+            </div>
+            <div
+              v-if="tr[col.field] == 3"
+              :class="`status-cell val-${tr[col.field]}`"
+            >
+              Hoàn thành
+            </div>
+            <div
+              v-if="tr[col.field] == 4"
+              :class="`status-cell val-${tr[col.field]}`"
+            >
+              Đã xóa
+            </div>
+          </div>
+          <div v-else-if="col.type == 67" class="cell type-67">
+            <div class="cell--value">
+              {{ tr[col.field] }}
+            </div>
+            <div
+              @click.stop="copyText(tr[col.field], $event)"
+              class="cell--icon-copy"
+            >
+              <vs-tooltip text="Sao chép">
+                <img
+                  alt="copy image"
+                  loading="lazy"
+                  width="16"
+                  height="16"
+                  decoding="async"
+                  class="cursor"
+                  src="../../assets/images/copy.svg"
+                />
+              </vs-tooltip>
+            </div>
           </div>
           <div v-else class="cell">
             {{ tr[col.field] }}
@@ -104,6 +175,7 @@
 <script>
 import ColorComponent from "./ColorComponent";
 import PictureComponent from "./PictureComponent";
+import { inject } from "vue";
 export default {
   name: "TGrid",
   props: {
@@ -143,10 +215,21 @@ export default {
     },
   },
   data() {
-    return {};
+    return {
+      vs: inject("$vs"),
+    };
   },
   beforeMount() {},
   methods: {
+    format(val) {
+      if (!val) return "0 đ";
+      return val
+        .toLocaleString("vi-VN", {
+          style: "currency",
+          currency: "VND",
+        })
+        .replace("₫", "đ");
+    },
     onEdit(e, row) {
       e.preventDefault();
       this.$emit("edit", row);
@@ -154,6 +237,10 @@ export default {
     onDelete(e, row) {
       e.preventDefault();
       this.$emit("delete", row);
+    },
+    onView(e, row) {
+      e.preventDefault();
+      this.$emit("view", row);
     },
     handleChangePage(page) {
       this.$emit("changePage", page);
@@ -166,6 +253,25 @@ export default {
       }
 
       this.$emit("sort", param);
+    },
+    copyText(text, e) {
+      e.preventDefault();
+      navigator.clipboard
+        .writeText(text)
+        .then(() => {
+          this.vs.notify({
+            title: "Thành công",
+            text: "Sao chép thành công",
+            color: "success",
+          });
+        })
+        .catch(() => {
+          this.vs.notify({
+            title: "Có lỗi xảy ra",
+            text: "Không thể sao chép",
+            color: "danger",
+          });
+        });
     },
   },
 };
@@ -247,6 +353,37 @@ export default {
     &::-webkit-scrollbar-thumb:hover {
       background-color: #aaa;
     }
+  }
+}
+
+.cell.type-67 {
+  display: flex;
+  align-content: center;
+  gap: 2px;
+  cursor: pointer;
+}
+
+.status-cell {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid;
+  width: fit-content;
+
+  &.val-1 {
+    color: #ffba00;
+    border-color: #ffba00;
+  }
+  &.val-2 {
+    color: #1f74ff;
+    border-color: #1f74ff;
+  }
+  &.val-3 {
+    color: #46c93a;
+    border-color: #46c93a;
+  }
+  &.val-4 {
+    color: #ff4757;
+    border-color: #ff4757;
   }
 }
 </style>

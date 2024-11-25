@@ -15,5 +15,6 @@ namespace ldtiep.be.BL.Dto
         public double TransCostDiscount { get; set; }
         public double TotalPay { get; set; }
         public double TotalPrice { get; set; }
+        public int OrderStatus { get; set; }
     }
 }
