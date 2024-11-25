@@ -597,7 +597,7 @@
       <div class="icons">
         <div class="icon">
           <img
-            src="	https://yody.vn/images/identity-badge/bct_v1.png"
+            src="./assets/images/bct_v1.png"
             loading="lazy"
             width="105"
             alt="dmca"
@@ -605,7 +605,7 @@
         </div>
         <div class="icon">
           <img
-            src="https://yody.vn/images/identity-badge/dmca_v1.png"
+            src="./assets/images/dmca_v1.png"
             width="80"
             loading="lazy"
             alt="dmca"

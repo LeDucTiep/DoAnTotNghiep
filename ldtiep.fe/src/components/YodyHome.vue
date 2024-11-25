@@ -9,7 +9,7 @@
               loading="lazy"
               decoding="async"
               class="w-full cursor"
-              src="https://m.yodycdn.com/fit-in/filters:format(webp)/fit-in/filters:format(webp)/products/m2icp1q482izgs5xlwrluong-ve-sale-to-1800x833.png"
+              src="../assets/images/swip1.png"
               style="color: transparent"
             />
           </swiper-slide>
@@ -19,7 +19,7 @@
               loading="lazy"
               decoding="async"
               class="w-full cursor"
-              src="https://m.yodycdn.com/fit-in/filters:format(webp)/fit-in/filters:format(webp)/products/m1h5t6esl6r65pev2xp1800x833%20bst%20thu%20dong%20pc.png"
+              src="../assets/images/swip2.png"
               style="color: transparent"
           /></swiper-slide>
           <swiper-slide
@@ -28,7 +28,7 @@
               loading="lazy"
               decoding="async"
               class="w-full cursor"
-              src="https://m.yodycdn.com/fit-in/filters:format(webp)/fit-in/filters:format(webp)/products/m1acnkuz77djwysa293c%C3%B3%20cta%201800x833.png"
+              src="../assets/images/swip3.png"
               style="color: transparent"
           /></swiper-slide>
           <swiper-slide
@@ -37,7 +37,7 @@
               loading="lazy"
               decoding="async"
               class="w-full cursor"
-              src="https://m.yodycdn.com/fit-in/filters:format(webp)/fit-in/filters:format(webp)/products/m2icqji8qcsbiegy6ildp-hlw-1800x833.png"
+              src="../assets/images/swip4.png"
               style="color: transparent"
           /></swiper-slide>
         </swiper>
@@ -116,10 +116,11 @@
     </div>
     <div class="san-pham-tot">
       <img
+        @click="toFilterPage({ q: 'ban-chay' })"
         loading="lazy"
         decoding="async"
         class="w-full h-full"
-        src="https://m.yodycdn.com/fit-in/filters:format(webp)//products/BANNER%20%20COLLECTION%20LIST-2.png"
+        src="../assets/images/sw5.png"
         style="color: transparent"
       />
     </div>
@@ -206,7 +207,7 @@
     <div class="infor-tags">
       <div class="tags">
         <img
-          src="https://m.yodycdn.com/fit-in/filters:format(webp)/products/media/articles/280.jpeg"
+          src="../assets/images/sw6.png"
           loading="lazy"
           class="w-full h-full object-cover"
           alt="media"
@@ -223,7 +224,7 @@
       </div>
       <div class="tags">
         <img
-          src="https://m.yodycdn.com/fit-in/filters:format(webp)/products/media/articles/yody-chung-tay-tu-thien-thumb.webp"
+          src="../assets/images/sw7.png"
           loading="lazy"
           class="h-full w-full object-cover"
           alt="media"
