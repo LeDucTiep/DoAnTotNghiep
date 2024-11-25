@@ -204,6 +204,7 @@ export default {
       DistrictApi: new API("Districts"),
       CommuneApi: new API("Communes"),
       OrderApi: new API("Orders"),
+      CategoryApi: new API("Categorys"),
       ProductBuyInfor: {},
       Citys: [],
       Districts: [],
@@ -422,6 +423,16 @@ export default {
             p.SoldCount = (p.SoldCount || 0) + 1;
 
             await this.ProductApi.updateByID(id, p);
+
+            const categories = p.CategoryIDs.split(";");
+
+            for (let j = 0; j < categories.length; j++) {
+              const c = await this.CategoryApi.byID(categories[j]);
+
+              c.SoldCount = (c.SoldCount || 0) + 1;
+
+              await this.CategoryApi.updateByID(categories[j], c);
+            }
           }
 
           this.toHomePage();

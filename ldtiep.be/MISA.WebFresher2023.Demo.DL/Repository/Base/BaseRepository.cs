@@ -444,11 +444,16 @@ namespace ldtiep.be.DL.Repository
                 {
                     var val = basePagingArgument.SearchEquals.GetValueOrDefault(key);
                     if (val == null)
-                        continue;
+                    {
+                        whereBlocks.Add($"{key} is null");
+                    }
+                    else
+                    {
+                        whereBlocks.Add($"{key} = @v_{key}");
+                        parameters.Add($"v_{key}", val.ToString());
+                    }
 
 
-                    whereBlocks.Add($"{key} = @v_{key}");
-                    parameters.Add($"v_{key}", val.ToString());
                 }
             }
             if (basePagingArgument.SearchSmaller?.Keys != null)
@@ -498,7 +503,14 @@ namespace ldtiep.be.DL.Repository
 
                             temp.Add($"(FIND_IN_SET(@v_{key}_{i}, REPLACE({key}, ';', ',')) > 0)");
 
-                            parameters.Add($"v_{key}_{i}", item.ToString());
+                            if (item == null)
+                            {
+                                parameters.Add($"v_{key}_{i}", null);
+                            }
+                            else
+                            {
+                                parameters.Add($"v_{key}_{i}", item.ToString());
+                            }
                         }
 
                         whereBlocks.Add($"({string.Join(" or ", temp)})");

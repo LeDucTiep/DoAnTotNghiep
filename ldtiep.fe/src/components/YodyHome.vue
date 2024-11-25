@@ -5,34 +5,38 @@
         <swiper ref="mySwiper" :slides-per-view="1" @swiper="onSwiper">
           <swiper-slide>
             <img
+              @click="toFilterPage({ q: 'sale-50%' })"
               loading="lazy"
               decoding="async"
-              class="w-full"
+              class="w-full cursor"
               src="https://m.yodycdn.com/fit-in/filters:format(webp)/fit-in/filters:format(webp)/products/m2icp1q482izgs5xlwrluong-ve-sale-to-1800x833.png"
               style="color: transparent"
             />
           </swiper-slide>
           <swiper-slide
             ><img
+              @click="toFilterPage({ q: 'sale-50%' })"
               loading="lazy"
               decoding="async"
-              class="w-full"
+              class="w-full cursor"
               src="https://m.yodycdn.com/fit-in/filters:format(webp)/fit-in/filters:format(webp)/products/m1h5t6esl6r65pev2xp1800x833%20bst%20thu%20dong%20pc.png"
               style="color: transparent"
           /></swiper-slide>
           <swiper-slide
             ><img
+              @click="toFilterPage({ q: 'sale-50%' })"
               loading="lazy"
               decoding="async"
-              class="w-full"
+              class="w-full cursor"
               src="https://m.yodycdn.com/fit-in/filters:format(webp)/fit-in/filters:format(webp)/products/m1acnkuz77djwysa293c%C3%B3%20cta%201800x833.png"
               style="color: transparent"
           /></swiper-slide>
           <swiper-slide
             ><img
+              @click="toFilterPage({ q: 'sale-50%' })"
               loading="lazy"
               decoding="async"
-              class="w-full"
+              class="w-full cursor"
               src="https://m.yodycdn.com/fit-in/filters:format(webp)/fit-in/filters:format(webp)/products/m2icqji8qcsbiegy6ildp-hlw-1800x833.png"
               style="color: transparent"
           /></swiper-slide>
@@ -77,34 +81,36 @@
 
       <div class="ua-chuong-buttons">
         <div
-          v-for="(item, index) in [
-            'Áo Gió',
-            'Jeans Flex',
-            'Áo Polo',
-            'Quần Âu',
-            'Sơ Mi',
-          ]"
+          v-for="(item, index) in TopCategories"
           :key="index"
           class="ua-chuong-b"
           :class="{ 'ua-chuong-b--active': currUaChuongId == index }"
           @click="changeUaChuong(index)"
         >
           <div class="b-block">
-            {{ item }}
+            {{ item.CategoryName }}
           </div>
         </div>
       </div>
 
       <div class="uacuong-products">
         <div class="product-row">
-          <ProductSP></ProductSP>
-          <ProductSP></ProductSP>
-          <ProductSP></ProductSP>
-          <ProductSP></ProductSP>
+          <ProductSP
+            v-for="(item, index) in TopProductDatas"
+            :key="index"
+            :productID="item.ProductID"
+            :name="item.ProductName"
+            :colors="item.ColorCodes.split(';')"
+            :price="item.Price"
+            :originalPrice="item.OriginalPrice"
+            :discount="item.Discount"
+            :pictureIds="item.PictureIDS"
+            class="w-25"
+          ></ProductSP>
         </div>
       </div>
 
-      <div class="view-more-product">
+      <div @click="toFilterPage({ q: 'ban-chay' })" class="view-more-product">
         <div class="button-view-more">Xem thêm</div>
       </div>
     </div>
@@ -123,7 +129,9 @@
         <div class="right">
           <TPop @open="isShowGoiY = true" @close="isShowGoiY = false">
             <div class="goi-y-show d-flex">
-              <div class="goi-y-right">{{ GoiYs[currGoiYId] }}</div>
+              <div class="goi-y-right">
+                {{ TopCategories[currGoiYId]?.CategoryName }}
+              </div>
 
               <div class="icon-right">
                 <svg
@@ -159,13 +167,13 @@
             <template #content>
               <div class="goi-y-menu">
                 <div
-                  v-for="(item, index) in GoiYs"
+                  v-for="(item, index) in TopCategories"
                   :key="index"
                   class="goi-y-item"
                   :class="{ 'goi-y-item--active': currGoiYId == index }"
                   @click="changeGoiY(index)"
                 >
-                  {{ item }}
+                  {{ item.CategoryName }}
                 </div>
               </div>
             </template>
@@ -174,21 +182,21 @@
       </div>
       <div class="products-block">
         <div class="product-row">
-          <ProductSP></ProductSP>
-          <ProductSP></ProductSP>
-          <ProductSP></ProductSP>
-          <ProductSP></ProductSP>
-          <ProductSP></ProductSP>
-        </div>
-        <div class="product-row">
-          <ProductSP></ProductSP>
-          <ProductSP></ProductSP>
-          <ProductSP></ProductSP>
-          <ProductSP></ProductSP>
-          <ProductSP></ProductSP>
+          <ProductSP
+            v-for="(item, index) in GoiYProductDatas"
+            :key="index"
+            :productID="item.ProductID"
+            :name="item.ProductName"
+            :colors="item.ColorCodes.split(';')"
+            :price="item.Price"
+            :originalPrice="item.OriginalPrice"
+            :discount="item.Discount"
+            :pictureIds="item.PictureIDS"
+            class="w-25"
+          ></ProductSP>
         </div>
       </div>
-      <div class="view-more-product">
+      <div @click="toFilterPage({ q: 'ban-chay' })" class="view-more-product">
         <div class="button-view-more">Xem thêm</div>
       </div>
     </div>
@@ -239,6 +247,7 @@ import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
 import TPop from "/src/base/popover/TPop.vue";
 import ProductSP from "/src/components/cloth/ProductSP.vue";
+import API from "/src/service/api.js";
 export default {
   name: "YodyHome",
   components: {
@@ -250,19 +259,97 @@ export default {
   props: {},
   data() {
     return {
+      CateApi: new API("Categorys"),
+      ProductApi: new API("Products"),
       currUaChuongId: 0,
       currGoiYId: 0,
       swiper: null,
-      GoiYs: ["Áo Giữ Nhiệt", "Áo Thun", "Áo Polo", "Đồ Lót"],
       isShowGoiY: false,
+      TopCategories: [],
+      TopProductDatas: [],
+      GoiYProductDatas: [],
     };
   },
+  async created() {
+    await this.getTopCategory();
+    await this.getTopProduct();
+    await this.getGoiYProduct();
+  },
   methods: {
+    buildProductParam() {
+      const cate = this.TopCategories[this.currUaChuongId];
+      const search = {};
+
+      if (cate?.CategoryID) {
+        search.CategoryIDs = [cate.CategoryID];
+      }
+
+      const param = {
+        PageSize: 4,
+        PageNumber: 1,
+        SearchIn: search,
+      };
+      return param;
+    },
+    async getTopProduct() {
+      const param = this.buildProductParam();
+
+      const res = await this.ProductApi.paging(param);
+
+      this.TopProductDatas = res.Data;
+    },
+    async getGoiYProduct() {
+      const cate = this.TopCategories[this.currGoiYId];
+      const search = {};
+
+      if (cate?.CategoryID) {
+        search.CategoryIDs = [cate.CategoryID];
+      }
+
+      const param = {
+        PageSize: 8,
+        PageNumber: 1,
+        SearchIn: search,
+      };
+
+      const res = await this.ProductApi.paging(param);
+
+      this.GoiYProductDatas = res.Data;
+    },
+
+    async getTopCategory() {
+      const param = {
+        PageSize: 5,
+        PageNumber: 1,
+        Sorter: {
+          SoldCount: "desc",
+        },
+        SearchEquals: {
+          ParentID: null,
+        },
+      };
+
+      let res = await this.CateApi.paging(param);
+
+      this.TopCategories = res.Data;
+    },
+    toFilterPage(query) {
+      const p = "/tim-kiem-san-pham";
+
+      this.$router.push({
+        path: p,
+        query: query,
+      });
+    },
     changeGoiY(i) {
       this.currGoiYId = i;
+
+      this.getGoiYProduct();
     },
     changeUaChuong(i) {
       this.currUaChuongId = i;
+
+      this.getTopProduct();
     },
     onSwiper(swiper) {
       this.swiper = swiper;

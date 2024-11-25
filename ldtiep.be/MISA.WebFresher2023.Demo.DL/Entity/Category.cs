@@ -13,5 +13,6 @@ namespace ldtiep.be.DL.Entity
         public Guid? ParentID { get; set; }
         public int SortOrder { get; set; }
         public int CategoryType { get; set; }
+        public int? SoldCount { get; set; }
     }
 }

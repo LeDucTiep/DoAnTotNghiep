@@ -8,5 +8,6 @@ namespace ldtiep.be.BL.Dto
         public int SortOrder { get; set; }
         public Guid? ParentID { get; set; }
         public int CategoryType { get; set; }
+        public int? SoldCount { get; set; }
     }
 }
