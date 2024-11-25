@@ -29,4 +29,4 @@ npm run lint
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
 Lệnh backup db
-mariadb-dump -u root -p to_nghiep > backup.sql
+mariadb-dump -u root -p tot_nghiep > backup.sql
