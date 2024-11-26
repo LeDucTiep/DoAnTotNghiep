@@ -64,6 +64,8 @@ builder.Services.AddScoped<ICityRepository, CityRepository>();
 builder.Services.AddScoped<IDistrictRepository, DistrictRepository>();
 builder.Services.AddScoped<ICommuneRepository, CommuneRepository>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+builder.Services.AddScoped<IRuleRepository, RuleRepository>();
+builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 
 
 builder.Services.AddScoped<IProductService, ProductService>();
@@ -75,6 +77,8 @@ builder.Services.AddScoped<ICityService, CityService>();
 builder.Services.AddScoped<IDistrictService, DistrictService>();
 builder.Services.AddScoped<ICommuneService, CommuneService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
+builder.Services.AddScoped<IRuleService, RuleService>();
+builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 
 
 builder.Services.AddScoped<IMSDatabase, MSDatabase>();

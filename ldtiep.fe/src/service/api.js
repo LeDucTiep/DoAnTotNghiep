@@ -23,6 +23,9 @@ class API {
     async byID(id) {
         return await this.get(`/${id}`);
     }
+    async genCode() {
+        return await this.get(`/gen-code`);
+    }
     async updateByID(id, data) {
         return await this.put(`/${id}`, data);
     }

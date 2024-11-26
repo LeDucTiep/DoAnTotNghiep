@@ -27,6 +27,9 @@
       <div v-if="currentTab == 4" class="right">
         <OrderGrid></OrderGrid>
       </div>
+      <div v-if="currentTab == 5" class="right">
+        <EmployeeGrid></EmployeeGrid>
+      </div>
     </div>
   </div>
 </template>
@@ -37,12 +40,14 @@ import ColorGrid from "./color-grid/ColorGrid.vue";
 import CategoryGrid from "./category-grid/CategoryGrid.vue";
 import OrderGrid from "./order-grid/OrderGrid.vue";
 import SizeGrid from "./size-grid/SizeGrid.vue";
+import EmployeeGrid from "./employee-grid/EmployeeGrid.vue";
 
 export default {
   name: "ProductManage",
   props: {},
   components: {
     ProductGrid,
+    EmployeeGrid,
     SizeGrid,
     ColorGrid,
     CategoryGrid,
@@ -71,6 +76,10 @@ export default {
         {
           id: 4,
           name: "Đơn hàng",
+        },
+        {
+          id: 5,
+          name: "Nhân viên",
         },
       ],
     };
