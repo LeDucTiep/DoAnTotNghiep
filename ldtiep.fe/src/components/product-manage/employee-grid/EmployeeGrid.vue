@@ -222,6 +222,9 @@ export default {
         PageSize: 100,
         PageNumber: this.pageIndex,
         Sorter: this.currentSort,
+        SearchEquals: {
+          TypeAccount: 0,
+        },
       };
       const res = await this.api.paging(param);
       this.rowData = res.Data;

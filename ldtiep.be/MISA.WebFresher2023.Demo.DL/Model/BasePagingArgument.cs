@@ -30,6 +30,7 @@ namespace ldtiep.be.DL.Model
         /// </summary>
         /// Author: LeDucTiep (09/06/2023)
         public Dictionary<string, object>? SearchEquals { get; set; }
+        public Dictionary<string, string>? SearchContains { get; set; }
         /// <summary>
         /// Tìm kiếm theo toán tử in
         /// </summary>

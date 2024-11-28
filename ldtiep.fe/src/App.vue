@@ -256,7 +256,11 @@
             </svg>
           </div>
 
-          <input v-model="searchValue" placeholder="Tìm kiếm" />
+          <input
+            @keyup.enter="onSearch()"
+            v-model="searchValue"
+            placeholder="Tìm kiếm"
+          />
         </div>
         <div @click="toCartPage()" class="m-l-10 store-items">
           <div v-if="CartCount" class="store-count">{{ CartCount }}</div>
@@ -726,6 +730,10 @@ export default {
       this.$router.push({
         path: p,
       });
+    },
+    onSearch() {
+      const search = this.searchValue;
+      this.toFilterPage({ Search: search });
     },
   },
 };

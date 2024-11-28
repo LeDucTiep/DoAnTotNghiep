@@ -184,6 +184,11 @@ export default {
         this.getProducts();
       }
     },
+    "$route.query.Search": function (val, oldVal) {
+      if (val != oldVal) {
+        this.getProducts();
+      }
+    },
   },
   methods: {
     async mapFilterName() {
@@ -303,6 +308,12 @@ export default {
 
       sortBuilder.ModifiedDate = "asc";
 
+      const searchContains = {};
+
+      if (this.$route.query.Search) {
+        searchContains.ProductName = this.$route.query.Search;
+      }
+
       const param = {
         PageSize: 100,
         PageNumber: 1,
@@ -311,6 +322,7 @@ export default {
         SearchIn: filterIn,
         SearchBigger: SearchBigger,
         SearchSmaller: SearchSmaller,
+        SearchContains: searchContains,
       };
       return param;
     },

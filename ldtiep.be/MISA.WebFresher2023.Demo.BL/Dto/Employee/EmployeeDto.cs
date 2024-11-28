@@ -8,5 +8,6 @@ namespace ldtiep.be.BL.Dto
         public string EmployeeCode { get; set; }
         public string Rules { get; set; }
         public string Password { get; set; }
+        public int? TypeAccount { get; set; }
     }
 }

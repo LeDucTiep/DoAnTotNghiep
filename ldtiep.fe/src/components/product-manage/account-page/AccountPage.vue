@@ -5,12 +5,14 @@
   >
     <div class="account-container">
       <vs-input
+        disabled
         label="Họ và tên"
         placeholder="Lê Đức Tiệp"
         v-model="itemData.EmployeeName"
       />
       <div class="h-10"></div>
       <vs-input
+        disabled
         label="Mã nhân viên"
         placeholder="NV001"
         v-model="itemData.EmployeeCode"

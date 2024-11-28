@@ -14,6 +14,6 @@ namespace ldtiep.be.DL.Entity
         public string Rules { get; set; }
         public string Password { get; set; }
         public Guid? SessionID { get; set; }
-
+        public int TypeAccount { get; set; }
     }
 }

@@ -452,8 +452,18 @@ namespace ldtiep.be.DL.Repository
                         whereBlocks.Add($"{key} = @v_{key}");
                         parameters.Add($"v_{key}", val.ToString());
                     }
-
-
+                }
+            }
+            if (basePagingArgument.SearchContains?.Keys != null)
+            {
+                foreach (var key in basePagingArgument.SearchContains.Keys)
+                {
+                    var val = basePagingArgument.SearchContains.GetValueOrDefault(key);
+                    if (!string.IsNullOrEmpty(val))
+                    {
+                        whereBlocks.Add($"{key} like concat('%',@v_{key},'%')");
+                        parameters.Add($"v_{key}", val.ToString());
+                    }
                 }
             }
             if (basePagingArgument.SearchSmaller?.Keys != null)
