@@ -69,6 +69,7 @@
                 { id: 'kich-thuoc', name: 'Kích thước' },
                 { id: 'the-loai', name: 'Thể loại' },
                 { id: 'don-hang', name: 'Đơn hàng' },
+                { id: 'nhan-vien', name: 'Nhân viên' },
               ]"
               :key="index"
             >

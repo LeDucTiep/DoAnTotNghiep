@@ -670,6 +670,43 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "ldtiep.be.api.Controllers.EmployeeController",
+    "Method": "ChangePassword",
+    "RelativePath": "api/v1/Employees/change-password/{sessionID}/{newPass}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "sessionID",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "newPass",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ldtiep.be.api.Controllers.EmployeeController",
+    "Method": "CheckPassword",
+    "RelativePath": "api/v1/Employees/check-password",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "p",
+        "Type": "ldtiep.be.api.Controllers.PW",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "ldtiep.be.Controllers.BaseController\u00604[[ldtiep.be.DL.Entity.Employee, ldtiep.be.DL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.EmployeeDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.EmployeeCreateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.EmployeeUpdateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
     "Method": "CheckExistedAsync",
     "RelativePath": "api/v1/Employees/checkExisted",
@@ -712,6 +749,22 @@
       {
         "Name": "basePagingArgument",
         "Type": "ldtiep.be.DL.Model.BasePagingArgument",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ldtiep.be.api.Controllers.EmployeeController",
+    "Method": "GetUserInfor",
+    "RelativePath": "api/v1/Employees/user-infor/{sessionID}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "sessionID",
+        "Type": "System.String",
         "IsRequired": true
       }
     ],

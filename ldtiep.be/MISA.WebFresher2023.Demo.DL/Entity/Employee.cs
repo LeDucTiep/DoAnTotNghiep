@@ -12,5 +12,8 @@ namespace ldtiep.be.DL.Entity
         public string EmployeeName { get; set; }
         public string EmployeeCode { get; set; }
         public string Rules { get; set; }
+        public string Password { get; set; }
+        public Guid? SessionID { get; set; }
+
     }
 }

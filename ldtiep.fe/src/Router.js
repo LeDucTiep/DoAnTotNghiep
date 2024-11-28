@@ -5,7 +5,7 @@ import ProductCart from './components/product-cart/ProductCart.vue'
 import ProductBuy from './components/product-buy/ProductBuy.vue'
 import ProductDetail from './components/product-detail/ProductDetail.vue'
 import ProductManage from '/src/components/product-manage/ProductManage.vue'
-
+import LoginPage from './components/login-page/LoginPage.vue'
 const routes = [
   {
     path: '/',
@@ -36,6 +36,11 @@ const routes = [
     path: '/admin',
     name: 'ProductManage',
     component: ProductManage
+  },
+  {
+    path: '/login',
+    name: 'LoginPage',
+    component: LoginPage
   },
 ]
 

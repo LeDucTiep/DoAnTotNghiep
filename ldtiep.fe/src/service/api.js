@@ -17,6 +17,18 @@ class API {
     async add(body) {
         return await this.post("", body);
     }
+    async GetUserInfor(sessionID) {
+
+        if (!sessionID) return null;
+
+        return await this.get(`/user-infor/${sessionID}`);
+    }
+    async checkPassword(body) {
+        return await this.post("/check-password", body);
+    }
+    async changePassword(sessionID, newPass) {
+        return await this.get(`/change-password/${sessionID}/${newPass}`);
+    }
     async checkExisted(body) {
         return await this.post("/checkExisted", body);
     }
