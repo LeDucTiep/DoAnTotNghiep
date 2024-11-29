@@ -811,6 +811,8 @@ export default {
 
       this.$refs.uploadInputEdit.files = dataTransfer.files;
       this.$refs.uploadInputEdit.dispatchEvent(new Event("change"));
+
+      this.getCategory(this.currentCategoryTypeEdit);
     },
     onDelete(e) {
       this.deletingData = e;
@@ -852,6 +854,8 @@ export default {
       };
 
       this.isShowAdd = true;
+
+      this.getCategory(this.currentCategoryType);
     },
     validateAddForm() {
       this.IsValidatingFormAdd = true;

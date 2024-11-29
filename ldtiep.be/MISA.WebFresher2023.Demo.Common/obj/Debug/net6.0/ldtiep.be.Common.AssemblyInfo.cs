@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ldtiep.be.Common")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7b0fb3119c62b0be4fde9604451dacd643ed2d96")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+781c56cc1ae179bd55f910882c5f79f13aa29a4d")]
 [assembly: System.Reflection.AssemblyProductAttribute("ldtiep.be.Common")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ldtiep.be.Common")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
