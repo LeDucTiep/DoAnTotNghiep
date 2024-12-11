@@ -1089,6 +1089,7 @@ export default {
     .product-row {
       display: flex;
       gap: 14px;
+      flex-wrap: wrap;
       width: 100%;
       margin-top: 14px;
     }

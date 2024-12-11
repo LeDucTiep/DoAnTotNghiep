@@ -176,6 +176,24 @@
 
         <div class="h-20"></div>
 
+        <div class="payment-type">Phương thức thanh toán</div>
+        <div class="payment-block">
+          <vs-radio
+            color="success"
+            vs-name="paymentradio"
+            v-model="paymentType"
+            :vs-value="0"
+            >Tiền mặt</vs-radio
+          >
+          <vs-radio
+            color="success"
+            vs-name="paymentradio"
+            v-model="paymentType"
+            :vs-value="1"
+            >Ví điện tử ZaloPay</vs-radio
+          >
+        </div>
+
         <div @click="onBuyProduct()" class="by-product-button">
           <div class="by-product">Đặt hàng</div>
         </div>
@@ -189,6 +207,7 @@
 <script>
 import API from "/src/service/api.js";
 import Cart from "/src/service/cart.js";
+import Pay from "/src/service/paymentAPI.js";
 import { inject } from "vue";
 export default {
   name: "ProductBuy",
@@ -196,6 +215,7 @@ export default {
   components: {},
   data() {
     return {
+      payAPI: new Pay(),
       vs: inject("$vs"),
       Cart: new Cart(),
       PictureApi: new API("Pictures"),
@@ -215,6 +235,7 @@ export default {
       TransCostDiscount: 0,
       Products: [],
       isValidating: false,
+      paymentType: 0,
     };
   },
   computed: {
@@ -268,6 +289,11 @@ export default {
     this.getCity();
 
     this.calculateSelected();
+  },
+  updated() {
+    document.querySelectorAll("input")?.forEach((e) => {
+      e.setAttribute("autocomplete", "off");
+    });
   },
   methods: {
     calculateSelected() {
@@ -408,13 +434,17 @@ export default {
         this.ProductBuyInfor.Products = JSON.stringify(this.Products);
 
         try {
-          await this.OrderApi.add(this.ProductBuyInfor);
-          this.vs.notify({
-            title: "Thành công",
-            text: "Đặt hàng thành công",
-            color: "success",
-          });
-
+          if (this.paymentType == 0) {
+            await this.OrderApi.add(this.ProductBuyInfor);
+            this.vs.notify({
+              title: "Thành công",
+              text: "Đặt hàng thành công",
+              color: "success",
+            });
+          } else {
+            let payurl = await this.payAPI.getPayUrl(this.TotalPay);
+            window.open(payurl.data.paymentUrl, "_blank").focus();
+          }
           for (let i = 0; i < this.Products.length; i++) {
             const id = this.Products[i].ProductID;
 
