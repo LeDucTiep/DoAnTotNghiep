@@ -16,6 +16,7 @@ namespace ldtiep.be.BL.Dto
         public string? EmployeeAddress { get; set; }
         public string? EmployeeExtraAddress { get; set; }
         public string? EmployeeNote { get; set; }
+        public string PayType { get; set; } = "Tiền mặt";
         public double TransCost { get; set; }
         public double TransCostDiscount { get; set; }
         public double TotalPay { get; set; }

@@ -1,5 +1,6 @@
 <template>
   <vs-table
+    :sst="true"
     :multiple="multiple"
     :search="search"
     v-model="selected"

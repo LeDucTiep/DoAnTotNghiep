@@ -22,6 +22,7 @@
       :dataSource="rowData"
       @edit="onEdit($event)"
       @delete="onDelete($event)"
+      @changePage="changePage($event)"
       :total="total"
       v-model="rowSelected"
     ></TGrid>
@@ -633,6 +634,7 @@ export default {
       CategoryFormEdit: {},
       IsValidatingFormEdit: false,
       deletingData: {},
+      currentPage: 1,
     };
   },
   watch: {
@@ -667,19 +669,24 @@ export default {
   },
   methods: {
     async getProducts() {
-      const param = {
-        PageSize: 100,
-        PageNumber: 1,
-        Sorter: {
-          CreatedDate: "desc",
-          ModifiedDate: "asc",
-        },
-      };
+      const res = [];
+      for (let i = 1; i <= this.currentPage; i++) {
+        const param = {
+          PageSize: 100,
+          PageNumber: this.currentPage,
+          Sorter: {
+            CreatedDate: "desc",
+            ModifiedDate: "asc",
+          },
+        };
 
-      const res = await this.ProductApi.paging(param);
+        const temp = await this.ProductApi.paging(param);
 
-      this.rowData = res.Data;
-      this.total = res.TotalRecord;
+        res.push(...temp.Data);
+        this.total = temp.TotalRecord;
+      }
+
+      this.rowData = res;
     },
     async getSizes() {
       const param = {
@@ -817,6 +824,10 @@ export default {
     onDelete(e) {
       this.deletingData = e;
       this.isShowPopupDelete = true;
+    },
+    changePage(page) {
+      this.currentPage = page;
+      this.getProducts();
     },
     async confirmDelete() {
       this.isShowPopupDelete = false;

@@ -15,7 +15,7 @@ import { inject } from 'vue'
 class Pay {
     constructor() {
         this.vs = inject('$vs')
-        this.baseUrl = `https://localhost:7102/api/`;
+        this.baseUrl = `https://localhost:44356/api/v1/Products/gen-payment`;
         this.axiosInstance = axios.create({
             baseURL: this.baseUrl,
             // Add any default headers or interceptors here
@@ -33,7 +33,7 @@ class Pay {
             "paymentDestinationId": "ZALOPAY",
             "signature": "SDA" + Math.floor(Math.random() * 1000000) + 1
         };
-        return await this.post('payment', param);
+        return await this.post('', param);
     }
 
     async post(endpoint, data, headers = null) {

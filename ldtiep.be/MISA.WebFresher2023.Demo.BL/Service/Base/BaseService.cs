@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using ClosedXML.Excel;
+using DocumentFormat.OpenXml.Drawing;
 using DocumentFormat.OpenXml.Office2010.Excel;
 using ldtiep.be.Common;
 using ldtiep.be.Common.Attribute;
@@ -10,8 +11,12 @@ using ldtiep.be.DL.Entity;
 using ldtiep.be.DL.Model;
 using ldtiep.be.DL.Repository;
 using ldtiep.be.Enum;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using Newtonsoft.Json;
 using System.Globalization;
 using System.Reflection;
+using ZaloPay.Helper; // HmacHelper, RSAHelper, HttpHelper, Utils (tải về ở mục DOWNLOADS)
+using ZaloPay.Helper.Crypto;
 
 namespace ldtiep.be.BL.Service
 {
@@ -419,6 +424,49 @@ namespace ldtiep.be.BL.Service
 
             // Trả về danh sách rỗng
             return await task;
+        }
+
+        static string app_id = "2553";
+        static string key1 = "PcY4iZIKFCIdgZvA6ueMcMHHUbRLYjPL";
+        static string create_order_url = "https://sb-openapi.zalopay.vn/v2/create";
+
+        public virtual async Task<string> GenPaymentUrl(Dictionary<string, object> body)
+        {
+            string url = "";
+
+            Random rnd = new();
+            var embed_data = new { };
+            var items = new[] { new { } };
+            var param = new Dictionary<string, string>();
+            var app_trans_id = rnd.Next(1000000); // Generate a random order's ID.
+
+            param.Add("app_id", app_id);
+            param.Add("app_user", "user123");
+            param.Add("app_time", Utils.GetTimeStamp().ToString());
+            param.Add("amount", body.GetValueOrDefault("requiredAmount")?.ToString() ?? "5000");
+            param.Add("app_trans_id", DateTime.Now.ToString("yyMMdd") + "_" + app_trans_id); // mã giao dich có định dạng yyMMdd_xxxx
+            param.Add("embed_data", JsonConvert.SerializeObject(embed_data));
+            param.Add("item", JsonConvert.SerializeObject(items));
+            param.Add("description", body.GetValueOrDefault("paymentContent")?.ToString() ?? "");
+            param.Add("bank_code", "zalopayapp");
+
+            var data = app_id + "|" + param["app_trans_id"] + "|" + param["app_user"] + "|" + param["amount"] + "|"
+                + param["app_time"] + "|" + param["embed_data"] + "|" + param["item"];
+            param.Add("mac", HmacHelper.Compute(ZaloPayHMAC.HMACSHA256, key1, data));
+
+            var result = await HttpHelper.PostFormAsync(create_order_url, param);
+
+            foreach (var entry in result)
+            {
+                Console.WriteLine("{0} = {1}", entry.Key, entry.Value);
+
+                if(entry.Key == "order_url")
+                {
+                    return entry.Value.ToString();
+                }
+            }
+
+            return url;
         }
         public virtual async Task<bool> CheckExistedAsync(Dictionary<string, string> param)
         {

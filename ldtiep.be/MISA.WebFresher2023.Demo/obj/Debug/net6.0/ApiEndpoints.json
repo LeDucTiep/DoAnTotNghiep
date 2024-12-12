@@ -1138,6 +1138,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "ldtiep.be.api.Controllers.ProductController",
+    "Method": "GenPayment",
+    "RelativePath": "api/v1/Products/gen-payment",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "body",
+        "Type": "System.Collections.Generic.Dictionary\u00602[[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Object, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "ldtiep.be.Controllers.BaseController\u00604[[ldtiep.be.DL.Entity.Product, ldtiep.be.DL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.ProductDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.ProductCreateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.ProductUpdateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
     "Method": "GetPageAsync",
     "RelativePath": "api/v1/Products/paging",

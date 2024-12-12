@@ -334,8 +334,8 @@ export default {
       isShowPopupDeleteOne: false,
       isShowPopupEdit: false,
       currentSort: {
-        ModifiedDate: "desc",
         CreatedDate: "desc",
+        ModifiedDate: "desc",
       },
       pageIndex: 1,
       switchArray: [0, 1, 2, 3],

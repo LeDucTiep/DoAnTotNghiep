@@ -41,6 +41,14 @@ namespace ldtiep.be.api.Controllers
 
             return StatusCode(200, newCode);
         }
+        [HttpPost("gen-payment")]
+        public async Task<IActionResult> GenPayment([FromBody] Dictionary<string, object> body)
+        {
+            var res = await _baseService.GenPaymentUrl(body);
+
+            return StatusCode(200, res);
+        }
+
     }
 
 

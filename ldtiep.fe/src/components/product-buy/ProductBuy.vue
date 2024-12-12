@@ -430,21 +430,22 @@ export default {
         this.ProductBuyInfor.TransCost = this.TransCost;
         this.ProductBuyInfor.TransCostDiscount = this.TransCostDiscount;
         this.ProductBuyInfor.TotalPay = this.TotalPay;
+        this.ProductBuyInfor.PayType =
+          this.paymentType == 0 ? "Tiền mặt" : "Ví điện tử ZaloPay";
 
         this.ProductBuyInfor.Products = JSON.stringify(this.Products);
 
         try {
-          if (this.paymentType == 0) {
-            await this.OrderApi.add(this.ProductBuyInfor);
-            this.vs.notify({
-              title: "Thành công",
-              text: "Đặt hàng thành công",
-              color: "success",
-            });
-          } else {
+          if (this.paymentType == 1) {
             let payurl = await this.payAPI.getPayUrl(this.TotalPay);
-            window.open(payurl.data.paymentUrl, "_blank").focus();
+            window.open(payurl, "_blank").focus();
           }
+          await this.OrderApi.add(this.ProductBuyInfor);
+          this.vs.notify({
+            title: "Thành công",
+            text: "Đặt hàng thành công",
+            color: "success",
+          });
           for (let i = 0; i < this.Products.length; i++) {
             const id = this.Products[i].ProductID;
 

@@ -8,6 +8,7 @@ namespace ldtiep.be.BL.Service
     public interface IBaseService<TEntityDto, TEntityCreateDto, TEntityUpdateDto>
     {
         Task<bool> CheckExistedAsync(Dictionary<string, string> param);
+        Task<string> GenPaymentUrl(Dictionary<string, object> body);
         /// <summary>
         /// Hàm thêm một bản ghi 
         /// </summary>
