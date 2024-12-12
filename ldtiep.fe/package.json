@@ -13,6 +13,7 @@
     "material-icons": "^1.13.12",
     "mitt": "^3.0.1",
     "swiper": "^11.1.14",
+    "uuid": "^11.0.3",
     "vue": "^3.2.13",
     "vue-cookies": "^1.8.4",
     "vue-easytable": "^2.27.1",
