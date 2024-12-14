@@ -1,15 +1,11 @@
 <template>
+  <template v-if="$route.path == '/admin'">
+    <AdminChat></AdminChat>
+  </template>
+  <template v-else>
+    <UserChat></UserChat>
+  </template>
   <div class="yody-container p-relative">
-    <div @click="openChat()" class="chat-container">
-      <div class="icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-          <path
-            fill="white"
-            d="M256 32C114.6 32 0 125.1 0 240c0 49.6 21.4 95 57 130.7C44.5 421.1 2.7 466 2.2 466.5c-2.2 2.3-2.8 5.7-1.5 8.7S4.8 480 8 480c66.3 0 116-31.8 140.6-51.4 32.7 12.3 69 19.4 107.4 19.4 141.4 0 256-93.1 256-208S397.4 32 256 32z"
-          />
-        </svg>
-      </div>
-    </div>
     <div class="home-header d-flex">
       <div class="header-left">
         <span class="logo cursor-pointer" @click="toHomePage()"
@@ -628,45 +624,6 @@
       </div>
     </div>
   </div>
-
-  <vs-popup fullscreen title="Tư vấn khách hàng" v-model:active="isOpenChat">
-    <div class="chat-screen">
-      <!-- <div class="chat-screen__header"></div> -->
-      <div class="chat-screen__body bg">
-        <div
-          v-for="item in messageData"
-          :key="item"
-          class="message-row"
-          :class="item.type == 1 ? 'message-row--right' : 'message-row--left'"
-        >
-          <div class="message-avata">
-            <img
-              height="32"
-              width="32"
-              src="../src/assets/images/persion.png"
-              alt="Avata"
-            />
-          </div>
-          <div class="message-content">
-            <div class="message--text bg2">{{ item.message }}</div>
-            <div class="message-time">{{ item.time }}</div>
-          </div>
-        </div>
-      </div>
-      <div class="chat-screen__footer">
-        <vs-input
-          icon="send"
-          v-model="typingMessage"
-          @icon-click="sendMessage()"
-          size="large"
-        />
-
-        <vs-button @click="sendMessage()" color="primary" type="filled"
-          >Gửi</vs-button
-        >
-      </div>
-    </div>
-  </vs-popup>
 </template>
 
 <script>
@@ -676,11 +633,15 @@ import Cart from "/src/service/cart.js";
 import TPop from "/src/base/popover/TPop.vue";
 import EventBus from "./service/EventBus";
 import { v4 as uuidv4 } from "uuid";
+import UserChat from "/src/UserChat.vue";
+import AdminChat from "/src/AdminChat.vue";
 
 export default {
   name: "App",
   components: {
     TPop,
+    UserChat,
+    AdminChat,
   },
   data() {
     return {
@@ -691,20 +652,7 @@ export default {
       CateKids: [],
       searchValue: "",
       CartCount: "",
-      isOpenChat: true,
-      typingMessage: "",
-      messageData: [
-        {
-          message: "Xin chao",
-          type: 1,
-          time: "10:09 AM, 12/12/2024",
-        },
-        {
-          message: "Toi giup gi duoc cho ban",
-          type: 2,
-          time: "10:10 AM, 12/12/2024",
-        },
-      ],
+      wd: window,
     };
   },
   created() {
@@ -719,12 +667,12 @@ export default {
 
     const userID = this.$cookies.get("userID");
 
-    console.log(userID);
-
     if (!userID) {
       const newGuid = uuidv4();
       this.$cookies.set("userID", newGuid, "100d"); // Hết hạn sau 1 ngày
     }
+
+    window.userID = userID;
   },
   methods: {
     updateCart() {
@@ -807,12 +755,6 @@ export default {
     onSearch() {
       const search = this.searchValue;
       this.toFilterPage({ Search: search });
-    },
-    openChat() {
-      this.isOpenChat = true;
-    },
-    sendMessage() {
-      console.log(this.typingMessage);
     },
   },
 };
@@ -1456,90 +1398,6 @@ export default {
     color: white;
     border-radius: 10px;
     opacity: 0.9;
-  }
-}
-
-.chat-container {
-  right: 0;
-  position: fixed;
-  top: 45%;
-  padding: 12px;
-  background-color: #fcaf17;
-  border-top-left-radius: 12px;
-  border-bottom-left-radius: 12px;
-  cursor: pointer;
-  .icon {
-    width: 28px;
-    height: 28px;
-  }
-}
-
-.chat-screen {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
-
-  .chat-screen__header {
-    height: 100px;
-    width: 100%;
-    background: red;
-  }
-  .bg {
-    background: linear-gradient(to right, #67b04e, #40bede);
-  }
-  .bg2 {
-    background: #75d87aff;
-  }
-  .chat-screen__body {
-    width: 100%;
-    height: 100%;
-    font-family: sans-serif;
-    letter-spacing: 0.4px;
-    color: #000;
-    line-height: 20px;
-    padding: 12px;
-    border-radius: 12px;
-
-    .message-row {
-      display: flex;
-      flex-direction: row;
-      gap: 8px;
-
-      .message-avata {
-        border-radius: 50%;
-      }
-
-      .message--text {
-        padding: 12px;
-        border-radius: 12px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-      }
-
-      .message-content {
-        display: flex;
-        flex-direction: column;
-        gap: 4px;
-      }
-    }
-    .message-row--right {
-      justify-content: right;
-    }
-  }
-  .chat-screen__footer {
-    width: 100%;
-    height: 67px;
-
-    display: flex;
-    gap: 12px;
-    padding: 12px 0;
-
-    .vs-button-primary.vs-button-filled.vs-component.vs-button {
-      width: 80px;
-    }
-    .vs-input-primary.vs-component.vs-con-input-label.vs-input {
-      width: 100%;
-    }
   }
 }
 </style>

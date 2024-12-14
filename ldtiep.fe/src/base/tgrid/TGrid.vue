@@ -116,6 +116,7 @@
               {{ tr[col.field] }}
             </div>
             <div
+              v-show="tr[col.field]"
               @click.stop="copyText(tr[col.field], $event)"
               class="cell--icon-copy"
             >

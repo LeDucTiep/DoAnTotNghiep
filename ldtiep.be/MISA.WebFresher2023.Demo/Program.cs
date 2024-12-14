@@ -66,6 +66,7 @@ builder.Services.AddScoped<ICommuneRepository, CommuneRepository>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IRuleRepository, RuleRepository>();
 builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+builder.Services.AddScoped<IMessageRepository, MessageRepository>();
 
 
 builder.Services.AddScoped<IProductService, ProductService>();
@@ -79,6 +80,7 @@ builder.Services.AddScoped<ICommuneService, CommuneService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<IRuleService, RuleService>();
 builder.Services.AddScoped<IEmployeeService, EmployeeService>();
+builder.Services.AddScoped<IMessageService, MessageService>();
 
 
 builder.Services.AddScoped<IMSDatabase, MSDatabase>();

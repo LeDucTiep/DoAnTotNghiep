@@ -13,6 +13,19 @@
     flex-wrap: wrap;
 }
 
+.bg {
+    background: linear-gradient(to right, #67b04e, #40bede);
+}
+
+.bg2 {
+    background: #75d87aff;
+}
+
+.chat-screen__body {
+    overflow-y: scroll;
+    max-height: 718px;
+}
+
 .cursor {
     cursor: pointer;
 }

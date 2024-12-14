@@ -35,6 +35,9 @@ class API {
     async byID(id) {
         return await this.get(`/${id}`);
     }
+    async chats() {
+        return await this.get(`/chats`);
+    }
     async genCode() {
         return await this.get(`/gen-code`);
     }
