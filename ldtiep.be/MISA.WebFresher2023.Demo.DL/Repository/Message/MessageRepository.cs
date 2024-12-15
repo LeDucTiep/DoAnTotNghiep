@@ -22,7 +22,7 @@ namespace ldtiep.be.DL.Repository
                 // Tham số 
                 var dynamicParams = new DynamicParameters();
 
-                string query = $"select distinct UserID from ldt_message;";
+                string query = $"select lm.UserID, lu.UserName, lu.PictureID, lm.MessageContent, lm.CreatedDate from (SELECT UserID, MessageContent, CreatedDate FROM ( SELECT UserID, MessageContent, CreatedDate, ROW_NUMBER() OVER (PARTITION BY UserID order by CreatedDate desc) AS row_num FROM ldt_message ) t WHERE row_num = 1) lm left join ldt_user lu on lm.UserID = lu.UserID ;";
 
                 // Bản ghi trả về 
                 var entity = await connection.QueryAsync<object>(

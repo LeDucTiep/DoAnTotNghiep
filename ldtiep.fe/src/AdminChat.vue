@@ -13,7 +13,7 @@
         height="24px"
         viewBox="0 -960 960 960"
         width="24px"
-        fill="#5f6368"
+        fill="#fff"
       >
         <path d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z" />
       </svg>
@@ -42,13 +42,30 @@
             >
               <div class="user-avata">
                 <img
+                  style="border-radius: 50%"
+                  v-if="item.PictureID"
+                  height="32"
+                  width="32"
+                  :src="PictureApi.baseUrl + '/' + item.PictureID"
+                  alt="Avata"
+                />
+                <img
+                  v-else
                   height="32"
                   width="32"
                   src="../src/assets/images/persion.png"
                   alt="Avata"
                 />
               </div>
-              <div class="block-chat--name">Ẩn danh</div>
+
+              <div class="block-chat--name--container">
+                <div class="block-chat--name">
+                  {{ item.UserName || "Ẩn danh" }}
+                </div>
+                <div class="block-chat--message">
+                  {{ item.MessageContent }}
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -73,6 +90,16 @@
                 height="32"
                 width="32"
                 src="../src/assets/images/avata-cham-soc-khach-hang.jpg"
+                alt="Avata"
+              />
+              <img
+                v-else-if="
+                  userPicture[item.UserID] &&
+                  userPicture[item.UserID] != 'persion'
+                "
+                height="32"
+                width="32"
+                :src="userPicture[item.UserID]"
                 alt="Avata"
               />
               <img
@@ -119,6 +146,8 @@ export default {
   data() {
     return {
       MessageApi: new API("Messages"),
+      PictureApi: new API("Pictures"),
+      UserApi: new API("Users"),
       isOpenChat: false,
       wd: window,
       selectedBlockChat: 0,
@@ -126,17 +155,17 @@ export default {
       messageData: [],
       typingMessage: "",
       chats: [],
+      userPicture: {},
     };
   },
   async created() {
     setInterval(() => {
       if (!this.isOpenChat) return;
+      this.getChats();
       this.getMessages();
     }, 1000);
 
     this.isExpandedChat = localStorage.getItem("isExpandedChat") == "true";
-
-    this.getChats();
   },
   methods: {
     async getChats() {
@@ -146,6 +175,7 @@ export default {
     },
     onSelectChatBlock(i) {
       this.selectedBlockChat = i;
+      this.getMessages();
     },
     openChat() {
       this.isOpenChat = true;
@@ -157,17 +187,26 @@ export default {
       localStorage.setItem("isExpandedChat", `${this.isExpandedChat}`);
     },
     async getMessages() {
+      if (!this.chats.length) return;
+
       const param = {
         PageSize: 100,
         PageNumber: 1,
         Sorter: {
           CreatedDate: "asc",
         },
+        SearchEquals: {
+          UserID: this.chats[this.selectedBlockChat].UserID,
+        },
       };
       const res = await this.MessageApi.paging(param);
 
       if (JSON.stringify(this.messageData) != JSON.stringify(res.Data)) {
         this.messageData = res.Data;
+
+        this.messageData.forEach((e) => {
+          this.getPictureByUserID(e.UserID);
+        });
       }
     },
     formatTime(time) {
@@ -204,6 +243,16 @@ export default {
       await this.MessageApi.add(param);
 
       this.typingMessage = "";
+    },
+    async getPictureByUserID(userID) {
+      if (this.userPicture[userID]) return;
+
+      const user = await this.UserApi.byID(userID);
+
+      if (user)
+        this.userPicture[userID] =
+          this.PictureApi.baseUrl + "/" + user.PictureID;
+      else this.userPicture[userID] = "persion";
     },
   },
 };
@@ -383,5 +432,16 @@ export default {
       flex: 1;
     }
   }
+}
+.block-chat--message {
+  color: lightgrey;
+  height: 20px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 355px;
+}
+.message-avata img {
+  border-radius: 50%;
 }
 </style>

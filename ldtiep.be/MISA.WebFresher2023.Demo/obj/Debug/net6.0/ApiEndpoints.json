@@ -1529,5 +1529,122 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ldtiep.be.api.Controllers.UserController",
+    "Method": "PostAsync",
+    "RelativePath": "api/v1/Users",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "entityCreateDto",
+        "Type": "ldtiep.be.BL.Dto.UserCreateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ldtiep.be.Controllers.BaseController\u00604[[ldtiep.be.DL.Entity.User, ldtiep.be.DL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.UserDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.UserCreateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.UserUpdateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "DeleteManyAsync",
+    "RelativePath": "api/v1/Users",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "arrayId",
+        "Type": "System.Guid[]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ldtiep.be.Controllers.BaseController\u00604[[ldtiep.be.DL.Entity.User, ldtiep.be.DL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.UserDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.UserCreateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.UserUpdateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "GetAsync",
+    "RelativePath": "api/v1/Users/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ldtiep.be.Controllers.BaseController\u00604[[ldtiep.be.DL.Entity.User, ldtiep.be.DL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.UserDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.UserCreateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.UserUpdateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "DeleteAsync",
+    "RelativePath": "api/v1/Users/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ldtiep.be.Controllers.BaseController\u00604[[ldtiep.be.DL.Entity.User, ldtiep.be.DL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.UserDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.UserCreateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.UserUpdateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "PutAsync",
+    "RelativePath": "api/v1/Users/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "entityUpdateDto",
+        "Type": "ldtiep.be.BL.Dto.UserUpdateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ldtiep.be.Controllers.BaseController\u00604[[ldtiep.be.DL.Entity.User, ldtiep.be.DL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.UserDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.UserCreateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.UserUpdateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "CheckExistedAsync",
+    "RelativePath": "api/v1/Users/checkExisted",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "param",
+        "Type": "System.Collections.Generic.Dictionary\u00602[[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ldtiep.be.Controllers.BaseController\u00604[[ldtiep.be.DL.Entity.User, ldtiep.be.DL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.UserDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.UserCreateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ldtiep.be.BL.Dto.UserUpdateDto, ldtiep.be.BL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "GetPageAsync",
+    "RelativePath": "api/v1/Users/paging",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "basePagingArgument",
+        "Type": "ldtiep.be.DL.Model.BasePagingArgument",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   }
 ]

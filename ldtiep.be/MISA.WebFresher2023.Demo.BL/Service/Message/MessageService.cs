@@ -21,8 +21,14 @@ namespace ldtiep.be.BL.Service
 
         public async Task<List<object>> GetChats()
         {
-            return await  _messageRepo.GetChats();
+            try
+            {
+                return await  _messageRepo.GetChats();
+            }
+            finally
+            {
+                await _msDatabase.CloseConnectionAsync();
+            }
         }
-
     }
 }
